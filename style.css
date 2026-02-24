@@ -1152,6 +1152,253 @@ section {
     line-height: 1.6;
 }
 
+/* ============================================================================
+   Automation Showcase (Workflow Animations)
+   ============================================================================ */
+.showcase-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.showcase-arrow {
+    color: var(--text-sec);
+    animation: bounceRight 2s infinite;
+}
+
+@keyframes bounceRight {
+
+    0%,
+    100% {
+        transform: translateX(0);
+        color: var(--text-sec);
+    }
+
+    50% {
+        transform: translateX(10px);
+        color: var(--accent-green);
+    }
+}
+
+/* Panel 1: Processing */
+.visual-panel {
+    width: 100%;
+    max-width: 450px;
+    background: #1C1C1E;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+}
+
+.v-panel-header {
+    background: #2C2C2E;
+    padding: 1rem;
+    border-bottom: 1px solid #3A3A3C;
+}
+
+.v-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #FFF;
+}
+
+.v-panel-body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.anim-task {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.at-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    font-family: var(--font-mono);
+}
+
+.at-name {
+    color: #EBEBF5;
+}
+
+.at-speed {
+    color: #0A84FF;
+    font-weight: bold;
+}
+
+.at-bar-bg {
+    height: 6px;
+    background: #2C2C2E;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.at-bar-fill {
+    height: 100%;
+    background: #0A84FF;
+    border-radius: 3px;
+    width: 0%;
+}
+
+.v-panel-footer {
+    padding: 1rem;
+    background: #151515;
+    border-top: 1px solid #3A3A3C;
+}
+
+/* Panel 2: Finder Mockup */
+.visual-finder {
+    width: 100%;
+    max-width: 450px;
+    background: #1E1E1E;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+}
+
+.finder-layout {
+    display: flex;
+    min-height: 250px;
+}
+
+.finder-sidebar {
+    width: 140px;
+    background: rgba(255, 255, 255, 0.05);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem 0;
+}
+
+.fs-item {
+    font-size: 0.8rem;
+    padding: 0.5rem 1rem;
+    color: #98989D;
+    cursor: default;
+}
+
+.fs-item.active {
+    background: rgba(10, 132, 255, 0.2);
+    color: #FFF;
+}
+
+.finder-body {
+    flex-grow: 1;
+    padding: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+}
+
+.f-row {
+    padding: 0.4rem;
+    border-radius: 4px;
+    margin-bottom: 2px;
+}
+
+.f-header {
+    color: #98989D;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 0.5rem;
+}
+
+.f-col-name {
+    color: #EBEBF5;
+}
+
+.f-parent {
+    font-weight: bold;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.f-child {
+    margin-left: 1.5rem;
+}
+
+/* Animations Keyframes */
+.fill-1 {
+    animation: loadBar 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.fill-2 {
+    animation: loadBar 6s cubic-bezier(0.4, 0, 0.2, 1) infinite 0.2s;
+    background: #BF5AF2;
+}
+
+.fill-3 {
+    animation: loadBar 6s cubic-bezier(0.4, 0, 0.2, 1) infinite 0.5s;
+    background: #FF9500;
+}
+
+.fill-4 {
+    animation: loadBar 6s cubic-bezier(0.4, 0, 0.2, 1) infinite 0.8s;
+    background: #30D158;
+}
+
+@keyframes loadBar {
+    0% {
+        width: 0%;
+    }
+
+    50% {
+        width: 100%;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+.anim-pop-1 {
+    animation: staggeredFade 6s infinite 2.5s;
+    opacity: 0;
+}
+
+.anim-pop-2 {
+    animation: staggeredFade 6s infinite 2.8s;
+    opacity: 0;
+}
+
+.anim-pop-3 {
+    animation: staggeredFade 6s infinite 3.1s;
+    opacity: 0;
+}
+
+.anim-pop-4 {
+    animation: staggeredFade 6s infinite 3.4s;
+    opacity: 0;
+}
+
+.anim-pop-5 {
+    animation: staggeredFade 6s infinite 3.8s;
+    opacity: 0;
+}
+
+@keyframes staggeredFade {
+
+    0%,
+    10% {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+
+    15%,
+    85% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    90%,
+    100% {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .nav-links {
