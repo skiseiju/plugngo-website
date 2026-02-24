@@ -29,7 +29,7 @@
                 <a href="#changelog">版本動態</a>
                 <a href="#specs">系統規格</a>
             </div>
-            <a href="#download" class="btn btn-outline">下載 Beta</a>
+            <a href="releases/PlugnGO-v1.6.4.zip" class="btn btn-outline">下載 Beta</a>
         </div>
     </nav>
 
@@ -43,7 +43,7 @@
                 一鍵插入，雙重備份、資料校驗、場記分裝全自動搞定，讓你把寶貴的肝留給剪接。
             </p>
             <div class="hero-cta">
-                <a href="#download" class="btn btn-primary">立即下載 Beta <span class="arrow">→</span></a>
+                <a href="releases/PlugnGO-v1.6.4.zip" class="btn btn-primary">立即下載 Beta <span class="arrow">→</span></a>
                 <a href="#features" class="btn btn-secondary">看看它能為你省下多少時間</a>
             </div>
         </div>
@@ -140,6 +140,37 @@
         </div>
     </section>
 
+    <!-- Target Audience (Use Cases) Section -->
+    <section class="use-cases" id="audience">
+        <div class="section-header reveal">
+            <h2>這套工具，<span class="accent">為誰而生？</span></h2>
+            <p>不論你是單兵作戰還是團隊大編制，PlugnGO 都能成為你最重要的裝備。</p>
+        </div>
+        <div class="use-case-grid">
+            <div class="use-case-card reveal">
+                <div class="uc-emoji">💍</div>
+                <div class="uc-content">
+                    <h3>婚禮攝影師</h3>
+                    <p>「雙機作業、四張卡片，回家累癱還要手動過檔？PlugnGO 一鍵插入，幫你自動分好 A/B 側機身，再累也不怕眼花存錯檔。」</p>
+                </div>
+            </div>
+            <div class="use-case-card reveal">
+                <div class="uc-emoji">🎬</div>
+                <div class="uc-content">
+                    <h3>劇組 DIT 與動態攝影團隊</h3>
+                    <p>「高單價專案容不下一次壞檔失誤！軍規級 MD5 校驗與精確的插槽管理，讓你在片場備份時能百分之百安心交件。」</p>
+                </div>
+            </div>
+            <div class="use-case-card reveal">
+                <div class="uc-emoji">🎥</div>
+                <div class="uc-content">
+                    <h3>YouTuber 獨立創作者</h3>
+                    <p>「素材沒分類永遠找不到？背景自動 DNG 轉檔與依日期建檔，打開 PR / FCP 時素材都已經就位於軌道上。」</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Features Section -->
     <section class="features" id="features">
         <div class="section-header reveal">
@@ -166,6 +197,36 @@
                 <div class="feature-icon purple">🚀</div>
                 <h3>榨乾 Type-C 頻寬的極速引擎</h3>
                 <p>為什麼別人過檔這麼慢？因為系統是單線排隊。我們為每一張卡配置獨立的伺服器級 Rsync 傳輸管線，同步平行寫入，把 Thunderbolt / USB 3.2 Gen2 的效能逼出極限。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benchmarks Section -->
+    <section class="benchmarks" id="benchmarks">
+        <div class="section-header reveal">
+            <h2>天下武功，<span class="accent">唯快不破</span></h2>
+            <p>把省下的時間，投資在值得創作的畫面裡。</p>
+        </div>
+        <div class="benchmark-container reveal">
+            <div class="bench-desc">
+                <h3>拷貝實測：200GB 雙卡併行傳輸</h3>
+                <p>將兩張滿載的 V90 SDXC 記憶卡 (總計 200GB 影音素材) 同時備份到外接 SSD。PlugnGO 的底層平行伺服器引擎，徹底榨乾頻寬。</p>
+            </div>
+            <div class="bench-chart">
+                <div class="b-row">
+                    <span class="b-label">傳統 Finder 拖曳 (單線程)</span>
+                    <div class="b-bar-container">
+                        <div class="b-bar b-finder" style="width: 100%;"></div>
+                        <span class="b-time">18 分鐘</span>
+                    </div>
+                </div>
+                <div class="b-row">
+                    <span class="b-label">PlugnGO 智慧備份 (平行管線)</span>
+                    <div class="b-bar-container">
+                        <div class="b-bar b-pgo" style="width: 44%;"></div>
+                        <span class="b-time">8 分鐘</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -209,6 +270,88 @@
         </div>
     </section>
 
+    <!-- Pricing / Features Matrix Section -->
+    <section class="pricing" id="pricing">
+        <div class="section-header reveal">
+            <h2>選擇適合您的版本</h2>
+            <p>無論是基礎需求還是專業製片，我們都有解決方案。終身授權，無訂閱費。</p>
+        </div>
+        <div class="pricing-cards">
+            <!-- Free Tier -->
+            <div class="price-card reveal">
+                <div class="p-head">
+                    <h3>Free Edition</h3>
+                    <div class="p-price">免費</div>
+                    <p>基礎備份方案</p>
+                </div>
+                <div class="p-body">
+                    <ul class="p-features">
+                        <li><i class="icon-check">✓</i> 基礎檔案拷貝</li>
+                        <li><i class="icon-check">✓</i> 顯示第 1 張記憶卡</li>
+                        <li><i class="icon-check">✓</i> 基本日期資料夾建檔</li>
+                        <li class="disabled"><i class="icon-x">✗</i> 無限多卡並行工作</li>
+                        <li class="disabled"><i class="icon-x">✗</i> MD5 位元級資料校驗</li>
+                        <li class="disabled"><i class="icon-x">✗</i> DNG 背景自動轉檔</li>
+                        <li class="disabled"><i class="icon-x">✗</i> EXIF 深層整理 / 自動退卡</li>
+                        <li class="disabled"><i class="icon-x">✗</i> 顯示具體傳輸連線頻寬</li>
+                    </ul>
+                </div>
+                <div class="p-foot">
+                    <a href="releases/PlugnGO-v1.6.4.zip" class="btn btn-outline" style="width:100%;">下載 Beta (免費)</a>
+                </div>
+            </div>
+            <!-- Pro Tier -->
+            <div class="price-card pro reveal">
+                <div class="pro-badge">最受專業人士歡迎</div>
+                <div class="p-head">
+                    <h3>Pro 專業版</h3>
+                    <div class="p-price">NT$ 990 <span class="p-period">/ 終身</span></div>
+                    <p>一次買斷，解鎖所有極速管線</p>
+                </div>
+                <div class="p-body">
+                    <ul class="p-features">
+                        <li><i class="icon-check">✓</i> 解鎖無限多讀卡槽同時備份</li>
+                        <li><i class="icon-check">✓</i> <strong>軍規級 MD5 資料校驗</strong></li>
+                        <li><i class="icon-check">✓</i> <strong>RAW 檔自動轉換 DNG</strong></li>
+                        <li><i class="icon-check">✓</i> 自動讀取 EXIF 規則建檔</li>
+                        <li><i class="icon-check">✓</i> 備份完成自動安全退卡</li>
+                        <li><i class="icon-check">✓</i> 顯示所有硬體 I/O 與頻寬測速</li>
+                        <li><i class="icon-check">✓</i> 專屬售後與授權轉移服務</li>
+                    </ul>
+                </div>
+                <div class="p-foot">
+                    <a href="https://your-payment-link.com" target="_blank" class="btn btn-primary"
+                        style="width:100%;">立刻解鎖極速流 <span class="arrow">→</span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section" id="faq">
+        <div class="section-header reveal">
+            <h2>常見問題解答 <span class="accent">F.A.Q</span></h2>
+            <p>所有你在意的技術細節與授權問題，我們都已經為你想好了。</p>
+        </div>
+        <div class="faq-container reveal">
+            <div class="faq-item">
+                <div class="faq-q">🤔 這個跟直接用 Mac 的 Finder 拖曳複製有什麼不一樣？</div>
+                <div class="faq-a">Finder 為了兼顧各種日常，使用的是串行處理 (單執行緒)，且沒有嚴格的檔案校驗機制，一旦斷線就可能發生「靜默壞檔」。PlugnGO
+                    則是專為「大檔、多卡」設計了並行資料管線，速度更快，最重要的是加上了 MD5 Hash 確保來源跟目標一字不差！</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">📷 支援我的相機 RAW 檔或錄影機的高階格式嗎？</div>
+                <div class="faq-a">完全支援！無論是 Sony 的 ARW, 還是 Canon CR3, Nikon NEF, 相機的 MP4 還是電影機的 MXF、BRAW
+                    等專業格式，底層核心引擎都能無損通過。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">💰 專業版序號是訂閱制還是買斷制？可以更換電腦嗎？</div>
+                <div class="faq-a">是終身買斷制！沒有坑人的訂閱費。這組序號會嚴格綁定您的 Mac 硬體指紋以防盜版，但如果您日後換了新的 Mac
+                    電腦，隨時可以聯絡我們免費解除舊電腦的授權並轉移到新機器上。</div>
+            </div>
+        </div>
+    </section>
+
     <!-- Changelog Section (New) -->
     <section class="changelog-section" id="changelog">
         <div class="section-header reveal">
@@ -236,7 +379,7 @@
         <div class="changelog-container reveal" style="margin-top:2rem;">
             <div class="cl-ver">
                 <div class="cl-badge"
-                    style="background: rgba(255,255,255,0.1); color:#FFF; border-color: rgba(255,255,255,0.2);">v1.6.0
+                    style="background: rgba(255,255,255,0.1); color:#FFF; border-color: rgba(255,255,255,0.2);">v1.6.4
                 </div>
                 <div class="cl-date">2026.02.24</div>
             </div>
