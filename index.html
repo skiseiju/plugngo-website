@@ -367,67 +367,42 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Pricing / Features Matrix Section -->
-    <section class="pricing" id="pricing">
-        <div class="section-header reveal">
-            <h2>選擇適合您的版本</h2>
-            <p>無論是基礎需求還是專業製片，我們都有解決方案。終身授權，無訂閱費。</p>
-        </div>
-        <div class="pricing-cards">
-            <!-- Free Tier -->
-            <div class="price-card reveal">
-                <div class="p-head">
-                    <h3>Free Edition</h3>
-                    <div class="p-price">免費</div>
-                    <p>基礎備份方案</p>
-                </div>
-                <div class="p-body">
-                    <ul class="p-features">
-                        <li><i class="icon-check">✓</i> 基礎檔案拷貝</li>
-                        <li><i class="icon-check">✓</i> 顯示第 1 張記憶卡</li>
-                        <li><i class="icon-check">✓</i> 基本日期資料夾建檔</li>
-                        <li class="disabled"><i class="icon-x">✗</i> 無限多卡並行工作</li>
-                        <li class="disabled"><i class="icon-x">✗</i> MD5 位元級資料校驗</li>
-                        <li class="disabled"><i class="icon-x">✗</i> DNG 背景自動轉檔</li>
-                        <li class="disabled"><i class="icon-x">✗</i> EXIF 深層整理 / 自動退卡</li>
-                        <li class="disabled"><i class="icon-x">✗</i> 顯示具體傳輸連線頻寬</li>
-                    </ul>
-                </div>
-                <div class="p-foot">
-                    <a href="releases/PlugnGO-v1.6.4.zip" class="btn btn-outline" style="width:100%;">下載 Beta (免費)</a>
-                </div>
+            <!-- Path arrow 2 -->
+            <div class="showcase-arrow">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
             </div>
-            <!-- Pro Tier -->
-            <div class="price-card pro reveal">
-                <div class="pro-badge">最受專業人士歡迎</div>
-                <div class="p-head">
-                    <h3>Pro 專業版</h3>
-                    <div class="p-price">NT$ 990 <span class="p-period">/ 終身</span></div>
-                    <p>一次買斷，解鎖所有極速管線</p>
+
+            <!-- Animation 3: Verification & Eject -->
+            <div class="glass-card visual-verify" style="flex: 1; min-width: 250px;">
+                <div class="v-panel-header">
+                    <div class="v-title">🛡️ MD5 校驗與安全退卡</div>
                 </div>
-                <div class="p-body">
-                    <ul class="p-features">
-                        <li><i class="icon-check">✓</i> 解鎖無限多讀卡槽同時備份</li>
-                        <li><i class="icon-check">✓</i> <strong>軍規級 MD5 資料校驗</strong></li>
-                        <li><i class="icon-check">✓</i> <strong>RAW 檔自動轉換 DNG</strong></li>
-                        <li><i class="icon-check">✓</i> 自動讀取 EXIF 規則建檔</li>
-                        <li><i class="icon-check">✓</i> 備份完成自動安全退卡</li>
-                        <li><i class="icon-check">✓</i> 顯示所有硬體 I/O 與頻寬測速</li>
-                        <li><i class="icon-check">✓</i> 專屬售後與授權轉移服務</li>
-                    </ul>
-                </div>
-                <div class="p-foot">
-                    <a href="https://your-payment-link.com" target="_blank" class="btn btn-primary"
-                        style="width:100%;">立刻解鎖極速流 <span class="arrow">→</span></a>
+                <div class="v-panel-body"
+                    style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2.5rem 1.5rem; gap: 1rem; text-align: center; overflow: hidden;">
+                    <div class="verify-icon" style="font-size: 3.5rem;">✅</div>
+                    <div class="verify-status"
+                        style="color: var(--accent-green); font-weight: bold; font-family: var(--font-heading); font-size: 1.1rem;">
+                        資料 100% 吻合</div>
+                    <div class="verify-sub" style="color: var(--text-sec); font-size: 0.85rem; margin-bottom: 0.5rem;">
+                        無壞檔風險，正在安全彈出...</div>
+                    <div class="eject-container"
+                        style="display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center;">
+                        <div class="e-card anim-eject-1">SD1 ⏏</div>
+                        <div class="e-card anim-eject-2">SD2 ⏏</div>
+                        <div class="e-card anim-eject-3">SD3 ⏏</div>
+                        <div class="e-card anim-eject-4">SD4 ⏏</div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FAQ Section -->
+    <!-- Placeholder for Pricing logic replacement -->
+
     <section class="faq-section" id="faq">
         <div class="section-header reveal">
             <h2>常見問題解答 <span class="accent">F.A.Q</span></h2>
@@ -448,6 +423,11 @@
                 <div class="faq-q">💰 專業版序號是訂閱制還是買斷制？可以更換電腦嗎？</div>
                 <div class="faq-a">是終身買斷制！沒有坑人的訂閱費。這組序號會嚴格綁定您的 Mac 硬體指紋以防盜版，但如果您日後換了新的 Mac
                     電腦，隨時可以聯絡我們免費解除舊電腦的授權並轉移到新機器上。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">🌐 需要一直連網才能使用嗎？如果在深山或無網路的片場怎麼辦？</div>
+                <div class="faq-a">完全不需要！PlugnGO 採用強悍的離線非對稱加密驗證。Pro 版只需要在「第一次輸入序號」時連網綁定您的 Mac，之後完全可以 100%
+                    離線在深山、無訊號的片場或無網路的機房使用，沒有任何強迫連網的限制。</div>
             </div>
         </div>
     </section>
@@ -509,6 +489,63 @@
                     </div>
                     <div class="term-line"><span class="cmd">&gt; Multi-Drive Ext.:</span> NAS 同步多重寫入支援</div>
                     <div class="term-line blink">_</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing / Features Matrix Section -->
+    <section class="pricing" id="pricing">
+        <div class="section-header reveal">
+            <h2>選擇適合您的版本</h2>
+            <p>無論是基礎需求還是專業製片，我們都有解決方案。終身授權，無訂閱費。</p>
+        </div>
+        <div class="pricing-cards">
+            <!-- Free Tier -->
+            <div class="price-card reveal">
+                <div class="p-head">
+                    <h3>Free Edition</h3>
+                    <div class="p-price">免費</div>
+                    <p>基礎備份方案</p>
+                </div>
+                <div class="p-body">
+                    <ul class="p-features">
+                        <li><i class="icon-check">✓</i> 基礎檔案拷貝</li>
+                        <li><i class="icon-check">✓</i> 顯示第 1 張記憶卡</li>
+                        <li><i class="icon-check">✓</i> 基本日期資料夾建檔</li>
+                        <li class="disabled"><i class="icon-x">✗</i> 無限多卡並行工作</li>
+                        <li class="disabled"><i class="icon-x">✗</i> MD5 位元級資料校驗</li>
+                        <li class="disabled"><i class="icon-x">✗</i> DNG 背景自動轉檔</li>
+                        <li class="disabled"><i class="icon-x">✗</i> EXIF 深層整理 / 自動退卡</li>
+                        <li class="disabled"><i class="icon-x">✗</i> 顯示具體傳輸連線頻寬</li>
+                    </ul>
+                </div>
+                <div class="p-foot">
+                    <a href="releases/PlugnGO-v1.6.4.zip" class="btn btn-outline" style="width:100%;">下載 Beta (免費)</a>
+                </div>
+            </div>
+            <!-- Pro Tier -->
+            <div class="price-card pro reveal">
+                <div class="pro-badge">最受專業人士歡迎</div>
+                <div class="p-head">
+                    <h3>Pro 專業版</h3>
+                    <div class="p-price">NT$ 990 <span class="p-period">/ 終身</span></div>
+                    <p>一次買斷，解鎖所有極速管線</p>
+                </div>
+                <div class="p-body">
+                    <ul class="p-features">
+                        <li><i class="icon-check">✓</i> 解鎖無限多讀卡槽同時備份</li>
+                        <li><i class="icon-check">✓</i> <strong>軍規級 MD5 資料校驗</strong></li>
+                        <li><i class="icon-check">✓</i> <strong>RAW 檔自動轉換 DNG</strong></li>
+                        <li><i class="icon-check">✓</i> 自動讀取 EXIF 規則建檔</li>
+                        <li><i class="icon-check">✓</i> 備份完成自動安全退卡</li>
+                        <li><i class="icon-check">✓</i> 顯示所有硬體 I/O 與頻寬測速</li>
+                        <li><i class="icon-check">✓</i> 專屬售後與授權轉移服務</li>
+                    </ul>
+                </div>
+                <div class="p-foot">
+                    <a href="https://your-payment-link.com" target="_blank" class="btn btn-primary"
+                        style="width:100%;">立刻解鎖極速流 <span class="arrow">→</span></a>
                 </div>
             </div>
         </div>

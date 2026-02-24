@@ -1157,6 +1157,7 @@ section {
    ============================================================================ */
 .showcase-container {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     gap: 2rem;
@@ -1185,11 +1186,14 @@ section {
 /* Panel 1: Processing */
 .visual-panel {
     width: 100%;
-    max-width: 450px;
+    max-width: 400px;
+    flex: 1 1 300px;
     background: #1C1C1E;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
+    border-radius: 12px;
+    overflow: hidden;
 }
 
 .v-panel-header {
@@ -1256,11 +1260,14 @@ section {
 /* Panel 2: Finder Mockup */
 .visual-finder {
     width: 100%;
-    max-width: 450px;
+    max-width: 400px;
+    flex: 1 1 300px;
     background: #1E1E1E;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
+    border-radius: 12px;
+    overflow: hidden;
 }
 
 .finder-layout {
@@ -1396,6 +1403,97 @@ section {
     100% {
         opacity: 0;
         transform: translateX(-10px);
+    }
+}
+
+/* Panel 3: Verify & Eject Animation */
+.visual-verify {
+    background: #1C1C1E;
+    border: 1px solid var(--accent-green);
+    box-shadow: 0 10px 30px rgba(48, 209, 88, 0.1);
+    border-radius: 12px;
+}
+
+.verify-icon {
+    animation: popScale 6s infinite;
+}
+
+@keyframes popScale {
+
+    0%,
+    55% {
+        transform: scale(0.5);
+        opacity: 0;
+        filter: grayscale(1);
+    }
+
+    60%,
+    95% {
+        transform: scale(1);
+        opacity: 1;
+        filter: grayscale(0);
+    }
+
+    100% {
+        transform: scale(0.5);
+        opacity: 0;
+        filter: grayscale(1);
+    }
+}
+
+.e-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
+    color: var(--text-sec);
+}
+
+.anim-eject-1 {
+    animation: ejectUp 6s infinite 4.2s;
+    opacity: 1;
+}
+
+.anim-eject-2 {
+    animation: ejectUp 6s infinite 4.4s;
+    opacity: 1;
+}
+
+.anim-eject-3 {
+    animation: ejectUp 6s infinite 4.6s;
+    opacity: 1;
+}
+
+.anim-eject-4 {
+    animation: ejectUp 6s infinite 4.8s;
+    opacity: 1;
+}
+
+@keyframes ejectUp {
+
+    0%,
+    5% {
+        transform: translateY(0);
+        opacity: 1;
+        border-color: rgba(255, 255, 255, 0.1);
+        color: var(--text-sec);
+    }
+
+    15%,
+    85% {
+        transform: translateY(-30px);
+        opacity: 0;
+        border-color: var(--accent-green);
+        color: var(--accent-green);
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+        border-color: rgba(255, 255, 255, 0.1);
+        color: var(--text-sec);
     }
 }
 
