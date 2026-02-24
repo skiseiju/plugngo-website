@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlugnGO! - 智慧備份工具</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;600;800&family=Inter:wght@400;500;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="background-grid"></div>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="assets/logo.png" alt="PlugnGO Logo" class="logo-img">
+                <span class="logo-text">PlugnGO<span class="accent">!</span></span>
+            </div>
+            <div class="nav-links">
+                <a href="#features">核心痛點解決</a>
+                <a href="#workflow">自動化流程</a>
+                <a href="#changelog">版本動態</a>
+                <a href="#specs">系統規格</a>
+            </div>
+            <a href="#download" class="btn btn-outline">下載 Beta</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content reveal">
+            <div class="hero-badge">v1.6.4 macOS 原生極速版正式釋出</div>
+            <h1 class="hero-title">還在深夜死盯進度條？<br><span class="gradient-text">收工過檔，不該是場惡夢。</span></h1>
+            <p class="hero-subtitle">
+                專為平面攝影師、動態錄影團隊與獨立創作者打造的 macOS 極速過檔神器。
+                一鍵插入，雙重備份、資料校驗、場記分裝全自動搞定，讓你把寶貴的肝留給剪接。
+            </p>
+            <div class="hero-cta">
+                <a href="#download" class="btn btn-primary">立即下載 Beta <span class="arrow">→</span></a>
+                <a href="#features" class="btn btn-secondary">看看它能為你省下多少時間</a>
+            </div>
+        </div>
+        <div class="hero-visual reveal-delay">
+            <div class="glass-card mockup">
+                <div class="mockup-header">
+                    <div class="dots">
+                        <span></span><span></span><span></span>
+                    </div>
+                    <div class="mockup-title">PlugnGO V1.6.4 - 智慧備份工具</div>
+                </div>
+                <div class="mockup-body mockup-app-layout">
+                    <!-- Left Column -->
+                    <div class="app-left">
+                        <div class="app-section-title" style="margin-top: 0;">來源與配置</div>
+                        <div class="app-buttons">
+                            <div class="app-btn btn-start">▶ 開始備份</div>
+                            <div class="app-btn btn-stop">■ 停止</div>
+                            <div class="app-btn btn-eject" style="background: #3A3A3C;">⏏ 退出全部</div>
+                        </div>
+                        <div class="app-section-title">已偵測記憶卡</div>
+                        <div class="app-card">
+                            <div class="card-top">
+                                <div class="card-check">✓</div>
+                                <div class="card-title">[Untitled] 119.1GB</div>
+                                <div class="card-badge green-badge">0222-L1</div>
+                                <div class="card-eject-btn">⏏</div>
+                            </div>
+                            <div class="card-bot">🔌 WFS-U (10 Gb/s) | 📄 20260215_140526_ILCE-1_...</div>
+                        </div>
+                        <div class="app-card">
+                            <div class="card-top">
+                                <div class="card-check">✓</div>
+                                <div class="card-title">[Untitled] 119.1GB</div>
+                                <div class="card-badge green-badge">0223-L0</div>
+                                <div class="card-eject-btn">⏏</div>
+                            </div>
+                            <div class="card-bot">🔌 WFS-U (10 Gb/s) | 📄 20260206_172948_ILCE-1_...</div>
+                        </div>
+                        <div class="app-section-title">備份設定</div>
+                        <div class="app-settings-box">
+                            <div class="input-row">/Volumes/Working 2T</div>
+                            <div class="sub-text">🔌 已識別連線：ASM236X series (5 Gb/s)</div>
+                        </div>
+                    </div>
+                    <!-- Right Column -->
+                    <div class="app-right">
+                        <div class="app-section-title" style="margin-top: 0;">任務與監控</div>
+                        <div class="app-monitor">
+                            <div class="mon-left">
+                                <div class="mon-label">總體速度</div>
+                                <div class="mon-val">320 <span class="mon-unit">MB/s</span></div>
+                            </div>
+                            <div class="mon-right">
+                                <div class="mon-pct pulse-text">42%</div>
+                                <div class="mon-bar">
+                                    <div class="mon-fill glow-fill" style="width: 42%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="app-section-title">進行中任務</div>
+                        <div class="app-task-box">
+                            <div class="app-task">
+                                <div class="task-head">
+                                    <span class="t-name">0222-L1</span>
+                                    <span class="t-status pulse-text">正在拷貝照片... 160 MB/s</span>
+                                </div>
+                                <div class="t-bar">
+                                    <div class="t-fill anim-fill" style="width: 60%;"></div>
+                                </div>
+                            </div>
+                            <div class="app-task" style="margin-top: 8px;">
+                                <div class="task-head">
+                                    <span class="t-name">0223-L0</span>
+                                    <span class="t-status pulse-text">正在拷貝影片... 160 MB/s</span>
+                                </div>
+                                <div class="t-bar">
+                                    <div class="t-fill anim-fill" style="width: 25%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="app-section-title">>_ 系統日誌</div>
+                        <div class="app-log">
+                            <div class="log-body">
+                                [INFO] PlugnGO V1.6.4 Components Ready.<br>
+                                [INFO] [系統] 偵測到 SD 卡變更 (目前: 6)<br>
+                                [INFO] ====== 開始備份 ======<br>
+                                <span class="log-blink">_</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="section-header reveal">
+            <h2>真正懂影像工作者的<span class="accent">自動化革命</span></h2>
+            <p>告別傳統檔案總管的拖拉與混亂，用自動化釋放你寶貴的後製工時。告別手工搬檔的膽戰心驚。</p>
+        </div>
+        <div class="feature-grid">
+            <div class="feature-card reveal">
+                <div class="feature-icon blue">🗂</div>
+                <h3>不會再有一堆「未命名檔案夾」</h3>
+                <p>拍完累得半死，還要在一堆亂碼資料夾中找素材？系統深度讀取 RAW 檔 EXIF，按「實際拍攝日期」自動分裝建檔，A-roll 影片與照片物理分離，整理素材從此成為全自動機器活。</p>
+            </div>
+            <div class="feature-card reveal">
+                <div class="feature-icon green">⚡️</div>
+                <h3>不挑讀卡機，滿插也能準確辨識</h3>
+                <p>別人會卡住的複雜多槽陣列讀卡機 (如 Kingston Workflow)，我們用 macOS 底層 I/O 尋址精準拆解！每一張卡都能抓出專屬「插槽編號」，6張卡同時過檔也絕不覆蓋、不迷路。</p>
+            </div>
+            <div class="feature-card reveal">
+                <div class="feature-icon red">🛡</div>
+                <h3>比你還怕素材不見：100% 寫入校驗</h3>
+                <p>「檔案到底有沒有複製成功？」別靠人眼確認。每一筆資料背後都緊跟著軍規級 MD5 雜湊校驗與磁碟健康度巡邏，徹底杜絕因線材老化導致的「靜默壞檔」。</p>
+            </div>
+            <div class="feature-card reveal">
+                <div class="feature-icon purple">🚀</div>
+                <h3>榨乾 Type-C 頻寬的極速引擎</h3>
+                <p>為什麼別人過檔這麼慢？因為系統是單線排隊。我們為每一張卡配置獨立的伺服器級 Rsync 傳輸管線，同步平行寫入，把 Thunderbolt / USB 3.2 Gen2 的效能逼出極限。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workflow Section -->
+    <section class="workflow" id="workflow">
+        <div class="section-header reveal">
+            <h2>四步全自動，<span class="accent">然後就能去睡覺了</span></h2>
+            <p>拍完片不用再熬夜當人肉讀卡機，PlugnGO 讓你提早收工下班。</p>
+        </div>
+        <div class="workflow-timeline">
+            <div class="workflow-line"></div>
+            <div class="workflow-step reveal">
+                <div class="step-number">1</div>
+                <div class="step-content text-right">
+                    <h3>插卡自動偵測，免去手動尋找</h3>
+                    <p>將讀卡機插滿！系統的 5 秒快取引擎會「瞬間」載入所有硬體規格並抓取相機機身序號，無論卡片再怎麼亂，程式都能一眼看穿誰是誰。</p>
+                </div>
+            </div>
+            <div class="workflow-step reveal">
+                <div class="step-number">2</div>
+                <div class="step-content text-left">
+                    <h3>按「開始」後，連 DNG 轉檔都幫你做完</h3>
+                    <p>勾選 Adobe DNG 無縫管線，RAW 檔剛搬進硬碟，系統就直接在背景接力轉檔。睡醒後，進 Lightroom 修圖的素材已經全部備妥。</p>
+                </div>
+            </div>
+            <div class="workflow-step reveal">
+                <div class="step-number">3</div>
+                <div class="step-content text-right">
+                    <h3>NAS 無縫熱備援，雙軌同步寫入</h3>
+                    <p>除了主要的工作碟，系統可透過多重路徑設定，同步將鏡像副本寫入外接 NAS 或備份碟。不必痴痴等第一份拷貝完再手動拖第二份。</p>
+                </div>
+            </div>
+            <div class="workflow-step reveal">
+                <div class="step-number">4</div>
+                <div class="step-content text-left">
+                    <h3>資料安全落地，系統自動退卡</h3>
+                    <p>雙重目錄核對與校驗通過後，才會亮起綠燈並「安全彈出」磁碟。看見退出提示，你就可以安心拔卡，準備明天再戰。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Changelog Section (New) -->
+    <section class="changelog-section" id="changelog">
+        <div class="section-header reveal">
+            <h2>最新版本動態 <span class="accent">Changelog</span></h2>
+            <p>持續進化，為了給創作者最無瑕的過檔體驗。</p>
+        </div>
+        <div class="changelog-container reveal-delay">
+            <div class="cl-ver">
+                <div class="cl-badge">v1.6.4</div>
+                <div class="cl-date">2026.02.24</div>
+            </div>
+            <div class="cl-content">
+                <ul class="cl-list">
+                    <li><span class="cl-tag tag-new">新增</span> <strong>硬體標籤深度識別</strong>：針對 Kingston Workflow
+                        等模組化多槽讀卡機，精確辨識 LUN 底層插槽位。</li>
+                    <li><span class="cl-tag tag-new">新增</span> <strong>快取效能提升 (TTL
+                            Cache)</strong>：大幅優化同時間插入多張記憶卡的介面載入速度，延遲降至 0.1 秒內。</li>
+                    <li><span class="cl-tag tag-new">新增</span> <strong>MD5 資料校驗</strong>：過檔完成後立即核對檔案總和，杜絕硬碟讀寫異動造成的損壞。
+                    </li>
+                    <li><span class="cl-tag tag-fix">優化</span> <strong>重新設計 SD 卡面板</strong>：全新綠色標籤陣列排版，支援 2 倍以上的視窗捲動容載量。
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="changelog-container reveal" style="margin-top:2rem;">
+            <div class="cl-ver">
+                <div class="cl-badge"
+                    style="background: rgba(255,255,255,0.1); color:#FFF; border-color: rgba(255,255,255,0.2);">v1.6.0
+                </div>
+                <div class="cl-date">2026.02.24</div>
+            </div>
+            <div class="cl-content">
+                <ul class="cl-list">
+                    <li><span class="cl-tag tag-new">新增</span> <strong>硬體連線偵測</strong>：現在能從 UI 動態判斷 USB 3.0 /
+                        Thunderbolt 連線速度 (10Gbps/40Gbps 等)。</li>
+                    <li><span class="cl-tag tag-fix">優化</span> 解決 macOS 下頻繁呼叫 <code>diskutil</code> 導致的進程卡死。</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specs Section -->
+    <section class="specs" id="specs">
+        <div class="glass-card spec-container reveal">
+            <div class="spec-terminal">
+                <div class="terminal-header">workflow_env_v1.6.4</div>
+                <div class="terminal-body">
+                    <div class="term-line"><span class="cmd">&gt; OS Environment:</span> macOS 13.0+ (Apple Silicon
+                        原生加速)</div>
+                    <div class="term-line"><span class="cmd">&gt; Native Format Support:</span> ARW, CR3, NEF, RAF,
+                        DNG...</div>
+                    <div class="term-line"><span class="cmd">&gt; Video Format Support:</span> MP4, MOV, MXF, MTS, TS,
+                        AVI...</div>
+                    <div class="term-line"><span class="cmd">&gt; Verification Protocol:</span> MD5 / SHA-256 Checksum
+                    </div>
+                    <div class="term-line"><span class="cmd">&gt; Multi-Drive Ext.:</span> NAS 同步多重寫入支援</div>
+                    <div class="term-line blink">_</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="assets/logo.png" alt="PlugnGO Logo" class="footer-logo-img">
+                <span>PlugnGO! V1.6.4</span>
+            </div>
+            <p class="copyright">&copy; 2026 Skiseiju Tech Team. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
