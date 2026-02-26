@@ -29,7 +29,7 @@
                 <a href="#changelog">版本動態</a>
                 <a href="#specs">系統規格</a>
             </div>
-            <a href="releases/PlugnGO-v1.6.4.zip" class="btn btn-outline">下載 Beta</a>
+            <a href="#pricing" class="btn btn-outline">取得下載連結</a>
         </div>
     </nav>
 
@@ -42,9 +42,19 @@
                 專為平面攝影師、動態錄影團隊與獨立創作者打造的 macOS 極速過檔神器。
                 一鍵插入，雙重備份、資料校驗、場記分裝全自動搞定，讓你把寶貴的肝留給剪接。
             </p>
-            <div class="hero-cta">
-                <a href="releases/PlugnGO-v1.6.4.zip" class="btn btn-primary">立即下載 Beta <span class="arrow">→</span></a>
-                <a href="#features" class="btn btn-secondary">看看它能為你省下多少時間</a>
+            <div class="hero-cta" style="flex-wrap: wrap; gap: 1rem;">
+                <a href="releases/PlugnGO-v1.6.4-Mac.zip" class="btn btn-primary">下載 Beta (Apple Silicon) <span
+                        class="arrow">↓</span></a>
+                <a href="releases/PlugnGO-v1.6.4-Intel.zip" class="btn btn-outline"
+                    style="border-color: rgba(255,255,255,0.3); color: var(--text-sec);">下載 Beta (Intel) <span
+                        class="arrow">↓</span></a>
+                <a href="#features" class="btn btn-secondary"
+                    style="width: 100%; justify-content: center;">看看它能為你省下多少時間</a>
+            </div>
+            <div class="hero-notice"
+                style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-sec); text-align: left; max-width: 600px; line-height: 1.5;">
+                <span class="accent">⚠️ 版本支援注意：</span> 為了確保極速效能，我們開發主力針對 M 晶片 (Apple Silicon) 進行原生優化。Intel 版本目前為 Rosetta
+                轉譯相容的有限度支援。未來若蘋果於 macOS 拔除 Rosetta 2，本軟體將順應政策退場，改以 Apple Silicon 為唯一發布架構。
             </div>
         </div>
         <div class="hero-visual reveal-delay">
@@ -441,7 +451,7 @@
         <div class="changelog-container reveal-delay">
             <div class="cl-ver">
                 <div class="cl-badge">v1.6.4</div>
-                <div class="cl-date">2026.02.24</div>
+                <div class="cl-date">2026.02.26</div>
             </div>
             <div class="cl-content">
                 <ul class="cl-list">
@@ -499,8 +509,12 @@
                         <li class="disabled"><i class="icon-x">✗</i> 顯示具體傳輸連線頻寬</li>
                     </ul>
                 </div>
-                <div class="p-foot">
-                    <a href="releases/PlugnGO-v1.6.4.zip" class="btn btn-outline" style="width:100%;">下載 Beta (免費)</a>
+                <div class="p-foot" style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <a href="releases/PlugnGO-v1.6.4-Mac.zip" class="btn btn-outline" style="width:100%;">下載 Beta (Apple
+                        Silicon)</a>
+                    <a href="releases/PlugnGO-v1.6.4-Intel.zip" class="btn btn-outline"
+                        style="width:100%; font-size: 0.8rem; color: var(--text-sec); border-color: rgba(255,255,255,0.2);">下載
+                        Beta (Intel Mac)</a>
                 </div>
             </div>
             <!-- Pro Tier -->
