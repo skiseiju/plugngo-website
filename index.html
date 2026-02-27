@@ -459,33 +459,33 @@
         </div>
                 <div class="changelog-container reveal-delay">
             <div class="cl-ver">
-                <div class="cl-badge">v1.6.5</div>
-                <div class="cl-date">2026.02.26</div>
+                <div class="cl-badge">v1.6.6</div>
+                <div class="cl-date">2026.02.28</div>
             </div>
             <div class="cl-content">
                 <ul class="cl-list">
-                    <li><span class="cl-tag tag-new">新增</span> <strong>防破解授權系統 (Anti-Tampering Trial)</strong>：全面重寫授權管理架構，導入 HMAC-SHA256 簽名驗證、HWID 衍生密鑰加密、單調遞增時間檢查點、macOS xattr 備份標記，四層防破解機制確保 ...</li>
-                    <li><span class="cl-tag tag-new">新增</span> <strong>備份途中心跳驗證 (Heartbeat Re-verification)</strong>：備份過程每 5 分鐘自動重新驗證授權狀態，防止備份途中篡改授權檔案。</li>
-                    <li><span class="cl-tag tag-new">新增</span> <strong>試用倒數即時刷新</strong>：視窗標題每 60 秒自動更新剩餘試用天數。</li>
-                    <li><span class="cl-tag tag-new">新增</span> <strong>伺服器端濫用追蹤</strong>：Google Sheets 後端新增 `RequestCount` 與 `days_elapsed` 欄位，追蹤異常頻繁的試用請求。</li>
-                    <li><span class="cl-tag tag-new">新增</span> <strong>發布腳本重構 (build_release.py v2)</strong>：修復 Mac DMG 被 Intel 建置覆蓋的問題，改為每個架構建置後立即打包 DMG。新增 CHANGELOG.md → 網站 HTML 自動同步功能。</li>
-                    <li><span class="cl-tag tag-new">新增</span> <strong>試用天數調整</strong>：免費試用期從 15 天調整為 14 天。</li>
+                    <li><span class="cl-tag tag-new">新增</span> <strong>複製校驗三段式狀態 (Copy Verification Statuses)</strong>：複製完成後依序顯示「複製完成」→「校驗中」→「校驗通過」三個階段。</li>
+                    <li><span class="cl-tag tag-new">新增</span> <strong>續傳進度指示器 (Resume Indicator)</strong>：已傳輸的續傳作業在任務列顯示「已複製/總數」計數器。</li>
+                    <li><span class="cl-tag tag-new">新增</span> <strong>中斷傳輸自動校驗</strong>：傳輸中斷後重啟時。</li>
+                    <li><span class="cl-tag tag-fix">優化</span> <strong>Checksum 校驗修正</strong>：修正校驗流程中未正確關閉檔案控制代碼的問題。</li>
+                    <li><span class="cl-tag tag-fix">優化</span> <strong>Rsync 選項修正</strong>：修正 rsync 命令參數組裝邏輯。</li>
+                    <li><span class="cl-tag tag-fix">優化</span> <strong>重複方法定義修正</strong>：移除 `HardwareManager` 中已棄用的重複方法定義。</li>
                 </ul>
             </div>
         </div>
         <div class="changelog-container reveal" style="margin-top:2rem;">
             <div class="cl-ver">
-                <div class="cl-badge" style="background: rgba(255,255,255,0.1); color:#FFF; border-color: rgba(255,255,255,0.2);">v1.6.4</div>
-                <div class="cl-date">2026.02.24</div>
+                <div class="cl-badge" style="background: rgba(255,255,255,0.1); color:#FFF; border-color: rgba(255,255,255,0.2);">v1.6.5</div>
+                <div class="cl-date">2026.02.26</div>
             </div>
             <div class="cl-content">
                 <ul class="cl-list">
-                    <li><span class="cl-tag tag-new">新增</span> <strong>跨平台雙架構發布 (Dual Architecture)</strong>：因應底層 C 語言效能擴充函式庫限制，發布流程正式升級為「Apple Silicon 與 Intel Mac 雙軌並行打包」，提供最無損的原生運算效能，並為未來...</li>
-                    <li><span class="cl-tag tag-new">新增</span> <strong>硬體標籤深度識別 (Deep Topology LUN ID)</strong>：針對 Kingston Workflow Station 等多槽 Hub 或模組化讀卡機，新增 macOS `ioreg` 底層架構的深度掃描，精確辨識 LUN...</li>
-                    <li><span class="cl-tag tag-new">新增</span> <strong>資料完整性校驗 (Checksum Verification)</strong>：內建複製後 `MD5/SHA` 自動校驗機制，確保照片與影片寫入硬碟 100% 準確無誤，UI 同步顯示狀態圖示。</li>
-                    <li><span class="cl-tag tag-new">新增</span> <strong>快取效能神級提升 (TTL Cache)</strong>：在 `HardwareManager` 導入了 5 秒的 TTL 快取機制，使掃描多張記憶卡的時間從 10 秒以上驟降至不到 0.1 秒，從根本上解決了介面初始...</li>
-                    <li><span class="cl-tag tag-new">新增</span> <strong>SD卡介面排版瘦身 (UI Clean-up)</strong>：重新設計 `SDCardPanel` 的雙行 Grid 排版邏輯，將最重要的「位置編號」升級為綠色高辨識度徽章，並將次要資訊收納於第二行低對比度顯示，大幅減少視...</li>
-                    <li><span class="cl-tag tag-fix">優化</span> <strong>App Icon 邊緣優化</strong>：去除應用程式圖示的黑色邊緣，改為純淨的透明 (Alpha 0) 去背設計。</li>
+                    <li><span class="cl-tag tag-new">新增</span> <strong>防破解授權系統 (Anti-Tampering Trial)</strong>：全面重寫授權管理架構。</li>
+                    <li><span class="cl-tag tag-new">新增</span> <strong>備份途中心跳驗證 (Heartbeat Re-verification)</strong>：備份過程每 5 分鐘自動重新驗證授權狀態。</li>
+                    <li><span class="cl-tag tag-new">新增</span> <strong>試用倒數即時刷新</strong>：視窗標題每 60 秒自動更新剩餘試用天數。</li>
+                    <li><span class="cl-tag tag-new">新增</span> <strong>伺服器端濫用追蹤</strong>：Google Sheets 後端新增請求統計欄位。</li>
+                    <li><span class="cl-tag tag-new">新增</span> <strong>發布腳本重構 (build_release.py v2)</strong>：修復 Mac DMG 被 Intel 建置覆蓋的問題。</li>
+                    <li><span class="cl-tag tag-new">新增</span> <strong>試用天數調整</strong>：免費試用期從 15 天縮減調整為 14 天。</li>
                 </ul>
             </div>
         </div>
