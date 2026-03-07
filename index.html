@@ -36,7 +36,7 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content reveal">
-            <div class="hero-badge">v1.7.0 macOS 原生極速版正式釋出</div>
+            <div class="hero-badge">v1.7.0-beta.1 macOS 原生極速版已發佈</div>
             <h1 class="hero-title">還在深夜死盯進度條？<br><span class="gradient-text">收工過檔，不該是場惡夢。</span></h1>
             <p class="hero-subtitle">
                 專為平面攝影師、動態錄影團隊與獨立創作者打造的 macOS 極速過檔神器。
@@ -44,7 +44,7 @@
             </p>
             <div class="hero-cta" style="flex-wrap: wrap; gap: 1rem;">
                 <a href="https://github.com/skiseiju/plugngo-website/releases/download/v1.7.0/PlugnGO-v1.7.0-Mac.dmg"
-                    class="btn btn-primary">下載 Beta (Apple Silicon) <span class="arrow">↓</span></a>
+                    class="btn btn-primary">下載 Beta 1.7.1 (Apple Silicon) <span class="arrow">↓</span></a>
                 <a href="https://github.com/skiseiju/plugngo-website/releases/download/v1.7.0/PlugnGO-v1.7.0-Intel.dmg"
                     class="btn btn-outline" style="border-color: rgba(255,255,255,0.3); color: var(--text-sec);">下載 Beta
                     (Intel) <span class="arrow">↓</span></a>
@@ -150,7 +150,7 @@
     <section class="use-cases" id="audience">
         <div class="section-header reveal">
             <h2>這套工具，<span class="accent">為誰而生？</span></h2>
-            <p>不論你是單兵作戰還是團隊大編制，PlugnGO 都能成為你最重要的裝備。</p>
+            <p>不論你是單兵作戰還是團隊大編制，PlugnGO 都能成為你最重要的裝備。（支援照片、影片、音訊格式）</p>
         </div>
         <div class="use-case-grid">
             <div class="use-case-card reveal">
@@ -457,35 +457,47 @@
             <h2>最新版本動態 <span class="accent">Changelog</span></h2>
             <p>持續進化，為了給創作者最無瑕的過檔體驗。</p>
         </div>
-                <div class="changelog-container reveal-delay">
+        <div class="changelog-container reveal-delay">
             <div class="cl-ver">
                 <div class="cl-badge">v1.7.0</div>
                 <div class="cl-date">2026.03.06</div>
             </div>
             <div class="cl-content">
                 <ul class="cl-list">
-                    <li><span class="cl-tag tag-new">新增</span> <strong>影音獨立日期擷取 (Video & Audio Metadata Extraction)</strong>：打破以往只有照片能依照日期建檔的限制。</li>
-                    <li><span class="cl-tag tag-new">新增</span> <strong>全格式通用歸檔 (Universal EXIF-like Organization)</strong>：支援平行處理相片、影片與聲音，三種類型皆能在傳輸後，自動依照真實建立時間進行...。</li>
-                    <li><span class="cl-tag tag-new">新增</span> <strong>聲音格式擴充支援</strong>：設定檔 (`config.py` & `settings.json`) 預設...。</li>
-                    <li><span class="cl-tag tag-new">新增</span> <strong>中止備份與校驗分離 (Decoupled Abort)</strong>：徹底分離 rsync 複製終止與事後校驗終止的邏輯。</li>
-                    <li><span class="cl-tag tag-new">新增</span> <strong>UI 狀態與進度條防撞</strong>：修復在備份或校驗尚未徹底完結前，使用者連點「開始」按鈕會產生幽靈校驗迴圈並不...。</li>
-                    <li><span class="cl-tag tag-fix">優化</span> <strong>檔案計數器凍結修復</strong>：修復 UI 檔案計數器 (`xx/xx`) 永遠停留在初始數量的問題。</li>
+                    <li><span class="cl-tag tag-new">新增</span> <strong>影音獨立日期擷取 (Video & Audio Metadata
+                            Extraction)</strong>：打破以往只有照片能依照日期建檔的限制。</li>
+                    <li><span class="cl-tag tag-new">新增</span> <strong>全格式通用歸檔 (Universal EXIF-like
+                            Organization)</strong>：支援平行處理相片、影片與聲音，三種類型皆能在傳輸後，自動依照真實建立時間進行...。</li>
+                    <li><span class="cl-tag tag-new">新增</span> <strong>聲音格式擴充支援</strong>：設定檔 (`config.py` &
+                        `settings.json`) 預設...。</li>
+                    <li><span class="cl-tag tag-new">新增</span> <strong>中止備份與校驗分離 (Decoupled Abort)</strong>：徹底分離 rsync
+                        複製終止與事後校驗終止的邏輯。</li>
+                    <li><span class="cl-tag tag-new">新增</span> <strong>UI
+                            狀態與進度條防撞</strong>：修復在備份或校驗尚未徹底完結前，使用者連點「開始」按鈕會產生幽靈校驗迴圈並不...。</li>
+                    <li><span class="cl-tag tag-fix">優化</span> <strong>檔案計數器凍結修復</strong>：修復 UI 檔案計數器 (`xx/xx`)
+                        永遠停留在初始數量的問題。</li>
                 </ul>
             </div>
         </div>
         <div class="changelog-container reveal" style="margin-top:2rem;">
             <div class="cl-ver">
-                <div class="cl-badge" style="background: rgba(255,255,255,0.1); color:#FFF; border-color: rgba(255,255,255,0.2);">v1.6.6</div>
+                <div class="cl-badge"
+                    style="background: rgba(255,255,255,0.1); color:#FFF; border-color: rgba(255,255,255,0.2);">v1.6.6
+                </div>
                 <div class="cl-date">2026.02.28</div>
             </div>
             <div class="cl-content">
                 <ul class="cl-list">
-                    <li><span class="cl-tag tag-new">新增</span> <strong>複製校驗三段式狀態 (Copy Verification Statuses)</strong>：複製完成後依序顯示「複製完成」→「校驗中」→「校驗通過」三個階段。</li>
-                    <li><span class="cl-tag tag-new">新增</span> <strong>續傳進度指示器 (Resume Indicator)</strong>：已傳輸的續傳作業在任務列顯示「已複製/總數」計數器。</li>
+                    <li><span class="cl-tag tag-new">新增</span> <strong>複製校驗三段式狀態 (Copy Verification
+                            Statuses)</strong>：複製完成後依序顯示「複製完成」→「校驗中」→「校驗通過」三個階段。</li>
+                    <li><span class="cl-tag tag-new">新增</span> <strong>續傳進度指示器 (Resume
+                            Indicator)</strong>：已傳輸的續傳作業在任務列顯示「已複製/總數」計數器。</li>
                     <li><span class="cl-tag tag-new">新增</span> <strong>中斷傳輸自動校驗</strong>：傳輸中斷後重啟時，自動對已複製檔案啟動校驗流程。</li>
-                    <li><span class="cl-tag tag-fix">優化</span> <strong>Checksum 校驗修正</strong>：修正校驗流程中未正確關閉檔案控制代碼的問題。</li>
+                    <li><span class="cl-tag tag-fix">優化</span> <strong>Checksum 校驗修正</strong>：修正校驗流程中未正確關閉檔案控制代碼的問題。
+                    </li>
                     <li><span class="cl-tag tag-fix">優化</span> <strong>Rsync 選項修正</strong>：修正 rsync 命令參數組裝邏輯。</li>
-                    <li><span class="cl-tag tag-fix">優化</span> <strong>重複方法定義修正</strong>：移除 `HardwareManager` 中已棄用的重複方法定義。</li>
+                    <li><span class="cl-tag tag-fix">優化</span> <strong>重複方法定義修正</strong>：移除 `HardwareManager`
+                        中已棄用的重複方法定義。</li>
                 </ul>
             </div>
         </div>
@@ -501,18 +513,20 @@
             <!-- Free Tier -->
             <div class="price-card reveal">
                 <div class="p-head">
-                    <h3>Free Trial</h3>
+                    <h3>Free Trial 無料體驗</h3>
                     <div class="p-price">免費體驗</div>
-                    <p>完整功能，限期 14 天</p>
+                    <p>完整體驗，30 天無限制試用</p>
                 </div>
                 <div class="p-body">
                     <ul class="p-features">
-                        <li><i class="icon-check">✓</i> 解鎖無限多讀卡槽同時備份</li>
-                        <li><i class="icon-check">✓</i> <strong>軍規級 MD5 資料校驗</strong></li>
+                        <li><i class="icon-check">✓</i> 最多 2 張記憶卡同時備份</li>
+                        <li><i class="icon-check">✓</i> 支援照片、影片、音訊格式（含 .aac、.m4a、.aif）</li>
                         <li><i class="icon-check">✓</i> <strong>RAW 檔自動轉換 DNG</strong></li>
-                        <li><i class="icon-check">✓</i> 自動讀取 EXIF 規則建檔</li>
+                        <li><i class="icon-check">✓</i> 自動讀取 EXIF 日期，建立目錄結構</li>
                         <li><i class="icon-check">✓</i> 備份完成自動安全退卡</li>
-                        <li><i class="icon-check">✓</i> 顯示所有硬體 I/O 與頻寬測速</li>
+                        <li><i class="icon-check">✓</i> 顯示所有硬體 I/O 與頻寬資訊</li>
+                        <li class="disabled"><i class="icon-x">✗</i> <strong>MD5 資料校驗</strong></li>
+                        <li class="disabled"><i class="icon-x">✗</i> 依日期自動歸檔移動檔案</li>
                         <li class="disabled"><i class="icon-x">✗</i> 專屬售後與跨裝置授權轉移</li>
                     </ul>
                 </div>
@@ -531,24 +545,52 @@
                 <div class="pro-badge">最受專業人士歡迎</div>
                 <div class="p-head">
                     <h3>Pro 專業版</h3>
-                    <div class="p-price">NT$ 990 <span class="p-period">/ 終身</span></div>
-                    <p>一次買斷，解鎖所有極速管線</p>
+                    <div class="p-price">NT$ 490 <span class="p-period">/ 終身</span></div>
+                    <p>一次買斷，解鎖專業備份流程</p>
                 </div>
                 <div class="p-body">
                     <ul class="p-features">
-                        <li><i class="icon-check">✓</i> 解鎖無限多讀卡槽同時備份</li>
-                        <li><i class="icon-check">✓</i> <strong>軍規級 MD5 資料校驗</strong></li>
+                        <li><i class="icon-check">✓</i> 無上限記憶卡同時備份 (依 macOS 上限)</li>
+                        <li><i class="icon-check">✓</i> 支援照片、影片、音訊格式（含 .aac、.m4a、.aif）</li>
                         <li><i class="icon-check">✓</i> <strong>RAW 檔自動轉換 DNG</strong></li>
-                        <li><i class="icon-check">✓</i> 自動讀取 EXIF 規則建檔</li>
+                        <li><i class="icon-check">✓</i> 自動讀取 EXIF 日期，建立目錄結構</li>
+                        <li><i class="icon-check">✓</i> <strong>依日期自動歸檔，移動檔案至對應目錄</strong></li>
+                        <li><i class="icon-check">✓</i> <strong>軍規級 MD5 資料校驗，逐檔確認寫入完整性</strong></li>
                         <li><i class="icon-check">✓</i> 備份完成自動安全退卡</li>
-                        <li><i class="icon-check">✓</i> 顯示所有硬體 I/O 與頻寬測速</li>
-                        <li><i class="icon-check">✓</i> 專屬售後與授權轉移服務</li>
+                        <li><i class="icon-check">✓</i> 顯示所有硬體 I/O 與頻寬資訊</li>
+                        <li><i class="icon-check">✓</i> 專屬售後與跨裝置授權轉移</li>
                     </ul>
                 </div>
                 <div class="p-foot">
                     <a href="https://your-payment-link.com" target="_blank" class="btn btn-primary"
-                        style="width:100%;">立刻解鎖極速流 <span class="arrow">→</span></a>
+                        style="width:100%;">立刻解鎖專業備份流程 <span class="arrow">→</span></a>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Vision Teaser Section -->
+    <section class="ai-vision-teaser" id="ai-vision" style="padding: 6rem 0; background: rgba(0,0,0,0.2);">
+        <div class="container reveal" style="max-width: 800px; margin: 0 auto; text-align: center; padding: 0 2rem;">
+            <div class="ai-badge"
+                style="display: inline-block; padding: 0.5rem 1rem; background: rgba(10, 132, 255, 0.1); color: var(--accent-blue); border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-bottom: 1.5rem;">
+                AI VISION（即將推出）</div>
+            <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">AI Vision 外掛 即將推出</h2>
+            <p style="font-size: 1.2rem; color: var(--text-sec); margin-bottom: 2rem;">備份完成的同時，AI 自動完成廢片篩選與連拍分組。</p>
+            <div class="ai-description"
+                style="background: rgba(255,255,255,0.03); padding: 2rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.05); margin-bottom: 2.5rem; text-align: left;">
+                <p style="line-height: 1.8; color: var(--text-dim);">當你還在婚宴現場，PlugnGo
+                    已經在背景默默濾掉今天的廢片、把連拍分好組。回到家打開硬碟，看到的都是值得挑選的照片。</p>
+            </div>
+            <div class="ai-cta-form">
+                <p style="margin-bottom: 1rem; font-weight: 500;">留下 Email，搶先體驗 →</p>
+                <form action="#" method="post" style="display: flex; gap: 0.5rem; max-width: 400px; margin: 0 auto;">
+                    <input type="email" placeholder="YOUR@EMAIL.COM" required
+                        style="flex: 1; padding: 0.8rem 1rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: white; outline: none;">
+                    <button type="submit" class="btn btn-primary" style="padding: 0 1.5rem;">送出</button>
+                </form>
+                <p style="margin-top: 1rem; font-size: 0.75rem; color: var(--text-dim);">* 我們僅用於通知 AI Vision
+                    上線消息，不會發送垃圾郵件。</p>
             </div>
         </div>
     </section>
