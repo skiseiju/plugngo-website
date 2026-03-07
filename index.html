@@ -445,45 +445,70 @@
         </div>
     </section>
 
-    <section class="faq-section" id="faq">
+    <section class="faq-section" id="faq" style="background: rgba(0,0,0,0.1); padding: 8rem 2rem;">
         <div class="section-header reveal">
             <h2>常見問題解答 <span class="accent">F.A.Q</span></h2>
-            <p>所有你在意的技術細節與授權問題，我們都已經為你想好了。</p>
+            <p>所有你在意的技術細節與授課問題，我們都已經為你想好了。</p>
         </div>
-        <div class="faq-container reveal">
-            <div class="faq-item">
-                <div class="faq-q">🤔 這個跟直接用 Mac 的 Finder 拖曳複製有什麼不一樣？</div>
-                <div class="faq-a">Finder 為了兼顧各種日常，使用的是串行處理 (單執行緒)，且沒有嚴格的檔案校驗機制，一旦斷線就可能發生「靜默壞檔」。PlugnGO
-                    則是專為「大檔、多卡」設計了並行資料管線，速度更快，最重要的是加上了 MD5 Hash 確保來源跟目標一字不差！</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-q">📷 支援我的相機 RAW 檔或錄影機的高階格式嗎？</div>
-                <div class="faq-a">完全支援！無論是 Sony 的 ARW, 還是 Canon CR3, Nikon NEF, 相機的 MP4 還是電影機的 MXF、BRAW
-                    等專業格式，底層核心引擎都能無損通過。</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-q">💰 專業版序號是訂閱制還是買斷制？可以更換電腦嗎？</div>
-                <div class="faq-a">是終身買斷制！沒有坑人的訂閱費。這組序號會嚴格綁定您的 Mac 硬體指紋以防盜版，但如果您日後換了新的 Mac
-                    電腦，隨時可以聯絡我們免費解除舊電腦的授權並轉移到新機器上。</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-q">🌐 需要一直連網才能使用嗎？如果在深山或無網路的片場怎麼辦？</div>
-                <div class="faq-a">完全不需要！PlugnGO 採用強悍的離線非對稱加密驗證。Pro 版只需要在「第一次輸入序號」時連網綁定您的 Mac，之後完全可以 100%
-                    離線在深山、無訊號的片場或無網路的機房使用，沒有任何強迫連網的限制。</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-q">⚠️ 請問有支援舊款的 Intel Mac 嗎？未來會停止支援嗎？</div>
-                <div class="faq-a">為了確保極速效能，我們開發主力目前針對 M 晶片 (Apple Silicon) 進行原生優化。Intel 版本目前為透過 Rosetta
-                    轉譯相容的有限度支援版本。未來若蘋果 (Apple) 官方於 macOS 系統拔除 Rosetta 2 環境，本軟體將順應原廠政策退場，改以 Apple Silicon 為唯一發布架構。</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-q">🔒 安裝時跳出「無法打開，因為它來自未識別的開發者」或「已損壞」怎麼辦？</div>
-                <div class="faq-a">這是 Apple macOS 常見的安全防護機制 (Gatekeeper)。
-                    <br><br>
-                    👉 <b>解決方法：</b>將 <code>PlugnGO.app</code> 拖入「應用程式」後，<b>不要直接雙擊</b>。<br>
-                    請在圖示上 <b>按右鍵 (或 Control+點擊) ➔ 選擇「打開」</b>。系統會再次詢問，此時只要點擊提示中的「打開」或「強制打開」，以後就可以正常雙擊執行了！
+        <div class="faq-bubbles-container reveal"
+            style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 4rem;">
+
+            <!-- FAQ 1 -->
+            <div class="faq-bubble-group" style="display: flex; gap: 2rem; align-items: flex-start;">
+                <div class="q-bubble"
+                    style="background: var(--accent-blue); color: white; padding: 1.5rem 2rem; border-radius: 24px 24px 24px 4px; max-width: 45%; flex-shrink: 0; box-shadow: 0 10px 30px rgba(10, 132, 255, 0.2); position: relative;">
+                    <span style="font-weight: 700; font-size: 1.1rem;">🤔 這個跟直接用 Mac 的 Finder 拖曳複製有什麼不一樣？</span>
+                </div>
+                <div class="a-bubble"
+                    style="background: var(--card-bg); padding: 2rem; border-radius: 24px 24px 4px 24px; flex-grow: 1; border: 1px solid var(--border-color); box-shadow: 0 10px 40px rgba(0,0,0,0.3);">
+                    <p style="line-height: 1.8; color: var(--text-primary);">Finder 為了兼顧各種日常，使用的是串行處理
+                        (單執行緒)，且沒有嚴格的檔案校驗機制，一旦斷線就可能發生「靜默壞檔」。<br><br>PlugnGO 則是專為「大檔、多卡」設計了<b>並行資料管線</b>，速度更快，最重要的是加上了
+                        <b>MD5 Hash</b> 確保來源跟目標一字不差！</p>
                 </div>
             </div>
+
+            <!-- FAQ 2 -->
+            <div class="faq-bubble-group"
+                style="display: flex; gap: 2rem; align-items: flex-start; flex-direction: row-reverse;">
+                <div class="q-bubble"
+                    style="background: var(--accent-purple); color: white; padding: 1.5rem 2rem; border-radius: 24px 24px 4px 24px; max-width: 45%; flex-shrink: 0; box-shadow: 0 10px 30px rgba(191, 90, 242, 0.2); text-align: right;">
+                    <span style="font-weight: 700; font-size: 1.1rem;">📷 支援我的相機 RAW 檔或錄影機的高階格式嗎？</span>
+                </div>
+                <div class="a-bubble"
+                    style="background: var(--card-bg); padding: 2rem; border-radius: 24px 24px 24px 4px; flex-grow: 1; border: 1px solid var(--border-color); box-shadow: 0 10px 40px rgba(0,0,0,0.3);">
+                    <p style="line-height: 1.8; color: var(--text-primary);">完全支援！無論是 Sony 的 ARW, 還是 Canon CR3, Nikon
+                        NEF, 相機的 MP4 還是電影機的 MXF、BRAW 等專業格式，底層核心引擎都能無損通過。</p>
+                </div>
+            </div>
+
+            <!-- FAQ 3 -->
+            <div class="faq-bubble-group" style="display: flex; gap: 2rem; align-items: flex-start;">
+                <div class="q-bubble"
+                    style="background: var(--accent-green); color: white; padding: 1.5rem 2rem; border-radius: 24px 24px 24px 4px; max-width: 45%; flex-shrink: 0; box-shadow: 0 10px 30px rgba(48, 209, 88, 0.2);">
+                    <span style="font-weight: 700; font-size: 1.1rem;">💰 專業版序號是訂閱制還是買斷制？可以更換電腦嗎？</span>
+                </div>
+                <div class="a-bubble"
+                    style="background: var(--card-bg); padding: 2rem; border-radius: 24px 24px 4px 24px; flex-grow: 1; border: 1px solid var(--border-color); box-shadow: 0 10px 40px rgba(0,0,0,0.3);">
+                    <p style="line-height: 1.8; color: var(--text-primary);">是<b>終身買斷制</b>！沒有坑人的訂閱費。這組序號會嚴格綁定您的 Mac
+                        硬體指紋以防盜版，但如果您日後換了新的 Mac 電腦，隨時可以聯絡我們免費解除舊電腦的授權並轉移到新機器上。</p>
+                </div>
+            </div>
+
+            <!-- FAQ 4 -->
+            <div class="faq-bubble-group"
+                style="display: flex; gap: 2rem; align-items: flex-start; flex-direction: row-reverse;">
+                <div class="q-bubble"
+                    style="background: #FFCC00; color: #000; padding: 1.5rem 2rem; border-radius: 24px 24px 4px 24px; max-width: 45%; flex-shrink: 0; box-shadow: 0 10px 30px rgba(255, 204, 0, 0.2); text-align: right;">
+                    <span style="font-weight: 700; font-size: 1.1rem;">🔒 安裝時跳出「無法打開」或「已損壞」怎麼辦？</span>
+                </div>
+                <div class="a-bubble"
+                    style="background: var(--card-bg); padding: 2rem; border-radius: 24px 24px 24px 4px; flex-grow: 1; border: 1px solid var(--border-color); box-shadow: 0 10px 40px rgba(0,0,0,0.3);">
+                    <p style="line-height: 1.8; color: var(--text-primary);">這是 Apple macOS 常見的安全防護機制
+                        (Gatekeeper)。<br><br>👉 <b>解決方法：</b>將 <code>PlugnGO.app</code> 拖入「應用程式」後，<b>不要直接雙擊</b>。請在圖示上
+                        <b>按右鍵 (或 Control+點擊) ➔ 選擇「打開」</b>。系統會再次詢問，此時只要點擊提示中的「打開」或「強制打開」，以後就可以正常雙擊執行了！</p>
+                </div>
+            </div>
+
         </div>
     </section>
 
