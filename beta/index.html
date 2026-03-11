@@ -569,7 +569,7 @@
         const res = await fetch(API_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'text/plain' },
-          body: JSON.stringify({ name, email, type }),
+          body: JSON.stringify({ action: 'beta_signup', name, email, type }),
         });
         const data = await res.json();
 
