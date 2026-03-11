@@ -577,12 +577,13 @@
           document.getElementById('formWrap').style.display = 'none';
           document.getElementById('successScreen').classList.add('show');
         } else {
-          showMsg(ERRORS[data.error] || ERRORS.SERVER_ERROR, 'error');
+          const dbg = data.message ? `\n[${data.error}] ${data.message}` : `[${data.error}]`;
+          showMsg((ERRORS[data.error] || ERRORS.SERVER_ERROR) + dbg, 'error');
           btn.classList.remove('loading');
           btn.disabled = false;
         }
-      } catch {
-        showMsg(ERRORS.NETWORK_ERROR, 'error');
+      } catch (err) {
+        showMsg(ERRORS.NETWORK_ERROR + '\n' + err.message, 'error');
         btn.classList.remove('loading');
         btn.disabled = false;
       }
