@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PlugnGO Beta — 免費試用申請</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+TC:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #0d0d0d;
+      --surface: #161616;
+      --surface-2: #1e1e1e;
+      --border: rgba(255, 255, 255, 0.07);
+      --border-hover: rgba(255, 255, 255, 0.15);
+      --white: #f0ede8;
+      --dim: rgba(240, 237, 232, 0.45);
+      --dim2: rgba(240, 237, 232, 0.25);
+      --accent: #c8ff00;
+      --accent-dim: rgba(200, 255, 0, 0.12);
+      --accent-border: rgba(200, 255, 0, 0.3);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: 'Noto Sans TC', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      background: rgba(13, 13, 13, 0.85);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+
+    .logo-exclaim {
+      color: var(--accent);
+    }
+
+    .nav-badge {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--accent);
+      padding: 3px 9px 2px;
+      border-radius: 2px;
+    }
+
+    /* ── Page ── */
+    .page {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 120px 24px 80px;
+    }
+
+    /* ── Hero ── */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: up 0.5s 0.1s ease forwards;
+    }
+
+    .eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: clamp(30px, 5.5vw, 46px);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: up 0.5s 0.15s ease forwards;
+    }
+
+    .desc {
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--dim);
+      margin-bottom: 32px;
+      opacity: 0;
+      animation: up 0.5s 0.2s ease forwards;
+    }
+
+    /* ── 功能標籤 ── */
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 48px;
+      opacity: 0;
+      animation: up 0.5s 0.25s ease forwards;
+    }
+
+    .pill {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--dim);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 5px 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pill-check {
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    /* ── 分隔 ── */
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin-bottom: 40px;
+      opacity: 0;
+      animation: up 0.5s 0.3s ease forwards;
+    }
+
+    /* ── 表單 ── */
+    .form-wrap {
+      opacity: 0;
+      animation: up 0.5s 0.35s ease forwards;
+    }
+
+    .form-heading {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--dim2);
+      margin-bottom: 28px;
+    }
+
+    .field {
+      margin-bottom: 16px;
+    }
+
+    .field label {
+      display: block;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--dim2);
+      margin-bottom: 8px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 500;
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 13px 16px;
+      font-size: 14px;
+      font-family: 'Noto Sans TC', sans-serif;
+      font-weight: 300;
+      color: var(--white);
+      outline: none;
+      transition: border-color 0.15s, background 0.15s;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    .field select {
+      background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='rgba(240,237,232,0.3)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      cursor: pointer;
+    }
+
+    .field select option {
+      background: #1e1e1e;
+    }
+
+    .field input:focus,
+    .field select:focus {
+      border-color: var(--accent-border);
+      background: rgba(200, 255, 0, 0.03);
+    }
+
+    .field input::placeholder {
+      color: rgba(240, 237, 232, 0.18);
+    }
+
+    .submit-btn {
+      width: 100%;
+      margin-top: 8px;
+      padding: 14px 24px;
+      background: var(--accent);
+      color: #0d0d0d;
+      border: none;
+      border-radius: 6px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      transition: opacity 0.15s, transform 0.1s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .submit-btn:hover:not(:disabled) {
+      opacity: 0.88;
+      transform: translateY(-1px);
+    }
+
+    .submit-btn:active:not(:disabled) {
+      transform: translateY(0);
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .btn-inner {
+      transition: opacity 0.2s;
+    }
+
+    .btn-spinner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .submit-btn.loading .btn-inner {
+      opacity: 0;
+    }
+
+    .submit-btn.loading .btn-spinner {
+      opacity: 1;
+    }
+
+    .spin {
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(13, 13, 13, 0.25);
+      border-top-color: #0d0d0d;
+      border-radius: 50%;
+      animation: spinning 0.65s linear infinite;
+    }
+
+    /* ── 訊息 ── */
+    .msg {
+      display: none;
+      margin-top: 14px;
+      padding: 13px 16px;
+      border-radius: 6px;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .msg.error {
+      display: block;
+      background: rgba(255, 80, 80, 0.07);
+      border: 1px solid rgba(255, 80, 80, 0.2);
+      color: #ff9090;
+    }
+
+    .msg.success {
+      display: block;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-border);
+      color: var(--accent);
+    }
+
+    /* ── 成功畫面 ── */
+    .success-screen {
+      display: none;
+      padding: 48px 0;
+    }
+
+    .success-screen.show {
+      display: block;
+      animation: up 0.4s ease forwards;
+    }
+
+    .success-icon {
+      font-size: 40px;
+      margin-bottom: 20px;
+    }
+
+    .success-screen h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    .success-screen p {
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--dim);
+    }
+
+    /* ── 注記 ── */
+    .note {
+      margin-top: 20px;
+      font-size: 12px;
+      color: var(--dim2);
+      line-height: 1.7;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .note::before {
+      content: '🔒';
+      font-size: 11px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      margin-top: 64px;
+      padding: 28px 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    footer span,
+    footer a {
+      font-size: 12px;
+      color: var(--dim2);
+      text-decoration: none;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    footer a:hover {
+      color: var(--dim);
+    }
+
+    /* ── Keyframes ── */
+    @keyframes up {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes spinning {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .page {
+        padding: 100px 20px 60px;
+      }
+
+      footer {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="https://plugngo.skiseiju.com" class="logo">PlugnGO<span class="logo-exclaim">!</span></a>
+      <span class="nav-badge">Beta</span>
+    </div>
+  </nav>
+
+  <main class="page">
+
+    <p class="eyebrow">限量 300 組 · 三個月完整試用</p>
+
+    <h1>備份這件事，<br>不該佔用你的腦容量。</h1>
+
+    <p class="desc">
+      記憶卡插上去，剩下的事 PlugnGO 自動搞定。<br>
+      現在申請 Beta 序號，三個月完整功能，完全免費。
+    </p>
+
+    <div class="pills">
+      <span class="pill"><span class="pill-check">✓</span> 自動偵測備份</span>
+      <span class="pill"><span class="pill-check">✓</span> MD5 資料校驗</span>
+      <span class="pill"><span class="pill-check">✓</span> EXIF 日期建檔</span>
+      <span class="pill"><span class="pill-check">✓</span> NAS 直寫支援</span>
+      <span class="pill"><span class="pill-check">✓</span> macOS 原生</span>
+    </div>
+
+    <hr>
+
+    <!-- 表單 -->
+    <div class="form-wrap" id="formWrap">
+      <p class="form-heading">申請你的 Beta 序號</p>
+
+      <div class="field">
+        <label for="name">名字</label>
+        <input type="text" id="name" placeholder="怎麼稱呼你？" autocomplete="name">
+      </div>
+
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="序號會寄到這裡" autocomplete="email">
+      </div>
+
+      <div class="field">
+        <label for="type">主要拍攝類型</label>
+        <select id="type">
+          <option value="" disabled selected>選擇你的工作類型</option>
+          <option value="婚攝">婚攝</option>
+          <option value="商業攝影">商業攝影</option>
+          <option value="活動紀錄">活動紀錄</option>
+          <option value="影片製作">影片製作</option>
+          <option value="YouTube・IG 短影片">YouTube・IG 短影片</option>
+          <option value="其他">其他</option>
+        </select>
+      </div>
+
+      <button class="submit-btn" id="submitBtn" onclick="handleSubmit()">
+        <span class="btn-inner">索取 Beta 序號</span>
+        <span class="btn-spinner">
+          <div class="spin"></div>
+        </span>
+      </button>
+
+      <div class="msg" id="msgBox"></div>
+
+      <p class="note">Email 僅用於寄送序號，不會用於其他用途。</p>
+    </div>
+
+    <!-- 成功 -->
+    <div class="success-screen" id="successScreen">
+      <div class="success-icon">📬</div>
+      <h2>序號已寄出！</h2>
+      <p>請檢查你的信箱，序號在那裡等你。<br>使用過程有任何問題，直接回覆那封信，<br>或到 <a href="https://www.facebook.com/skiseiju" target="_blank"
+          rel="noopener" style="color:var(--accent);text-decoration:none;">Facebook</a> 留言找我都可以。</p>
+    </div>
+
+    <footer>
+      <span>© 2025 PlugnGO</span>
+      <a href="https://plugngo.skiseiju.com">回到主頁</a>
+    </footer>
+
+  </main>
+
+  <script>
+    // ⚠️ 替換成你的 Apps Script Web App URL
+    const API_URL = 'https://script.google.com/macros/s/AKfycbzRUWFo-ZeUPK7fb-qUZcXcbLyYAUmqt1AkG8nVyJdiMYp7gXNPOwEWfx-cAAlyj-lK/exec';
+
+    const ERRORS = {
+      MISSING_FIELDS: '請填寫所有欄位。',
+      INVALID_EMAIL: '請輸入有效的 Email 地址。',
+      ALREADY_REGISTERED: '這個 Email 已經申請過了，請檢查你的信箱。',
+      NO_CODES_LEFT: '很抱歉，Beta 序號已全數發放完畢。',
+      SERVER_ERROR: '系統發生錯誤，請稍後再試。',
+      NETWORK_ERROR: '網路連線異常，請稍後再試。',
+    };
+
+    async function handleSubmit() {
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const type = document.getElementById('type').value;
+      const btn = document.getElementById('submitBtn');
+      const msg = document.getElementById('msgBox');
+
+      msg.className = 'msg';
+      msg.textContent = '';
+
+      if (!name || !email || !type) { showMsg(ERRORS.MISSING_FIELDS, 'error'); return; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showMsg(ERRORS.INVALID_EMAIL, 'error'); return; }
+
+      btn.classList.add('loading');
+      btn.disabled = true;
+
+      try {
+        const res = await fetch(API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, type }),
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          document.getElementById('formWrap').style.display = 'none';
+          document.getElementById('successScreen').classList.add('show');
+        } else {
+          showMsg(ERRORS[data.error] || ERRORS.SERVER_ERROR, 'error');
+          btn.classList.remove('loading');
+          btn.disabled = false;
+        }
+      } catch {
+        showMsg(ERRORS.NETWORK_ERROR, 'error');
+        btn.classList.remove('loading');
+        btn.disabled = false;
+      }
+    }
+
+    function showMsg(text, type) {
+      const el = document.getElementById('msgBox');
+      el.textContent = text;
+      el.className = 'msg ' + type;
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Enter' && !document.getElementById('submitBtn').disabled) handleSubmit();
+    });
+  </script>
+
+</body>
+
+</html>
