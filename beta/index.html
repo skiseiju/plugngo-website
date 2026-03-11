@@ -574,13 +574,12 @@
           document.getElementById('formWrap').style.display = 'none';
           document.getElementById('successScreen').classList.add('show');
         } else {
-          const dbg = data.message ? `\n[${data.error}] ${data.message}` : `[${data.error}]`;
-          showMsg((ERRORS[data.error] || ERRORS.SERVER_ERROR) + dbg, 'error');
+          showMsg(ERRORS[data.error] || ERRORS.SERVER_ERROR, 'error');
           btn.classList.remove('loading');
           btn.disabled = false;
         }
       } catch (err) {
-        showMsg(ERRORS.NETWORK_ERROR + '\n' + err.message, 'error');
+        showMsg(ERRORS.NETWORK_ERROR, 'error');
         btn.classList.remove('loading');
         btn.disabled = false;
       }
