@@ -20,17 +20,17 @@
     }
 
     :root {
-      --bg: #1c1c1e;
-      --surface: #2a2a2e;
-      --surface-2: #333338;
-      --border: rgba(255, 255, 255, 0.11);
-      --border-hover: rgba(255, 255, 255, 0.15);
-      --white: #f0ede8;
-      --dim: rgba(240, 237, 232, 0.62);
-      --dim2: rgba(240, 237, 232, 0.4);
-      --accent: #ffffff;
-      --accent-dim: rgba(255, 255, 255, 0.08);
-      --accent-border: rgba(200, 255, 0, 0.3);
+      --bg: #f6f2eb;
+      --surface: #ffffff;
+      --surface-2: #ede7db;
+      --border: #d9d1c5;
+      --border-hover: #c5bdb1;
+      --white: #0f172a;
+      --dim: #334155;
+      --dim2: #64748b;
+      --accent: #f97316;
+      --accent-dim: #fff7ed;
+      --accent-border: #fed7aa;
     }
 
     html {
@@ -55,7 +55,7 @@
       z-index: 100;
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      background: rgba(28, 28, 30, 0.9);
+      background: rgba(246, 242, 235, 0.92);
       border-bottom: 1px solid var(--border);
     }
 
@@ -233,24 +233,24 @@
     }
 
     .field select {
-      background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='rgba(240,237,232,0.3)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='rgba(15,23,42,0.35)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
       background-position: right 14px center;
       cursor: pointer;
     }
 
     .field select option {
-      background: #1e1e1e;
+      background: #ffffff;
     }
 
     .field input:focus,
     .field select:focus {
       border-color: var(--accent-border);
-      background: rgba(200, 255, 0, 0.03);
+      background: rgba(249, 115, 22, 0.04);
     }
 
     .field input::placeholder {
-      color: rgba(240, 237, 232, 0.18);
+      color: rgba(15, 23, 42, 0.25);
     }
 
     .submit-btn {
@@ -258,7 +258,7 @@
       margin-top: 8px;
       padding: 14px 24px;
       background: var(--accent);
-      color: #0d0d0d;
+      color: #ffffff;
       border: none;
       border-radius: 6px;
       font-family: 'Space Grotesk', sans-serif;
@@ -310,8 +310,8 @@
     .spin {
       width: 16px;
       height: 16px;
-      border: 2px solid rgba(13, 13, 13, 0.25);
-      border-top-color: #0d0d0d;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top-color: #ffffff;
       border-radius: 50%;
       animation: spinning 0.65s linear infinite;
     }
