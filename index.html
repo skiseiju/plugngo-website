@@ -4,634 +4,759 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PlugnGO — 攝影師的智慧備份工具</title>
-    <meta name="description" content="專為攝影師設計的自動備份工具。插上記憶卡，自動備份、MD5 校驗、安全退卡。比 Finder 快 2.2 倍。">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <title>PlugnGO! - 智慧備份工具</title>
     <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;600;800&family=Inter:wght@400;500;700&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
-    <a href="#main" class="skip-link">跳至主要內容</a>
+    <div class="background-grid"></div>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
 
-    <!-- NAV -->
-    <header class="nav" role="banner">
-        <div class="nav-inner">
-            <a href="#" class="logo" aria-label="PlugnGO 首頁">
-                <img src="assets/logo.png" alt="" width="26" height="26" aria-hidden="true">
-                <span>PlugnGO<span class="logo-accent">!</span></span>
-            </a>
-            <nav aria-label="主要導覽">
-                <ul class="nav-links">
-                    <li><a href="#features">功能</a></li>
-                    <li><a href="#pricing">定價</a></li>
-                    <li><a href="#faq">FAQ</a></li>
-                </ul>
-            </nav>
-            <a href="#pricing" class="btn-nav">免費下載</a>
-            <button class="hamburger" aria-expanded="false" aria-label="開啟選單">
-                <span></span><span></span><span></span>
-            </button>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="assets/logo.png" alt="PlugnGO Logo" class="logo-img">
+                <span class="logo-text">PlugnGO<span class="accent">!</span></span>
+            </div>
+            <div class="nav-links">
+                <a href="#features">核心痛點解決</a>
+                <a href="#workflow">自動化流程</a>
+                <a href="#pricing">定價方案</a>
+                <a href="#faq">常見問題</a>
+            </div>
+            <a href="#pricing" class="btn btn-outline">取得下載連結</a>
         </div>
-    </header>
+    </nav>
 
-    <div class="mobile-nav" id="mobile-nav">
-        <a href="#features">功能</a>
-        <a href="#pricing">定價</a>
-        <a href="#faq">FAQ</a>
-        <a href="#pricing" class="mobile-cta-link">免費下載</a>
-    </div>
-
-    <main id="main">
-
-        <!-- HERO -->
-        <section class="hero">
-            <div class="hero-container">
-
-                <div class="hero-badge">
-                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                    30 天免費試用，不滿意全額退費
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content reveal">
+            <div class="hero-badge">v1.7.2 macOS 原生極速版已發佈</div>
+            <h1 class="hero-title">還在深夜死盯進度條？<br><span class="gradient-text">收工過檔，不該是場惡夢。</span></h1>
+            <p class="hero-subtitle">
+                專為平面攝影師、動態錄影團隊與獨立創作者打造的 macOS 極速過檔神器。
+                一鍵插入，雙重備份、資料校驗、場記分裝全自動搞定，讓你把寶貴的肝留給剪接。
+            </p>
+            <div class="hero-cta" style="flex-wrap: wrap; gap: 1rem;">
+                <a href="https://github.com/skiseiju/plugngo-website/releases/download/v1.7.2/PlugnGO-v1.7.2-Mac.dmg"
+                    class="btn btn-primary">下載 正式版 v1.7.2 (Apple Silicon) <span class="arrow">↓</span></a>
+                <a href="https://github.com/skiseiju/plugngo-website/releases/download/v1.7.2/PlugnGO-v1.7.2-Intel.dmg"
+                    class="btn btn-outline" style="border-color: rgba(255,255,255,0.3); color: var(--text-sec);">下載 正式版
+                    v1.7.2 (Intel) <span class="arrow">↓</span></a>
+                <a href="#features" class="btn btn-secondary"
+                    style="width: 100%; justify-content: center;">看看它能為你省下多少時間</a>
+            </div>
+        </div>
+        </div>
+        <div class="hero-visual reveal-delay">
+            <div class="glass-card mockup">
+                <div class="mockup-header">
+                    <div class="dots">
+                        <span></span><span></span><span></span>
+                    </div>
+                    <div class="mockup-title">PlugnGO v1.7.2 - 智慧備份工具</div>
                 </div>
+                <div class="mockup-body mockup-app-layout">
+                    <!-- Left Column -->
+                    <div class="app-left">
+                        <div class="app-section-title" style="margin-top: 0;">來源與配置</div>
+                        <div class="app-buttons">
+                            <div class="app-btn btn-start">▶ 開始備份</div>
+                            <div class="app-btn btn-stop">■ 停止</div>
+                            <div class="app-btn btn-eject" style="background: #3A3A3C;">⏏ 退出全部</div>
+                        </div>
+                        <div class="app-section-title">已偵測記憶卡</div>
+                        <div class="app-card">
+                            <div class="card-top">
+                                <div class="card-check">✓</div>
+                                <div class="card-title">[Untitled] 119.1GB</div>
+                                <div class="card-badge green-badge">0222-L1</div>
+                                <div class="card-eject-btn">⏏</div>
+                            </div>
+                            <div class="card-bot">🔌 WFS-U (10 Gb/s) | 📄 20260215_140526_ILCE-1_...</div>
+                        </div>
+                        <div class="app-card">
+                            <div class="card-top">
+                                <div class="card-check">✓</div>
+                                <div class="card-title">[Untitled] 119.1GB</div>
+                                <div class="card-badge green-badge">0223-L0</div>
+                                <div class="card-eject-btn">⏏</div>
+                            </div>
+                            <div class="card-bot">🔌 WFS-U (10 Gb/s) | 📄 20260206_172948_ILCE-1_...</div>
+                        </div>
+                        <div class="app-section-title">備份設定</div>
+                        <div class="app-settings-box">
+                            <div class="input-row">/Volumes/Working 2T</div>
+                            <div class="sub-text">🔌 已識別連線：ASM236X series (5 Gb/s)</div>
+                        </div>
+                    </div>
+                    <!-- Right Column -->
+                    <div class="app-right">
+                        <div class="app-section-title" style="margin-top: 0;">任務與監控</div>
+                        <div class="app-monitor">
+                            <div class="mon-left">
+                                <div class="mon-label">總體速度</div>
+                                <div class="mon-val">320 <span class="mon-unit">MB/s</span></div>
+                            </div>
+                            <div class="mon-right">
+                                <div class="mon-pct pulse-text">42%</div>
+                                <div class="mon-bar">
+                                    <div class="mon-fill glow-fill" style="width: 42%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="app-section-title">進行中任務</div>
+                        <div class="app-task-box">
+                            <div class="app-task">
+                                <div class="task-head">
+                                    <span class="t-name">0222-L1</span>
+                                    <span class="t-status pulse-text">正在拷貝照片... 160 MB/s</span>
+                                </div>
+                                <div class="t-bar">
+                                    <div class="t-fill anim-fill" style="width: 60%;"></div>
+                                </div>
+                            </div>
+                            <div class="app-task" style="margin-top: 8px;">
+                                <div class="task-head">
+                                    <span class="t-name">0223-L0</span>
+                                    <span class="t-status pulse-text">正在拷貝影片... 160 MB/s</span>
+                                </div>
+                                <div class="t-bar">
+                                    <div class="t-fill anim-fill" style="width: 25%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="app-section-title">>_ 系統日誌</div>
+                        <div class="app-log">
+                            <div class="log-body">
+                                [INFO] PlugnGO v1.7.2 Components Ready.<br>
+                                [INFO] [系統] 偵測到 SD 卡變更 (目前: 6)<br>
+                                [INFO] ====== 開始備份 ======<br>
+                                <span class="log-blink">_</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                <h1 class="hero-h1">
-                    Finder 備份斷線，<br>
-                    <span class="line-accent">才是收工最浪費生命的事。</span>
-                </h1>
+    <!-- Target Audience (Use Cases) Section -->
+    <section class="use-cases" id="audience">
+        <div class="section-header reveal">
+            <h2>這套工具，<span class="accent">為誰而生？</span></h2>
+            <p>不論你是單兵作戰還是團隊大編制，PlugnGO 都能成為你最重要的裝備。（支援照片、影片、音訊格式）</p>
+        </div>
+        <div class="use-case-grid">
+            <div class="use-case-card reveal">
+                <div class="uc-emoji">💍</div>
+                <div class="uc-content">
+                    <h3>婚禮攝影師</h3>
+                    <p>「雙機作業、四張卡片，回家累癱還要手動過檔？PlugnGO 一鍵插入，幫你自動分好 A/B 側機身，再累也不怕眼花存錯檔。」</p>
+                </div>
+            </div>
+            <div class="use-case-card reveal">
+                <div class="uc-emoji">🎬</div>
+                <div class="uc-content">
+                    <h3>劇組 DIT 與動態攝影團隊</h3>
+                    <p>「高單價專案容不下一次壞檔失誤！軍規級 MD5 校驗與精確的插槽管理，讓你在片場備份時能百分之百安心交件。」</p>
+                </div>
+            </div>
+            <div class="use-case-card reveal">
+                <div class="uc-emoji">🎥</div>
+                <div class="uc-content">
+                    <h3>YouTuber 獨立創作者</h3>
+                    <p>「素材沒分類永遠找不到？背景自動 DNG 轉檔與依日期建檔，打開 PR / FCP 時素材都已經就位於軌道上。」</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                <p class="hero-sub">
-                    回頭猜哪張卡沒傳完，才是真正的噩夢。<br>
-                    PlugnGO 讓備份回歸邏輯——插上去，並行傳輸，MD5 校驗，安全退卡。
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="section-header reveal">
+            <h2>真正懂影像工作者的<span class="accent">自動化革命</span></h2>
+            <p>告別傳統檔案總管的拖拉與混亂，用自動化釋放你寶貴的後製工時。告別手工搬檔的膽戰心驚。</p>
+        </div>
+        <div class="feature-grid">
+            <div class="feature-card reveal">
+                <div class="feature-icon blue">🗂</div>
+                <h3>不會再有一堆「未命名檔案夾」</h3>
+                <p>拍完累得半死，還要在一堆亂碼資料夾中找素材？系統深度讀取 RAW 檔 EXIF，按「實際拍攝日期」自動分裝建檔，A-roll 影片與照片物理分離，整理素材從此成為全自動機器活。</p>
+            </div>
+            <div class="feature-card reveal">
+                <div class="feature-icon green">⚡️</div>
+                <h3>不挑讀卡機，滿插也能準確辨識</h3>
+                <p>別人會卡住的複雜多槽陣列讀卡機 (如 Kingston Workflow)，我們用 macOS 底層 I/O 尋址精準拆解！每一張卡都能抓出專屬「插槽編號」，6張卡同時過檔也絕不覆蓋、不迷路。</p>
+            </div>
+            <div class="feature-card reveal">
+                <div class="feature-icon red">🛡</div>
+                <h3>比你還怕素材不見：100% 寫入校驗</h3>
+                <p>「檔案到底有沒有複製成功？」別靠人眼確認。每一筆資料背後都緊跟著軍規級 MD5 雜湊校驗與磁碟健康度巡邏，徹底杜絕因線材老化導致的「靜默壞檔」。</p>
+            </div>
+            <div class="feature-card reveal">
+                <div class="feature-icon purple">🚀</div>
+                <h3>榨乾 Type-C 頻寬的極速引擎</h3>
+                <p>為什麼別人過檔這麼慢？因為系統是單線排隊。我們為每一張卡配置獨立的伺服器級 Rsync 傳輸管線，同步平行寫入，把 Thunderbolt / USB 3.2 Gen2 的效能逼出極限。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benchmarks Section -->
+    <section class="benchmarks" id="benchmarks">
+        <div class="section-header reveal">
+            <h2>天下武功，<span class="accent">唯快不破</span></h2>
+            <p>把省下的時間，投資在值得創作的畫面裡。</p>
+        </div>
+        <div class="benchmark-container reveal">
+            <div class="bench-desc">
+                <h3>拷貝實測：200GB 雙卡併行傳輸</h3>
+                <p>將兩張滿載的 V90 SDXC 記憶卡 (總計 200GB 影音素材) 同時備份到外接 SSD。PlugnGO 的底層平行伺服器引擎，徹底榨乾頻寬。</p>
+            </div>
+            <div class="bench-chart">
+                <div class="b-row">
+                    <span class="b-label">傳統 Finder 拖曳 (單線程)</span>
+                    <div class="b-bar-container">
+                        <div class="b-bar b-finder" style="width: 100%;"></div>
+                        <span class="b-time">18 分鐘</span>
+                    </div>
+                </div>
+                <div class="b-row">
+                    <span class="b-label">PlugnGO 智慧備份 (平行管線)</span>
+                    <div class="b-bar-container">
+                        <div class="b-bar b-pgo" style="width: 44%;"></div>
+                        <span class="b-time">8 分鐘</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workflow Section -->
+    <section class="workflow" id="workflow">
+        <div class="section-header reveal">
+            <h2>四步全自動，<span class="accent">然後就能去睡覺了</span></h2>
+            <p>拍完片不用再熬夜當人肉讀卡機，PlugnGO 讓你提早收工下班。</p>
+        </div>
+        <div class="workflow-timeline">
+            <div class="workflow-line"></div>
+            <div class="workflow-step reveal">
+                <div class="step-number">1</div>
+                <div class="step-content text-right">
+                    <h3>插卡自動偵測，免去手動尋找</h3>
+                    <p>將讀卡機插滿！系統的 5 秒快取引擎會「瞬間」載入所有硬體規格並抓取相機機身序號，無論卡片再怎麼亂，程式都能一眼看穿誰是誰。</p>
+                </div>
+            </div>
+            <div class="workflow-step reveal">
+                <div class="step-number">2</div>
+                <div class="step-content text-left">
+                    <h3>按「開始」後，連 DNG 轉檔都幫你做完</h3>
+                    <p>勾選 Adobe DNG 無縫管線，RAW 檔剛搬進硬碟，系統就直接在背景接力轉檔。睡醒後，進 Lightroom 修圖的素材已經全部備妥。</p>
+                </div>
+            </div>
+            <div class="workflow-step reveal">
+                <div class="step-number">3</div>
+                <div class="step-content text-right">
+                    <h3>NAS 無縫熱備援，雙軌同步寫入</h3>
+                    <p>除了主要的工作碟，系統可透過多重路徑設定，同步將鏡像副本寫入外接 NAS 或備份碟。不必痴痴等第一份拷貝完再手動拖第二份。</p>
+                </div>
+            </div>
+            <div class="workflow-step reveal">
+                <div class="step-number">4</div>
+                <div class="step-content text-left">
+                    <h3>資料安全落地，系統自動退卡</h3>
+                    <p>雙重目錄核對與校驗通過後，才會亮起綠燈並「安全彈出」磁碟。看見退出提示，你就可以安心拔卡，準備明天再戰。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Automation Showcase Section (Visuals) -->
+    <section class="automation-showcase" id="showcase">
+        <div class="section-header reveal">
+            <h2>這就是所謂的<span class="accent">「一鍵下班」</span></h2>
+            <p>按下開始，去沖杯咖啡、甚至直接去溫暖的床上睡覺。不用手動拖拉檔案、不用肉眼比對。系統會同時榨乾四條頻寬，並把檔案排得像藝術品一樣整齊。</p>
+        </div>
+
+        <div class="showcase-container reveal">
+            <!-- Animation 1: 4 Cards processing -->
+            <div class="glass-card visual-panel">
+                <div class="v-panel-header">
+                    <div class="v-title">⚡️ 並行管線全力運作中 (4/4)</div>
+                </div>
+                <div class="v-panel-body">
+                    <div class="anim-task">
+                        <div class="at-info"><span class="at-name">01_A-Cam (ILCE-1)</span><span class="at-speed">320
+                                MB/s</span></div>
+                        <div class="at-bar-bg">
+                            <div class="at-bar-fill fill-1"></div>
+                        </div>
+                    </div>
+                    <div class="anim-task">
+                        <div class="at-info"><span class="at-name">02_B-Cam (ILCE-7SM3)</span><span class="at-speed">280
+                                MB/s</span></div>
+                        <div class="at-bar-bg">
+                            <div class="at-bar-fill fill-2"></div>
+                        </div>
+                    </div>
+                    <div class="anim-task">
+                        <div class="at-info"><span class="at-name">03_Drone (Mavic 3)</span><span class="at-speed">150
+                                MB/s</span></div>
+                        <div class="at-bar-bg">
+                            <div class="at-bar-fill fill-3"></div>
+                        </div>
+                    </div>
+                    <div class="anim-task">
+                        <div class="at-info"><span class="at-name">04_Audio (F6)</span><span class="at-speed">80
+                                MB/s</span></div>
+                        <div class="at-bar-bg">
+                            <div class="at-bar-fill fill-4"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="v-panel-footer">
+                    <span class="pulse-text" style="color:#30D158; font-size: 0.85rem; font-weight: bold;">[系統] 正在同步備份至
+                        NAS 與本機 SSD...</span>
+                </div>
+            </div>
+
+            <!-- Path arrow -->
+            <div class="showcase-arrow">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+            </div>
+
+            <!-- Animation 2: Finder Structure -->
+            <div class="glass-card visual-finder">
+                <div class="mockup-header" style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    <div class="dots"><span></span><span></span><span></span></div>
+                    <div class="mockup-title">Finder - 工作磁碟</div>
+                </div>
+                <div class="finder-layout">
+                    <div class="finder-sidebar">
+                        <div class="fs-item active">🎬 工作磁碟</div>
+                        <div class="fs-item">☁️ NAS 遠端備份</div>
+                    </div>
+                    <div class="finder-body">
+                        <div class="f-row f-header">
+                            <span class="f-col-name">名稱</span>
+                        </div>
+                        <div class="f-folder-group">
+                            <div class="f-row f-parent">
+                                <span class="f-col-name">📁 2026-02-24_Commercial_Shoot</span>
+                            </div>
+                            <!-- Nested items -->
+                            <div class="f-row f-child anim-pop-1">
+                                <span class="f-col-name">🟦 01_A-Cam_ILCE-1</span>
+                            </div>
+                            <div class="f-row f-child anim-pop-2">
+                                <span class="f-col-name">🟦 02_B-Cam_ILCE-7SM3</span>
+                            </div>
+                            <div class="f-row f-child anim-pop-3">
+                                <span class="f-col-name">🟦 03_Drone_Mavic</span>
+                            </div>
+                            <div class="f-row f-child anim-pop-4">
+                                <span class="f-col-name">🎵 04_Audio_F6</span>
+                            </div>
+                            <div class="f-row f-child anim-pop-5">
+                                <span class="f-col-name" style="color:var(--accent-green);">✓
+                                    Transfer_Report_MD5.pdf</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Path arrow 2 -->
+            <div class="showcase-arrow">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+            </div>
+
+            <!-- Animation 3: Verification & Eject -->
+            <div class="glass-card visual-verify" style="flex: 1; min-width: 250px;">
+                <div class="v-panel-header">
+                    <div class="v-title">🛡️ MD5 校驗與安全退卡</div>
+                </div>
+                <div class="v-panel-body"
+                    style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2.5rem 1.5rem; gap: 1rem; text-align: center; overflow: hidden;">
+                    <div class="verify-icon" style="font-size: 3.5rem;">✅</div>
+                    <div class="verify-status"
+                        style="color: var(--accent-green); font-weight: bold; font-family: var(--font-heading); font-size: 1.1rem;">
+                        資料 100% 吻合</div>
+                    <div class="verify-sub" style="color: var(--text-sec); font-size: 0.85rem; margin-bottom: 0.5rem;">
+                        無壞檔風險，正在安全彈出...</div>
+                    <div class="eject-container"
+                        style="display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center;">
+                        <div class="e-card anim-eject-1">SD1 ⏏</div>
+                        <div class="e-card anim-eject-2">SD2 ⏏</div>
+                        <div class="e-card anim-eject-3">SD3 ⏏</div>
+                        <div class="e-card anim-eject-4">SD4 ⏏</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Placeholder for Pricing logic replacement -->
+
+    <!-- Latest Features Section -->
+    <section class="latest-features" id="latest-features" style="padding: 6rem 2rem;">
+        <div class="section-header reveal">
+            <h2>最新功能解鎖 <span class="accent">Latest Features</span></h2>
+            <p>不斷突破的自動化界限，只為讓您提前兩小時收工。</p>
+        </div>
+        <div
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 3rem; max-width: 1000px; margin: 0 auto;">
+            <!-- Major Feature 1 -->
+            <div class="glass-card reveal"
+                style="padding: 3rem; border: 1px solid rgba(48, 209, 88, 0.2); position: relative; overflow: hidden;">
+                <div
+                    style="position: absolute; top: -20px; right: -20px; font-size: 8rem; opacity: 0.03; font-weight: 800;">
+                    01</div>
+                <div style="font-size: 3rem; margin-bottom: 1.5rem;">📁</div>
+                <h3 style="font-size: 1.8rem; margin-bottom: 1rem; font-family: var(--font-heading);">全格式通用歸檔<br><span
+                        style="color: var(--accent-green); font-size: 1.2rem;">Universal Organization</span></h3>
+                <p style="color: var(--text-sec); line-height: 1.8; font-size: 1.1rem;">
+                    徹底打破「只有照片能分類」的限制。全新開發的檔案識別引擎，現在能同步處理 **照片、影片與聲音檔**。無論素材多雜，PlugnGO 都能依據真實建立時間，將它們物理分離建檔，實現真正的一鍵下班。
                 </p>
-
-                <div class="hero-cta-row">
-                    <a href="https://github.com/skiseiju/plugngo-website/releases/download/v1.7.3/PlugnGO-v1.7.3-Mac.dmg"
-                       class="btn btn-primary"
-                       aria-label="下載 PlugnGO M系列版">
-                        M系列版下載
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                    </a>
-                    <a href="https://github.com/skiseiju/plugngo-website/releases/download/v1.7.3/PlugnGO-v1.7.3-Intel.dmg"
-                       class="btn btn-ghost"
-                       aria-label="下載 PlugnGO Intel 版">
-                        Intel 版下載
-                    </a>
-                </div>
-                <p class="hero-fine">macOS 12 Monterey 以上 &nbsp;·&nbsp; 終身買斷，無訂閱費</p>
-
-                <!-- Full-width app mockup -->
-                <div class="hero-mockup" aria-hidden="true">
-                    <div class="win-titlebar">
-                        <div class="win-dots">
-                            <span class="dot dot-red"></span>
-                            <span class="dot dot-yellow"></span>
-                            <span class="dot dot-green"></span>
-                        </div>
-                        <span class="win-title">PlugnGO v1.7.3 — 智慧備份工具</span>
-                    </div>
-                    <div class="win-body">
-                        <div class="win-col">
-                            <div class="win-section-title">CARDS</div>
-                            <div class="app-buttons">
-                                <div class="app-btn app-btn-start">▶ 備份中</div>
-                                <div class="app-btn app-btn-stop">■ 停止</div>
-                                <div class="app-btn app-btn-eject">⏏ 退卡</div>
-                            </div>
-                            <div class="app-card">
-                                <div class="app-card-top">
-                                    <div class="card-check">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                                    </div>
-                                    <span class="card-label">01_A-Cam (ILCE-1)</span>
-                                    <span class="card-tag card-tag-done">完成</span>
-                                </div>
-                                <div class="card-meta">4,821 個檔案 · 87.4 GB · MD5 ✓</div>
-                            </div>
-                            <div class="app-card">
-                                <div class="app-card-top">
-                                    <div class="card-check">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                                    </div>
-                                    <span class="card-label">02_B-Cam (ILCE-7SM3)</span>
-                                    <span class="card-tag card-tag-active">備份中</span>
-                                </div>
-                                <div class="card-meta">2,103 個檔案 · 52.1 GB · 傳輸中...</div>
-                            </div>
-                            <div class="app-card">
-                                <div class="app-card-top">
-                                    <div class="card-check" style="background:#2a2d30;">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="#4b5563" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                                    </div>
-                                    <span class="card-label">03_Drone (Mavic 3)</span>
-                                    <span class="card-tag card-tag-wait">等待中</span>
-                                </div>
-                                <div class="card-meta">排隊中 · 預計 1,640 個檔案</div>
-                            </div>
-                        </div>
-
-                        <div class="win-col">
-                            <div class="win-section-title">STATUS</div>
-                            <div class="win-monitor">
-                                <div>
-                                    <div class="mon-speed-num">320</div>
-                                    <div class="mon-speed-unit">MB/s 總體速度</div>
-                                </div>
-                                <div class="mon-right">
-                                    <div class="mon-pct">68%</div>
-                                    <div class="mon-bar"><div class="mon-fill"></div></div>
-                                </div>
-                            </div>
-                            <div class="task-item">
-                                <div class="task-info">
-                                    <span class="task-name">A-Cam → NAS</span>
-                                    <span class="task-speed s1">160 MB/s</span>
-                                </div>
-                                <div class="task-bar"><div class="task-fill f1"></div></div>
-                            </div>
-                            <div class="task-item">
-                                <div class="task-info">
-                                    <span class="task-name">B-Cam → 本機</span>
-                                    <span class="task-speed s2">120 MB/s</span>
-                                </div>
-                                <div class="task-bar"><div class="task-fill f2"></div></div>
-                            </div>
-                            <div class="task-item">
-                                <div class="task-info">
-                                    <span class="task-name">B-Cam → NAS</span>
-                                    <span class="task-speed s3">40 MB/s</span>
-                                </div>
-                                <div class="task-bar"><div class="task-fill f3"></div></div>
-                            </div>
-                            <div class="win-log">
-                                <span class="log-line log-info">[INFO] PlugnGO v1.7.3 Ready</span>
-                                <span class="log-line log-ok">[OK] MD5 校驗通過 — 01_A-Cam (4,821 個檔案)</span>
-                                <span class="log-line log-info">[INFO] 02_B-Cam 備份中...<span class="cursor">_</span></span>
-                                <span class="log-line"><span class="status-dot"></span>雙備援同時寫入</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
-        </section>
+            <!-- Major Feature 2 -->
+            <div class="glass-card reveal"
+                style="padding: 3rem; border: 1px solid rgba(10, 132, 255, 0.2); position: relative; overflow: hidden;">
+                <div
+                    style="position: absolute; top: -20px; right: -20px; font-size: 8rem; opacity: 0.03; font-weight: 800;">
+                    02</div>
+                <div style="font-size: 3rem; margin-bottom: 1.5rem;">⏱</div>
+                <h3 style="font-size: 1.8rem; margin-bottom: 1rem; font-family: var(--font-heading);">影音獨立日期擷取<br><span
+                        style="color: var(--accent-blue); font-size: 1.2rem;">Metadata Extraction</span></h3>
+                <p style="color: var(--text-sec); line-height: 1.8; font-size: 1.1rem;">不再受限於作業系統的檔案建立日期。我們深度支援影音專用
+                    **EXIF/Metadata 讀取**，即便是複雜的錄影編碼與 Log 格式，也能精確抓取相機內部的原始拍攝時間。這才是創作者需要的自動化。</p>
+            </div>
+            <!-- Major Feature 3 -->
+            <div class="glass-card reveal"
+                style="padding: 3rem; border: 1px solid rgba(255, 159, 10, 0.2); position: relative; overflow: hidden;">
+                <div
+                    style="position: absolute; top: -20px; right: -20px; font-size: 8rem; opacity: 0.03; font-weight: 800;">
+                    03</div>
+                <div style="font-size: 3rem; margin-bottom: 1.5rem;">📅</div>
+                <h3 style="font-size: 1.8rem; margin-bottom: 1rem; font-family: var(--font-heading);">跨日拍攝自動拆分<br><span
+                        style="color: var(--accent-orange, #FF9F0A); font-size: 1.2rem;">EXIF Date Auto-Split</span></h3>
+                <p style="color: var(--text-sec); line-height: 1.8; font-size: 1.1rem;">
+                    連拍好幾天才格式化的卡片？一張卡裡混了 2/21、3/23 兩個拍攝日期？開啟 EXIF 整理模式後，PlugnGO 會在備份完成後，自動依照每個檔案的<strong style="color: var(--text-primary);">實際拍攝日期</strong>重新歸檔，讓不同日期的素材各自就位，再也不用手動翻找。可隨時在設定中開關，不影響已備份的舊資料。
+                </p>
+            </div>
+        </div>
+    </section>
 
-        <!-- STATS -->
-        <div class="stats-strip">
-            <div class="container stats-inner">
-                <div class="stat-item">
-                    <span class="stat-num">2.2×</span>
-                    <span class="stat-label">比 Finder 更快</span>
+    <section class="faq-section" id="faq" style="background: rgba(0,0,0,0.1); padding: 8rem 2rem;">
+        <div class="section-header reveal">
+            <h2>常見問題解答 <span class="accent">F.A.Q</span></h2>
+            <p>所有你在意的技術細節與授課問題，我們都已經為你想好了。</p>
+        </div>
+        <div class="faq-bubbles-container reveal"
+            style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 4rem;">
+
+            <!-- FAQ 1 -->
+            <div class="faq-bubble-group" style="display: flex; gap: 2rem; align-items: flex-start;">
+                <div class="q-bubble"
+                    style="background: var(--accent-blue); color: white; padding: 1.5rem 2rem; border-radius: 24px 24px 24px 4px; max-width: 45%; flex-shrink: 0; box-shadow: 0 10px 30px rgba(10, 132, 255, 0.2); position: relative;">
+                    <span style="font-weight: 700; font-size: 1.1rem;">🤔 這個跟直接用 Mac 的 Finder 拖曳複製有什麼不一樣？</span>
                 </div>
-                <div class="stat-divider" aria-hidden="true"></div>
-                <div class="stat-item">
-                    <span class="stat-num">MD5</span>
-                    <span class="stat-label">逐檔完整性校驗</span>
+                <div class="a-bubble"
+                    style="background: var(--card-bg); padding: 2rem; border-radius: 24px 24px 4px 24px; flex-grow: 1; border: 1px solid var(--border-color); box-shadow: 0 10px 40px rgba(0,0,0,0.3);">
+                    <p style="line-height: 1.8; color: var(--text-primary);">Finder 為了兼顧各種日常，使用的是串行處理
+                        (單執行緒)，且沒有嚴格的檔案校驗機制，一旦斷線就可能發生「靜默壞檔」。<br><br>PlugnGO 則是專為「大檔、多卡」設計了<b>並行資料管線</b>，速度更快，最重要的是加上了
+                        <b>MD5 Hash</b> 確保來源跟目標一字不差！
+                    </p>
                 </div>
-                <div class="stat-divider" aria-hidden="true"></div>
-                <div class="stat-item">
-                    <span class="stat-num">6+</span>
-                    <span class="stat-label">記憶卡同時備份</span>
+            </div>
+
+            <!-- FAQ 2 -->
+            <div class="faq-bubble-group"
+                style="display: flex; gap: 2rem; align-items: flex-start; flex-direction: row-reverse;">
+                <div class="q-bubble"
+                    style="background: var(--accent-purple); color: white; padding: 1.5rem 2rem; border-radius: 24px 24px 4px 24px; max-width: 45%; flex-shrink: 0; box-shadow: 0 10px 30px rgba(191, 90, 242, 0.2); text-align: right;">
+                    <span style="font-weight: 700; font-size: 1.1rem;">📷 支援我的相機 RAW 檔或錄影機的高階格式嗎？</span>
                 </div>
-                <div class="stat-divider" aria-hidden="true"></div>
-                <div class="stat-item">
-                    <span class="stat-num">NAS</span>
-                    <span class="stat-label">雙備援同時完成</span>
+                <div class="a-bubble"
+                    style="background: var(--card-bg); padding: 2rem; border-radius: 24px 24px 24px 4px; flex-grow: 1; border: 1px solid var(--border-color); box-shadow: 0 10px 40px rgba(0,0,0,0.3);">
+                    <p style="line-height: 1.8; color: var(--text-primary);">完全支援！無論是 Sony 的 ARW, 還是 Canon CR3, Nikon
+                        NEF, 相機的 MP4 還是電影機的 MXF、BRAW 等專業格式，底層核心引擎都能無損通過。</p>
+                </div>
+            </div>
+
+            <!-- FAQ 3 -->
+            <div class="faq-bubble-group" style="display: flex; gap: 2rem; align-items: flex-start;">
+                <div class="q-bubble"
+                    style="background: var(--accent-green); color: white; padding: 1.5rem 2rem; border-radius: 24px 24px 24px 4px; max-width: 45%; flex-shrink: 0; box-shadow: 0 10px 30px rgba(48, 209, 88, 0.2);">
+                    <span style="font-weight: 700; font-size: 1.1rem;">💰 專業版序號是訂閱制還是買斷制？可以更換電腦嗎？</span>
+                </div>
+                <div class="a-bubble"
+                    style="background: var(--card-bg); padding: 2rem; border-radius: 24px 24px 4px 24px; flex-grow: 1; border: 1px solid var(--border-color); box-shadow: 0 10px 40px rgba(0,0,0,0.3);">
+                    <p style="line-height: 1.8; color: var(--text-primary);">是<b>終身買斷制</b>！沒有坑人的訂閱費。這組序號會嚴格綁定您的 Mac
+                        硬體指紋以防盜版，但如果您日後換了新的 Mac 電腦，隨時可以聯絡我們免費解除舊電腦的授權並轉移到新機器上。</p>
+                </div>
+            </div>
+
+            <!-- FAQ 4 -->
+            <div class="faq-bubble-group"
+                style="display: flex; gap: 2rem; align-items: flex-start; flex-direction: row-reverse;">
+                <div class="q-bubble"
+                    style="background: #FFCC00; color: #000; padding: 1.5rem 2rem; border-radius: 24px 24px 4px 24px; max-width: 45%; flex-shrink: 0; box-shadow: 0 10px 30px rgba(255, 204, 0, 0.2); text-align: right;">
+                    <span style="font-weight: 700; font-size: 1.1rem;">🔒 安裝時跳出「無法打開」或「已損壞」怎麼辦？</span>
+                </div>
+                <div class="a-bubble"
+                    style="background: var(--card-bg); padding: 2rem; border-radius: 24px 24px 24px 4px; flex-grow: 1; border: 1px solid var(--border-color); box-shadow: 0 10px 40px rgba(0,0,0,0.3);">
+                    <p style="line-height: 1.8; color: var(--text-primary);">這是 Apple macOS 常見的安全防護機制
+                        (Gatekeeper)。<br><br>👉 <b>解決方法：</b>將 <code>PlugnGO.app</code> 拖入「應用程式」後，<b>不要直接雙擊</b>。請在圖示上
+                        <b>按右鍵 (或 Control+點擊) ➔ 選擇「打開」</b>。系統會再次詢問，此時只要點擊提示中的「打開」或「強制打開」，以後就可以正常雙擊執行了！
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Pricing / Features Matrix Section -->
+    <section class="pricing" id="pricing">
+        <div class="section-header reveal">
+            <h2>選擇適合您的版本</h2>
+            <p>從基礎備份到專業製片流程，我們為不同規模的創作者提供完美解決方案。</p>
+        </div>
+        <div class="pricing-cards">
+            <!-- Free Version -->
+            <div class="price-card reveal">
+                <div class="p-head">
+                    <h3>Free 免費版</h3>
+                    <div class="p-price">TWD 0</div>
+                    <p>插卡就備份，零設定上手</p>
+                </div>
+                <div class="p-body">
+                    <ul class="p-features">
+                        <li><i class="icon-check">✓</i> 最多 2 張記憶卡同時備份</li>
+                        <li><i class="icon-check">✓</i> 支援照片、影片、音訊格式</li>
+                        <li><i class="icon-check">✓</i> 自動讀取 EXIF 日期建檔</li>
+                        <li><i class="icon-check">✓</i> 備份完成自動安全退卡</li>
+                        <li><i class="icon-check">✓</i> 顯示所有硬體 I/O 與頻寬資訊</li>
+                        <li class="disabled"><i class="icon-x">✗</i> MD5 資料校驗</li>
+                        <li class="disabled"><i class="icon-x">✗</i> 依日期自動歸檔移動檔案</li>
+                        <li class="disabled"><i class="icon-x">✗</i> DNG 轉換 / Proxy 產出</li>
+                        <li class="disabled"><i class="icon-x">✗</i> NAS 直寫支援</li>
+                    </ul>
+                    <p class="upgrade-hint"
+                        style="font-size: 0.8rem; color: var(--accent-blue); margin-top: 1rem; text-align: center;">
+                        「需要備份更多張卡？升級 Photo 或 Video 版解鎖」</p>
+                </div>
+                <div class="p-foot">
+                    <a href="https://github.com/skiseiju/plugngo-website/releases/download/v1.7.2/PlugnGO-v1.7.2-Mac.dmg"
+                        class="btn btn-outline" style="width:100%;">開始免費體驗</a>
+                    <p style="font-size: 0.75rem; color: var(--text-dim); margin-top: 0.8rem; text-align: center;">30
+                        天內不滿意，App 內直接申請全額退費，不需說明原因。</p>
+                </div>
+            </div>
+
+            <!-- Photo Version -->
+            <div class="price-card reveal">
+                <div class="p-head">
+                    <h3>Photo 攝影師版</h3>
+                    <div class="p-price">NT$ 490 <span class="p-period">/ 終身</span></div>
+                    <p>平面攝影師首選，自動分類校驗</p>
+                </div>
+                <div class="p-body">
+                    <ul class="p-features">
+                        <li><i class="icon-check">✓</i> <strong>無上限記憶卡同時備份</strong></li>
+                        <li><i class="icon-check">✓</i> <strong>RAW 檔自動轉換 DNG</strong></li>
+                        <li><i class="icon-check">✓</i> <strong>軍規級 MD5 資料校驗</strong></li>
+                        <li><i class="icon-check">✓</i> <strong>NAS 直寫支援</strong></li>
+                        <li><i class="icon-check">✓</i> 依日期自動歸檔移動檔案</li>
+                        <li><i class="icon-check">✓</i> 支援照片、影片、音訊格式</li>
+                        <li><i class="icon-check">✓</i> 專屬售後與跨裝置授權轉移</li>
+                    </ul>
+                </div>
+                <div class="p-foot">
+                    <a href="#" class="btn btn-primary" style="width:100%;">立刻解鎖專業備份流程 →</a>
+                    <p style="font-size: 0.75rem; color: var(--text-dim); margin-top: 0.8rem; text-align: center;">30
+                        天內不滿意，App 內直接申請全額退費，不需說明原因。</p>
+                </div>
+            </div>
+
+            <!-- Video Version -->
+            <div class="price-card pro reveal">
+                <div class="pro-badge">影片工作者推薦</div>
+                <div class="p-head">
+                    <h3>Video 影片工作者版</h3>
+                    <div class="p-price">NT$ 790 <span class="p-period">/ 終身</span></div>
+                    <p>備份同時 Proxy 已經在跑</p>
+                </div>
+                <div class="p-body">
+                    <ul class="p-features">
+                        <li><i class="icon-check">✓</i> <strong>Proxy 自動產出 (4K/6K → 1080p)</strong></li>
+                        <li><i class="icon-check">✓</i> <strong>多機身自動識別 (A/B Cam)</strong></li>
+                        <li><i class="icon-check">✓</i> <strong>全黑/靜音影片自動標記</strong></li>
+                        <li><i class="icon-check">✓</i> 無上限記憶卡同時備份</li>
+                        <li><i class="icon-check">✓</i> 軍規級 MD5 資料校驗</li>
+                        <li><i class="icon-check">✓</i> NAS 直寫支援</li>
+                        <li><i class="icon-check">✓</i> 專屬售後與跨裝置授權轉移</li>
+                    </ul>
+                    <div class="workflow-compare"
+                        style="margin-top: 1rem; padding: 0.8rem; background: rgba(255,255,255,0.05); border-radius: 8px; font-size: 0.75rem; color: var(--text-sec);">
+                        <p style="margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600;">⚡️ 工作流對比：</p>
+                        <p>傳統：備份➔轉檔➔等待，耗時 2.5h</p>
+                        <p style="color: var(--accent-green);">PlugnGO：備份與 Proxy 同時跑，喝完咖啡直接剪接。</p>
+                    </div>
+                </div>
+                <div class="p-foot">
+                    <a href="#" class="btn btn-primary" style="width:100%;">省下等待，直接進剪接 →</a>
+                    <p style="font-size: 0.75rem; color: var(--text-dim); margin-top: 0.8rem; text-align: center;">30
+                        天內不滿意，App 內直接申請全額退費，不需說明原因。</p>
+                </div>
+            </div>
+
+            <!-- Hub Version -->
+            <div class="price-card reveal">
+                <div class="p-head">
+                    <h3>Hub 工作室版</h3>
+                    <div class="p-price">NT$ 1,490 <span class="p-period">/ 終身</span></div>
+                    <p>全功能通包，一套解決所有需求</p>
+                </div>
+                <div class="p-body">
+                    <ul class="p-features">
+                        <li><i class="icon-check">✓</i> <strong>包含所有 Photo 與 Video 功能</strong></li>
+                        <li><i class="icon-check">✓</i> <strong>4 台裝置授權 (含管理端)</strong></li>
+                        <li><i class="icon-check">✓</i> <strong>Truth Check 驗證報告 (PDF)</strong></li>
+                        <li><i class="icon-check">✓</i> 區網集中備份 (同步 NAS)</li>
+                        <li><i class="icon-check">✓</i> 授權離線快取 (30-90 天)</li>
+                        <li><i class="icon-check">✓</i> 加購授權 NT$ 300／台</li>
+                    </ul>
+                    <p style="font-size: 0.8rem; color: var(--text-sec); margin-top: 1rem; text-align: center;">
+                        「平面想試影片流？Hub 版讓您無需補差價。」</p>
+                </div>
+                <div class="p-foot">
+                    <a href="#" class="btn btn-outline disabled"
+                        style="width:100%; opacity: 0.6; cursor: not-allowed;">Hub 版即將推出</a>
+                    <p style="font-size: 0.75rem; color: var(--text-dim); margin-top: 0.8rem; text-align: center;">30
+                        天內不滿意，App 內直接申請全額退費，不需說明原因。</p>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- PROBLEM vs SOLUTION -->
-        <section class="problem" aria-labelledby="problem-heading">
-            <div class="container">
-                <div class="section-label">為什麼不用 Finder</div>
-                <h2 class="section-h2" id="problem-heading">你以為傳完了，<br>不代表傳對了</h2>
-                <p class="section-sub">Finder 的問題不是慢——是你根本不知道有沒有出錯。</p>
-
-                <div class="problem-grid reveal">
-                    <div class="problem-col col-bad">
-                        <div class="problem-col-label label-bad">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                            Finder 複製
-                        </div>
-                        <div class="problem-list">
-                            <div class="problem-item">
-                                <div class="problem-icon icon-bad">
-                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                                </div>
-                                <div class="problem-item-text">
-                                    <strong>靜默壞檔</strong>
-                                    <span>沒有校驗，傳完顯示 100%，不代表每個 bit 都對了。</span>
-                                </div>
-                            </div>
-                            <div class="problem-item">
-                                <div class="problem-icon icon-bad">
-                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                                </div>
-                                <div class="problem-item-text">
-                                    <strong>斷線就要重傳</strong>
-                                    <span>網路一斷，從頭再來。殘檔也要手動清掉。</span>
-                                </div>
-                            </div>
-                            <div class="problem-item">
-                                <div class="problem-icon icon-bad">
-                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                                </div>
-                                <div class="problem-item-text">
-                                    <strong>一次只能傳一份</strong>
-                                    <span>本機傳完再傳 NAS，收工時間×2。</span>
-                                </div>
-                            </div>
-                            <div class="problem-item">
-                                <div class="problem-icon icon-bad">
-                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                                </div>
-                                <div class="problem-item-text">
-                                    <strong>資料夾自己整理</strong>
-                                    <span>傳完只是開始，按日期分裝還要自己動手。</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="problem-col">
-                        <div class="problem-col-label label-good">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                            PlugnGO
-                        </div>
-                        <div class="problem-list">
-                            <div class="problem-item">
-                                <div class="problem-icon icon-good">
-                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                                </div>
-                                <div class="problem-item-text">
-                                    <strong>MD5 逐檔校驗</strong>
-                                    <span>每個檔案都有對過，校驗不過不退卡。</span>
-                                </div>
-                            </div>
-                            <div class="problem-item">
-                                <div class="problem-icon icon-good">
-                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                                </div>
-                                <div class="problem-item-text">
-                                    <strong>斷線自動續傳</strong>
-                                    <span>殘檔清除，從上次停的地方繼續，不用管。</span>
-                                </div>
-                            </div>
-                            <div class="problem-item">
-                                <div class="problem-icon icon-good">
-                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                                </div>
-                                <div class="problem-item-text">
-                                    <strong>雙備援同時跑</strong>
-                                    <span>本機＋NAS 並行，插上去，兩份同時完成。</span>
-                                </div>
-                            </div>
-                            <div class="problem-item">
-                                <div class="problem-icon icon-good">
-                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                                </div>
-                                <div class="problem-item-text">
-                                    <strong>資料夾自動整理</strong>
-                                    <span>依 EXIF 日期建立目錄，備份完就整理好了。</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <!-- AI Vision Section -->
+    <section class="ai-vision" id="ai-vision"
+        style="background: rgba(0,0,0,0.3); border-top: 1px solid var(--border-color);">
+        <div class="section-header reveal">
+            <div class="ai-badge"
+                style="display: inline-block; padding: 0.4rem 1rem; background: rgba(10, 132, 255, 0.1); color: var(--accent-blue); border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem;">
+                AI VISION 重磅外掛</div>
+            <h2>AI Vision 外掛</h2>
+            <p>備份在跑，AI 同時幫你濾廢片、分連拍、找最佳鏡頭。</p>
+        </div>
+        <div class="ai-pricing-container reveal"
+            style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 900px; margin: 0 auto 4rem auto;">
+            <div class="ai-card"
+                style="background: var(--card-bg); padding: 2rem; border-radius: 16px; border: 1px solid var(--border-color);">
+                <h3 style="margin-bottom: 0.5rem;">買斷版</h3>
+                <div class="p-price" style="font-size: 1.5rem; margin-bottom: 1.5rem;">NT$ 990 <span
+                        style="font-size: 0.9rem; color: var(--text-sec);">一次性</span></div>
+                <ul class="cl-list" style="font-size: 0.9rem;">
+                    <li>✓ 廢片偵測 (閉眼、失焦、曝光異常)</li>
+                    <li>✓ XMP 標記寫回 (Lr / C1 直接讀取)</li>
+                    <li>✓ 相似連拍群組化 & Best Shot 推薦</li>
+                    <li>✓ 重複鏡頭群組 & 最佳 Take 推薦</li>
+                    <li>✓ 音量異常自動標記</li>
+                    <li>✓ 完全離線，隱私不外洩</li>
+                </ul>
+                <a href="#" class="btn btn-primary" style="width: 100%; margin-top: 2rem; justify-content: center;">開始
+                    30 天免費試用 →</a>
             </div>
-        </section>
-
-        <!-- FEATURES -->
-        <section class="features" id="features" aria-labelledby="features-heading">
-            <div class="container">
-                <div class="features-header">
-                    <div class="section-label">核心功能</div>
-                    <h2 class="section-h2" id="features-heading">少做一個動作，<br>多睡一個小時</h2>
-                    <p class="section-sub">每個功能都在消除你「不確定有沒有備好」的那種焦慮。</p>
-                </div>
-
-                <div class="features-grid">
-
-                    <div class="feat-card reveal">
-                        <div class="feat-icon orange" aria-hidden="true">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                        </div>
-                        <h3>斷線自動續傳</h3>
-                        <p>傳到一半掉線？殘檔自動清除，從上次停的地方繼續。不用手動清理，不用重頭再傳。</p>
-                        <span class="feat-tag">斷線安全</span>
-                    </div>
-
-                    <div class="feat-card reveal">
-                        <div class="feat-icon blue" aria-hidden="true">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
-                        </div>
-                        <h3>MD5 逐檔校驗</h3>
-                        <p>備份完成不等於備份正確。每個檔案都有比對雜湊值，校驗不通過不退卡。</p>
-                        <span class="feat-tag" style="background:var(--blue-light);color:var(--blue);border-color:var(--blue-border);">資料完整</span>
-                    </div>
-
-                    <div class="feat-card reveal">
-                        <div class="feat-icon green" aria-hidden="true">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-                        </div>
-                        <h3>本機 + NAS 同時備份</h3>
-                        <p>並行管線榨乾頻寬——不是先傳完本機再傳 NAS，插上卡的瞬間兩份同時開始。</p>
-                        <span class="feat-tag" style="background:var(--green-light);color:var(--green);border-color:#bbf7d0;">雙備援</span>
-                    </div>
-
-                    <div class="feat-card reveal">
-                        <div class="feat-icon purple" aria-hidden="true">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-                        </div>
-                        <h3>EXIF 日期自動分裝</h3>
-                        <p>依拍攝日期自動建立目錄、識別機身型號。備份完，資料夾已整理好，不是整理的開始。</p>
-                        <span class="feat-tag" style="background:#faf5ff;color:#7c3aed;border-color:#ddd6fe;">自動整理</span>
-                    </div>
-
-                    <div class="feat-card reveal">
-                        <div class="feat-icon orange" aria-hidden="true">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                        </div>
-                        <h3>Proxy 自動產出</h3>
-                        <p>Video 版：插卡的同時 Proxy 就在產了。備份完成，剪輯素材已備妥，直接開剪。</p>
-                        <span class="feat-tag">Video 版</span>
-                    </div>
-
-                    <div class="feat-card reveal">
-                        <div class="feat-icon blue" aria-hidden="true">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                        </div>
-                        <h3>Hub 多機集中管理</h3>
-                        <p>整個劇組的卡透過區網集中備份——4 台裝置、NAS 同步、Truth Check 驗證報告。</p>
-                        <span class="feat-tag" style="background:var(--blue-light);color:var(--blue);border-color:var(--blue-border);">Hub 版</span>
-                    </div>
-
-                </div>
+            <div class="ai-card"
+                style="background: var(--card-bg); padding: 2rem; border-radius: 16px; border: 1px solid var(--border-color); position: relative; overflow: hidden;">
+                <div
+                    style="position: absolute; top: 10px; right: -30px; background: var(--accent-blue); color: white; padding: 2px 40px; transform: rotate(45deg); font-size: 0.7rem; font-weight: bold;">
+                    PREMIUM</div>
+                <h3 style="margin-bottom: 0.5rem;">年訂閱版</h3>
+                <div class="p-price" style="font-size: 1.5rem; margin-bottom: 1.5rem;">NT$ 490 <span
+                        style="font-size: 0.9rem; color: var(--text-sec);">/ 年</span></div>
+                <ul class="cl-list" style="font-size: 0.9rem;">
+                    <li>✓ 包含買斷版所有功能</li>
+                    <li>✓ <strong>雲端增強美學模型 (持續更新)</strong></li>
+                    <li>✓ 優先搶先體驗 Phase 3 功能</li>
+                    <li>✓ 跨裝置雲端同步偏好</li>
+                </ul>
+                <a href="#" class="btn btn-outline"
+                    style="width: 100%; margin-top: 2rem; justify-content: center;">選擇訂閱方案 →</a>
             </div>
-        </section>
-
-        <!-- HOW IT WORKS -->
-        <section class="how" aria-labelledby="how-heading">
-            <div class="container">
-                <div class="section-label">運作方式</div>
-                <h2 class="section-h2" id="how-heading">插上卡，按複製，你的事就做完了</h2>
-                <p class="section-sub">備份、校驗、整理、退卡——PlugnGO 全包。你只需要去泡杯咖啡。</p>
-                <div class="how-steps">
-
-                    <div class="how-step reveal">
-                        <span class="step-num">01</span>
-                        <h3>插上記憶卡</h3>
-                        <p>PlugnGO 自動偵測，識別機身型號與插槽，無需手動操作。</p>
-                    </div>
-
-                    <div class="how-connector" aria-hidden="true">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </div>
-
-                    <div class="how-step reveal">
-                        <span class="step-num">02</span>
-                        <h3>並行備份 + MD5 校驗</h3>
-                        <p>平行管線同時跑滿頻寬，本機與 NAS 雙備援同步，MD5 校驗每一個位元。</p>
-                    </div>
-
-                    <div class="how-connector" aria-hidden="true">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </div>
-
-                    <div class="how-step reveal">
-                        <span class="step-num">03</span>
-                        <h3>安全退卡，你去休息</h3>
-                        <p>校驗通過後自動退卡，通知你完成。資料夾已按日期整理好，直接開剪。</p>
-                    </div>
-
-                </div>
+        </div>
+        <div class="ai-user-stories reveal"
+            style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; max-width: 1000px; margin: 0 auto;">
+            <div class="story">
+                <h4 style="color: var(--accent-blue); margin-bottom: 1rem;">📸 平面攝影用戶</h4>
+                <p style="color: var(--text-sec); font-size: 0.95rem; line-height: 1.8;">「當你還在婚宴現場，PlugnGO
+                    已經在背景默默濾掉今天的廢片、把連拍分好組。回到家打開硬碟，看到的都是值得挑選的照片。」</p>
             </div>
-        </section>
-
-        <!-- PRICING -->
-        <section class="pricing" id="pricing" aria-labelledby="pricing-heading">
-            <div class="container">
-                <div class="section-label">定價方案</div>
-                <h2 class="section-h2" id="pricing-heading">選擇適合你的版本</h2>
-                <p class="section-sub">終身買斷，沒有訂閱費。換 Mac 免費轉移授權。</p>
-
-                <div class="pricing-grid">
-
-                    <!-- Free -->
-                    <div class="price-card reveal">
-                        <div>
-                            <div class="price-tier">Free</div>
-                            <div class="price-amount">
-                                <span class="price-num">NT$0</span>
-                                <span class="price-period">/ 永久免費</span>
-                            </div>
-                            <p class="price-tagline">第一次用，先感受看看。</p>
-                        </div>
-                        <ul class="price-features" aria-label="Free 方案功能">
-                            <li>
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                插上卡自動開始備份
-                            </li>
-                            <li>
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                支援照片、影片、音訊
-                            </li>
-                            <li>
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                EXIF 日期自動建立目錄
-                            </li>
-                            <li>
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                30 天完整功能試用
-                            </li>
-                        </ul>
-                        <div class="price-ctas">
-                            <a href="https://github.com/skiseiju/plugngo-website/releases/download/v1.7.3/PlugnGO-v1.7.3-Mac.dmg" class="btn-outline">M系列版下載</a>
-                            <a href="https://github.com/skiseiju/plugngo-website/releases/download/v1.7.3/PlugnGO-v1.7.3-Intel.dmg" class="btn-outline">Intel 版下載</a>
-                        </div>
-                    </div>
-
-                    <!-- Photo — Featured -->
-                    <div class="price-card featured reveal">
-                        <div class="price-badge">獨立攝影師推薦</div>
-                        <div>
-                            <div class="price-tier">Photo</div>
-                            <div class="price-amount">
-                                <span class="price-num">NT$490</span>
-                                <span class="price-period">/ 終身買斷</span>
-                            </div>
-                            <p class="price-tagline">一個人的工作室，備份交給它。</p>
-                        </div>
-                        <ul class="price-features" aria-label="Photo 方案功能">
-                            <li>
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                <strong>1 台授權</strong>
-                            </li>
-                            <li>
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                <strong>無上限記憶卡同時備份</strong>
-                            </li>
-                            <li>
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                <strong>MD5 逐檔校驗</strong>
-                            </li>
-                            <li>
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                <strong>NAS 直寫，雙備援同時完成</strong>
-                            </li>
-                            <li>
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                DNG 自動轉換
-                            </li>
-                            <li>
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                依日期自動分裝目錄
-                            </li>
-                        </ul>
-                        <div class="price-ctas">
-                            <a href="https://github.com/skiseiju/plugngo-website/releases/download/v1.7.3/PlugnGO-v1.7.3-Mac.dmg" class="btn-blue-sm">M系列版下載</a>
-                            <a href="https://github.com/skiseiju/plugngo-website/releases/download/v1.7.3/PlugnGO-v1.7.3-Intel.dmg" class="btn-blue-sm">Intel 版下載</a>
-                        </div>
-                    </div>
-
-                    <!-- Video -->
-                    <div class="price-card reveal">
-                        <div>
-                            <div class="price-tier">Video</div>
-                            <div class="price-amount">
-                                <span class="price-num">NT$790</span>
-                                <span class="price-period">/ 終身買斷</span>
-                            </div>
-                            <p class="price-tagline">卡插上去，Proxy 備好，直接開剪。</p>
-                        </div>
-                        <ul class="price-features" aria-label="Video 方案功能">
-                            <li>
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                <strong>1 台授權</strong>
-                            </li>
-                            <li>
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                <strong>Proxy 自動產出，插卡就可開剪</strong>
-                            </li>
-                            <li>
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                <strong>多機身自動識別分裝</strong>
-                            </li>
-                            <li>
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                無上限記憶卡同時備份
-                            </li>
-                            <li>
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                MD5 逐檔校驗
-                            </li>
-                            <li>
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                                全黑／靜音影片自動標記
-                            </li>
-                        </ul>
-                        <div class="price-ctas">
-                            <a href="https://github.com/skiseiju/plugngo-website/releases/download/v1.7.3/PlugnGO-v1.7.3-Mac.dmg" class="btn-outline">M系列版下載</a>
-                            <a href="https://github.com/skiseiju/plugngo-website/releases/download/v1.7.3/PlugnGO-v1.7.3-Intel.dmg" class="btn-outline">Intel 版下載</a>
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- Hub Callout -->
-                <div class="hub-callout reveal">
-                    <div class="hub-info">
-                        <h3>PlugnGO Hub — 整組人的卡，一個地方全部搞定</h3>
-                        <p>4 台裝置授權（含管理端）&nbsp;·&nbsp; 區網集中備份 &nbsp;·&nbsp; NAS 同步 + Truth Check 驗證報告 &nbsp;·&nbsp; 含 Photo + Video 全功能 &nbsp;·&nbsp; 加購 NT$300 / 台</p>
-                    </div>
-                    <div class="hub-price-row">
-                        <span class="hub-num">NT$1,490</span>
-                        <a href="https://github.com/skiseiju/plugngo-website/releases/download/v1.7.3/PlugnGO-v1.7.3-Mac.dmg" class="btn-outline">下載試用</a>
-                    </div>
-                </div>
-
+            <div class="story">
+                <h4 style="color: var(--accent-purple); margin-bottom: 1rem;">🎬 影片錄影用戶</h4>
+                <p style="color: var(--text-sec); font-size: 0.95rem; line-height: 1.8;">「備份結束時，同場景的多條 Take
+                    已經分好群，最值得優先看的那條已經標出來了。你的剪輯工作直接從『開始剪』開始，不必再海選素材。」</p>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- FAQ -->
-        <section class="faq" id="faq" aria-labelledby="faq-heading">
-            <div class="faq-inner">
-                <h2 class="section-h2" id="faq-heading">常見問題</h2>
-
-                <details class="faq-item">
-                    <summary class="faq-q">
-                        這跟直接用 Mac 的 Finder 拖曳複製有什麼不一樣？
-                        <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-                    </summary>
-                    <div class="faq-a">
-                        Finder 使用串行處理（單執行緒），且沒有嚴格的檔案校驗，斷線可能造成「靜默壞檔」——你以為備份完了，其實沒有。<br><br>
-                        PlugnGO 的<b>並行資料管線</b>徹底榨乾頻寬，速度更快；最重要的是加入了 <b>MD5 Hash 校驗</b>，確保來源與目標一字不差。
-                    </div>
-                </details>
-
-                <details class="faq-item">
-                    <summary class="faq-q">
-                        支援我的相機 RAW 檔或高階影片格式嗎？
-                        <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-                    </summary>
-                    <div class="faq-a">
-                        完全支援。無論是 Sony ARW、Canon CR3、Nikon NEF，或是相機 MP4、電影機 MXF、BRAW 等專業格式，底層核心引擎都能無損通過，EXIF/Metadata 日期擷取也涵蓋影音格式。
-                    </div>
-                </details>
-
-                <details class="faq-item">
-                    <summary class="faq-q">
-                        序號是訂閱制還是買斷制？換電腦怎麼辦？
-                        <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-                    </summary>
-                    <div class="faq-a">
-                        <b>終身買斷制</b>，沒有坑人的訂閱費。序號會綁定你的 Mac 硬體指紋，如果日後換了新 Mac，隨時可以聯絡我們免費轉移授權。
-                    </div>
-                </details>
-
-                <details class="faq-item">
-                    <summary class="faq-q">
-                        NAS 備份需要什麼設定？
-                        <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
-                    </summary>
-                    <div class="faq-a">
-                        只需要 NAS 掛載在 Mac 上（透過 SMB/AFP 或 Finder 連線）。PlugnGO 會直接將 NAS 視為本機目標路徑進行寫入，無需額外設定或安裝 NAS 側套件。
-                    </div>
-                </details>
-
+    <!-- Bundles Section -->
+    <section class="bundles" id="bundles" style="padding: 4rem 2rem;">
+        <div class="section-header reveal">
+            <h2>官方組合包</h2>
+            <p>一次到位，省下更多運算與備份的煩惱。</p>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+            <div class="bundle-card"
+                style="background: linear-gradient(135deg, rgba(10, 132, 255, 0.1), rgba(0,0,0,0)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(10, 132, 255, 0.2); text-align: center;">
+                <h4>攝影師包</h4>
+                <p style="font-size: 0.85rem; color: var(--accent-blue); margin: 0.5rem 0;">Photo + AI Vision 買斷</p>
+                <div class="p-price" style="margin: 1.5rem 0;">優惠價 NT$ 1,280 <span
+                        style="font-size: 0.8rem; text-decoration: line-through; color: var(--text-sec);">NT$
+                        1,480</span></div>
+                <p style="font-size: 0.9rem; color: var(--text-sec);">一次解決備份與篩片，現省 14%。</p>
             </div>
-        </section>
-
-        <!-- FINAL CTA -->
-        <section class="final-cta" aria-labelledby="cta-heading">
-            <h2 id="cta-heading">別再跟 Finder<br>賭運氣了。</h2>
-            <p>讓備份回歸邏輯，現在就開始優雅收工。</p>
-            <div class="cta-btns">
-                <a href="https://github.com/skiseiju/plugngo-website/releases/download/v1.7.3/PlugnGO-v1.7.3-Mac.dmg"
-                   class="btn btn-primary"
-                   aria-label="下載 PlugnGO M系列版">
-                    M系列版下載
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                </a>
-                <a href="https://github.com/skiseiju/plugngo-website/releases/download/v1.7.3/PlugnGO-v1.7.3-Intel.dmg"
-                   class="btn btn-ghost"
-                   aria-label="下載 PlugnGO Intel 版">
-                    Intel 版下載
-                </a>
+            <div class="bundle-card"
+                style="background: linear-gradient(135deg, rgba(191, 90, 242, 0.1), rgba(0,0,0,0)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(191, 90, 242, 0.2); text-align: center;">
+                <h4>影片工作者包</h4>
+                <p style="font-size: 0.85rem; color: var(--accent-purple); margin: 0.5rem 0;">Video + AI Vision 買斷</p>
+                <div class="p-price" style="margin: 1.5rem 0;">優惠價 NT$ 1,480 <span
+                        style="font-size: 0.8rem; text-decoration: line-through; color: var(--text-sec);">NT$
+                        1,780</span></div>
+                <p style="font-size: 0.9rem; color: var(--text-sec);">備份、Proxy、AI 篩片，一次到位，現省 17%。</p>
             </div>
-            <p class="cta-fine">30 天內不滿意，App 內直接申請全額退費，不需說明原因。</p>
-        </section>
+            <div class="bundle-card"
+                style="background: linear-gradient(135deg, rgba(48, 209, 88, 0.1), rgba(0,0,0,0)); padding: 2.5rem; border-radius: 20px; border: 1px solid rgba(48, 209, 88, 0.2); text-align: center;">
+                <h4>旗艦包</h4>
+                <p style="font-size: 0.85rem; color: var(--accent-green); margin: 0.5rem 0;">Hub + AI Vision 買斷</p>
+                <div class="p-price" style="margin: 1.5rem 0;">優惠價 NT$ 1,980 <span
+                        style="font-size: 0.8rem; text-decoration: line-through; color: var(--text-sec);">NT$
+                        2,480</span></div>
+                <p style="font-size: 0.9rem; color: var(--text-sec);">工作室全功能通包，現省 20%。</p>
+            </div>
+        </div>
+    </section>
 
-    </main>
-
-    <!-- FOOTER -->
+    <!-- Footer -->
     <footer class="footer">
-        <div class="footer-inner">
+        <div class="footer-content">
             <div class="footer-logo">
-                <img src="assets/logo.png" alt="" width="22" height="22" aria-hidden="true">
-                <span>PlugnGO! v1.7.3</span>
+                <img src="assets/logo.png" alt="PlugnGO Logo" class="footer-logo-img">
+                <span>PlugnGO! v1.7.2</span>
             </div>
-            <p class="footer-copy">© 2026 skiseiju Tech Team. All rights reserved.</p>
+            <p class="copyright">&copy; 2026 skiseiju Tech Team. All rights reserved.</p>
         </div>
     </footer>
 
