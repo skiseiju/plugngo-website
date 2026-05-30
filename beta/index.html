@@ -496,6 +496,7 @@
     <!-- 表單 -->
     <div class="form-wrap" id="formWrap">
       <p class="form-heading">申請你的 Beta 序號</p>
+      <p style="font-size:14px;color:var(--dim);margin:-16px 0 24px;line-height:1.6;">填下去，序號馬上寄到你的信箱。</p>
 
       <div class="field">
         <label for="name">名字</label>
@@ -529,7 +530,6 @@
 
       <div class="msg" id="msgBox"></div>
 
-      <p class="no-cc"><span style="color:var(--white);font-weight:500;"></span>不需要信用卡</span> · 三個月後不會自動扣款</p>
       <p class="note">Email 僅用於寄送序號，不會用於其他用途。</p>
     </div>
 
@@ -539,6 +539,107 @@
       <h2>序號已寄出！</h2>
       <p>請檢查你的信箱，序號在那裡等你。<br>使用過程有任何問題，直接回覆那封信，<br>或到 <a href="https://www.facebook.com/skiseiju" target="_blank"
           rel="noopener" style="color:var(--accent);text-decoration:none;">Facebook</a> 留言找我都可以。</p>
+
+      <!-- 下載區塊 -->
+      <div style="margin-top:40px;padding-top:32px;border-top:1px solid var(--border);">
+        <p class="form-heading" style="margin-bottom:16px;">下載 PlugnGO</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px;">
+          <a href="https://github.com/skiseiju/plugngo-website/releases/download/v1.8.2/PlugnGO-v1.8.2-Mac.dmg"
+             style="flex:1;min-width:160px;display:flex;align-items:center;justify-content:center;gap:8px;padding:13px 20px;background:var(--accent);color:#fff;border-radius:6px;font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;letter-spacing:0.02em;text-decoration:none;transition:opacity 0.15s,transform 0.1s;"
+             onmouseover="this.style.opacity='0.88';this.style.transform='translateY(-1px)'"
+             onmouseout="this.style.opacity='1';this.style.transform='translateY(0)'">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            M 系列版
+          </a>
+        </div>
+        <div style="font-size:12px;color:var(--dim2);margin-bottom:20px;">
+          v1.8.2 · macOS 12 Monterey 以上
+        </div>
+
+        <!-- Gatekeeper 內嵌教學 -->
+        <div style="font-size:13px;color:var(--dim);line-height:1.7;margin-bottom:16px;">
+          macOS 首次開啟需要額外一個步驟，30 秒搞定。
+        </div>
+
+        <details id="gkGuide" style="background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden;">
+          <summary style="padding:14px 18px;font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:space-between;color:var(--white);">
+            首次開啟教學（點擊展開）
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--dim2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div style="padding:0 18px 18px;font-size:13px;color:var(--dim);line-height:1.8;">
+
+            <!-- 狀況 A -->
+            <div style="margin-top:16px;padding:14px 16px;background:var(--accent-dim);border:1px solid var(--accent-border);border-radius:6px;margin-bottom:20px;">
+              <div style="font-weight:600;color:var(--white);margin-bottom:4px;font-size:12px;text-transform:uppercase;letter-spacing:0.08em;font-family:'Space Grotesk',sans-serif;">情況 A —「無法打開」警告</div>
+              <div style="font-size:12px;color:var(--dim2);">出現「Apple 無法檢查是否包含惡意軟體」的對話框</div>
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:18px;">
+              <div style="display:flex;gap:10px;align-items:flex-start;">
+                <div style="flex-shrink:0;width:22px;height:22px;background:var(--accent);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;font-family:'Space Grotesk',sans-serif;">1</div>
+                <div>按下<strong>「完成」</strong>關閉對話框（不要按「移到垃圾桶」）。</div>
+              </div>
+              <div style="display:flex;gap:10px;align-items:flex-start;">
+                <div style="flex-shrink:0;width:22px;height:22px;background:var(--accent);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;font-family:'Space Grotesk',sans-serif;">2</div>
+                <div>打開 <strong> → 系統設定 → 隱私權與安全性</strong>，往下捲動找到「PlugnGO 已被阻擋」的訊息。</div>
+              </div>
+              <div style="display:flex;gap:10px;align-items:flex-start;">
+                <div style="flex-shrink:0;width:22px;height:22px;background:var(--accent);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;font-family:'Space Grotesk',sans-serif;">3</div>
+                <div>點選<strong>「強制打開」</strong>，輸入密碼確認。再次開啟 PlugnGO 即可正常使用。</div>
+              </div>
+            </div>
+
+            <hr style="border:none;border-top:1px solid var(--border);margin:24px 0;opacity:1;animation:none;">
+
+            <!-- 狀況 B -->
+            <div style="padding:14px 16px;background:rgba(255,80,80,0.05);border:1px solid rgba(255,80,80,0.15);border-radius:6px;margin-bottom:20px;">
+              <div style="font-weight:600;color:var(--white);margin-bottom:4px;font-size:12px;text-transform:uppercase;letter-spacing:0.08em;font-family:'Space Grotesk',sans-serif;">情況 B —「已損壞」錯誤</div>
+              <div style="font-size:12px;color:var(--dim2);">出現「已損壞，無法打開，您應該將其移到垃圾桶」</div>
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:18px;">
+              <div style="display:flex;gap:10px;align-items:flex-start;">
+                <div style="flex-shrink:0;width:22px;height:22px;background:#ef4444;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;font-family:'Space Grotesk',sans-serif;">1</div>
+                <div>按<strong>「取消」</strong>（不要按「移到垃圾桶」）。</div>
+              </div>
+              <div style="display:flex;gap:10px;align-items:flex-start;">
+                <div style="flex-shrink:0;width:22px;height:22px;background:#ef4444;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;font-family:'Space Grotesk',sans-serif;">2</div>
+                <div>
+                  開啟<strong>終端機</strong>（Spotlight 搜尋「終端機」），貼上以下指令並按 Enter：
+                  <div style="margin-top:8px;padding:10px 14px;background:#1e1e2e;border-radius:6px;font-family:'SF Mono',Menlo,monospace;font-size:12px;color:#cdd6f4;overflow-x:auto;">
+                    xattr -cr /Applications/PlugnGO.app
+                  </div>
+                </div>
+              </div>
+              <div style="display:flex;gap:10px;align-items:flex-start;">
+                <div style="flex-shrink:0;width:22px;height:22px;background:#ef4444;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;font-family:'Space Grotesk',sans-serif;">3</div>
+                <div>再次開啟 PlugnGO，若仍出現「無法打開」，依情況 A 步驟操作即可。</div>
+              </div>
+            </div>
+
+            <hr style="border:none;border-top:1px solid var(--border);margin:24px 0;opacity:1;animation:none;">
+
+            <!-- 重要提醒 -->
+            <div style="padding:12px 16px;background:var(--surface-2);border-radius:6px;">
+              <div style="font-weight:600;color:var(--white);margin-bottom:6px;font-size:12px;font-family:'Space Grotesk',sans-serif;">注意事項</div>
+              <ul style="padding-left:1.2em;font-size:12px;color:var(--dim2);display:flex;flex-direction:column;gap:6px;">
+                <li>請先將 PlugnGO 從 DMG <strong>拖到「應用程式」資料夾</strong>，再開啟。直接從 DMG 執行可能導致功能異常。</li>
+                <li>首次備份 SD 卡時，macOS 會詢問「可卸除式卷宗」存取權限，<strong>務必點「允許」</strong>。</li>
+                <li>macOS Sequoia (15.x) 使用者：右鍵開啟可能無效，請直接用「系統設定 → 強制打開」。</li>
+                <li>只需設定一次，之後開啟都不會再被攔截。</li>
+              </ul>
+            </div>
+
+            <div style="margin-top:16px;text-align:center;">
+              <a href="/gatekeeper" target="_blank" style="font-size:12px;color:var(--accent);text-decoration:none;display:inline-flex;align-items:center;gap:4px;">
+                需要更詳細的圖文教學？
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </div>
+
+          </div>
+        </details>
+      </div>
     </div>
 
     <footer>
@@ -549,8 +650,7 @@
   </main>
 
   <script>
-    // ⚠️ 替換成你的 Apps Script Web App URL
-    const API_URL = 'https://script.google.com/macros/s/AKfycbycvD_Y7lVmuIluo8iVHo65DvsC7cB2KlRcgWfrOupE-R5HMzYtpds8OwreSoij1JIN/exec';
+    const API_URL = 'https://script.google.com/macros/s/AKfycbzWWgK6_yl3najpDK3a0CVXaU1GbqPHFZ0BrkKlv_O6IGEMAq5N05z96flOdG028d6lCQ/exec';
 
     const ERRORS = {
       MISSING_FIELDS: '請填寫所有欄位。',

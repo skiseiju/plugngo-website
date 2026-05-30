@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>macOS 安全性設定教學 — PlugnGO</title>
+    <meta name="description" content="首次開啟 PlugnGO 時，macOS Gatekeeper 可能會阻擋。依照以下步驟即可正常使用。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* === GATEKEEPER GUIDE === */
+        .guide-hero {
+            padding: 120px 0 48px;
+            text-align: center;
+        }
+        .guide-hero h1 {
+            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.25;
+            margin-bottom: 12px;
+        }
+        .guide-hero p {
+            color: var(--text-3);
+            font-size: 1rem;
+            max-width: 540px;
+            margin: 0 auto;
+        }
+        .guide-note {
+            max-width: 680px;
+            margin: 0 auto 48px;
+            padding: 16px 20px;
+            background: var(--blue-light);
+            border: 1px solid var(--blue-border);
+            border-radius: var(--radius);
+            font-size: 0.875rem;
+            color: var(--text-2);
+            line-height: 1.7;
+        }
+        .guide-note strong { color: var(--text); }
+
+        /* Steps container */
+        .guide-steps {
+            max-width: 680px;
+            margin: 0 auto;
+            padding-bottom: 80px;
+        }
+        .guide-step {
+            margin-bottom: 56px;
+        }
+        .guide-step:last-child { margin-bottom: 0; }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 16px;
+        }
+        .step-badge {
+            flex-shrink: 0;
+            width: 32px; height: 32px;
+            background: var(--orange);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 800;
+        }
+        .step-header h2 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        .step-desc {
+            color: var(--text-2);
+            font-size: 0.925rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            padding-left: 46px;
+        }
+
+        /* macOS Dialog Mockup */
+        .macos-dialog {
+            max-width: 480px;
+            margin: 0 auto;
+            background: #f0f0f0;
+            border-radius: 12px;
+            box-shadow: 0 24px 80px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.08);
+            overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+        }
+        .macos-dialog-body {
+            padding: 28px 28px 24px;
+            text-align: center;
+        }
+        .dialog-icon {
+            width: 64px; height: 64px;
+            margin: 0 auto 16px;
+            position: relative;
+        }
+        .dialog-icon-app {
+            width: 64px; height: 64px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        .dialog-icon-warn {
+            position: absolute;
+            bottom: -4px; right: -4px;
+            width: 28px; height: 28px;
+            background: #f5c542;
+            border-radius: 50%;
+            border: 3px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .dialog-icon-warn svg { width: 14px; height: 14px; }
+        .dialog-title {
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: #1d1d1f;
+            margin-bottom: 8px;
+            line-height: 1.35;
+        }
+        .dialog-desc {
+            font-size: 0.75rem;
+            color: #6e6e73;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        .dialog-btns {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .dialog-btn {
+            display: block;
+            padding: 7px 20px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-align: center;
+            border: none;
+            cursor: default;
+        }
+        .dialog-btn-default {
+            background: #007aff;
+            color: #fff;
+            font-weight: 600;
+        }
+        .dialog-btn-secondary {
+            background: rgba(0,0,0,0.06);
+            color: #1d1d1f;
+        }
+        .dialog-btn-outline {
+            background: transparent;
+            color: #007aff;
+        }
+
+        /* macOS System Settings Mockup */
+        .macos-settings {
+            max-width: 560px;
+            margin: 0 auto;
+            background: #f5f5f7;
+            border-radius: 12px;
+            box-shadow: 0 24px 80px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.08);
+            overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+        }
+        .settings-titlebar {
+            height: 38px;
+            background: #e8e8ed;
+            display: flex;
+            align-items: center;
+            padding: 0 14px;
+            gap: 8px;
+        }
+        .settings-dots {
+            display: flex;
+            gap: 6px;
+        }
+        .settings-dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+        }
+        .settings-dot-r { background: #ff5f57; }
+        .settings-dot-y { background: #febc2e; }
+        .settings-dot-g { background: #28c840; }
+        .settings-titlebar-text {
+            flex: 1;
+            text-align: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #1d1d1f;
+        }
+        .settings-body {
+            padding: 20px;
+        }
+        .settings-breadcrumb {
+            font-size: 0.7rem;
+            color: #86868b;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .settings-breadcrumb span { color: #1d1d1f; font-weight: 600; }
+        .settings-section {
+            background: #fff;
+            border-radius: 10px;
+            padding: 16px;
+            margin-bottom: 12px;
+        }
+        .settings-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 0;
+        }
+        .settings-row + .settings-row {
+            border-top: 1px solid #e5e5ea;
+        }
+        .settings-row-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .settings-row-icon {
+            width: 32px; height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .settings-row-text {
+            font-size: 0.8rem;
+            color: #1d1d1f;
+        }
+        .settings-row-desc {
+            font-size: 0.7rem;
+            color: #86868b;
+            margin-top: 2px;
+        }
+        .settings-btn-open {
+            padding: 5px 14px;
+            background: #007aff;
+            color: #fff;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border: none;
+        }
+        .settings-highlight {
+            border: 2px solid var(--orange);
+            border-radius: 12px;
+            position: relative;
+        }
+        .highlight-arrow {
+            position: absolute;
+            right: -80px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--orange);
+            font-size: 0.75rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        /* Context Menu Mockup */
+        .macos-context {
+            display: flex;
+            align-items: flex-start;
+            gap: 24px;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+        .context-app-icon {
+            flex-shrink: 0;
+            width: 80px;
+            text-align: center;
+        }
+        .context-app-square {
+            width: 72px; height: 72px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin: 0 auto 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        .context-app-name {
+            font-size: 0.7rem;
+            color: #1d1d1f;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        .context-menu {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 8px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.18), 0 0 0 0.5px rgba(0,0,0,0.08);
+            overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+            min-width: 200px;
+        }
+        .context-item {
+            padding: 5px 12px;
+            font-size: 0.8rem;
+            color: #1d1d1f;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .context-item-highlight {
+            background: #007aff;
+            color: #fff;
+        }
+        .context-divider {
+            height: 1px;
+            background: #e5e5ea;
+            margin: 4px 0;
+        }
+        .context-item-dim { color: #86868b; }
+
+        /* Pointer annotations */
+        .annotation {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--orange);
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-top: 12px;
+        }
+
+        /* Step alt divider */
+        .step-alt {
+            text-align: center;
+            padding: 32px 0 12px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-3);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .step-alt::before, .step-alt::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* Keyboard shortcut badge */
+        .kbd {
+            display: inline-block;
+            padding: 2px 7px;
+            background: #fff;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            font-weight: 600;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            line-height: 1.5;
+        }
+
+        /* Terminal command mockup */
+        .terminal-cmd {
+            max-width: 560px;
+            margin: 0 auto;
+            background: #1e1e2e;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            font-family: var(--mono);
+        }
+        .terminal-bar {
+            height: 32px;
+            background: #313244;
+            display: flex;
+            align-items: center;
+            padding: 0 14px;
+            gap: 6px;
+        }
+        .terminal-bar-dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+        }
+        .terminal-bar-dot-r { background: #f38ba8; }
+        .terminal-bar-dot-y { background: #f9e2af; }
+        .terminal-bar-dot-g { background: #a6e3a1; }
+        .terminal-body {
+            padding: 16px 18px;
+            font-size: 0.8rem;
+            line-height: 1.8;
+        }
+        .terminal-prompt { color: #a6e3a1; }
+        .terminal-cmd-text { color: #cdd6f4; }
+        .terminal-comment { color: #6c7086; }
+
+        /* Back link */
+        .guide-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-3);
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 24px;
+            transition: color 0.2s;
+        }
+        .guide-back:hover { color: var(--blue); }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .step-desc { padding-left: 0; }
+            .highlight-arrow { display: none; }
+            .macos-context { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- NAV -->
+    <header class="nav" role="banner">
+        <div class="nav-inner">
+            <a href="/" class="logo" aria-label="PlugnGO 首頁">
+                <img src="assets/logo.png" alt="" width="26" height="26" aria-hidden="true">
+                <span>PlugnGO<span class="logo-accent">!</span></span>
+            </a>
+            <nav aria-label="主要導覽">
+                <ul class="nav-links">
+                    <li><a href="/#features">功能</a></li>
+                    <li><a href="/#faq">FAQ</a></li>
+                </ul>
+            </nav>
+            <a href="/#download" class="btn-nav">免費下載</a>
+        </div>
+    </header>
+
+    <main id="main">
+        <div class="container">
+
+            <!-- HERO -->
+            <section class="guide-hero">
+                <a href="/" class="guide-back">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                    返回首頁
+                </a>
+                <h1>macOS 安全性設定教學</h1>
+                <p>首次開啟 PlugnGO 時，macOS 可能會顯示安全性警告。這是正常的——依照以下步驟即可解除。</p>
+            </section>
+
+            <!-- QUICK NAV -->
+            <div style="max-width:680px;margin:0 auto 32px;display:flex;flex-wrap:wrap;gap:8px;justify-content:center;">
+                <a href="#" style="padding:6px 14px;background:var(--surface);border:1px solid var(--border);border-radius:20px;font-size:0.8rem;font-weight:600;color:var(--text-2);transition:all 0.2s;" onmouseover="this.style.borderColor='var(--orange)';this.style.color='var(--orange)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-2)'">「無法打開」警告</a>
+                <a href="#damaged" style="padding:6px 14px;background:var(--surface);border:1px solid var(--border);border-radius:20px;font-size:0.8rem;font-weight:600;color:var(--text-2);transition:all 0.2s;" onmouseover="this.style.borderColor='#dc2626';this.style.color='#dc2626'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-2)'">「已損壞」錯誤</a>
+                <a href="#install" style="padding:6px 14px;background:var(--surface);border:1px solid var(--border);border-radius:20px;font-size:0.8rem;font-weight:600;color:var(--text-2);transition:all 0.2s;" onmouseover="this.style.borderColor='var(--orange)';this.style.color='var(--orange)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-2)'">DMG 安裝方式</a>
+                <a href="#permissions" style="padding:6px 14px;background:var(--surface);border:1px solid var(--border);border-radius:20px;font-size:0.8rem;font-weight:600;color:var(--text-2);transition:all 0.2s;" onmouseover="this.style.borderColor='var(--blue)';this.style.color='var(--blue)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-2)'">檔案存取權限</a>
+                <a href="#sequoia" style="padding:6px 14px;background:var(--surface);border:1px solid var(--border);border-radius:20px;font-size:0.8rem;font-weight:600;color:var(--text-2);transition:all 0.2s;" onmouseover="this.style.borderColor='#7c3aed';this.style.color='#7c3aed'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-2)'">Sequoia 注意事項</a>
+                <a href="#troubleshoot" style="padding:6px 14px;background:var(--surface);border:1px solid var(--border);border-radius:20px;font-size:0.8rem;font-weight:600;color:var(--text-2);transition:all 0.2s;" onmouseover="this.style.borderColor='var(--green)';this.style.color='var(--green)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-2)'">疑難排解</a>
+            </div>
+
+            <!-- INFO NOTE -->
+            <div class="guide-note">
+                <strong>為什麼會出現這個警告？</strong><br>
+                macOS Gatekeeper 會阻擋未在 Apple 公證（Notarization）的應用程式。PlugnGO 目前處於公測階段，尚未完成 Apple 公證流程，因此首次開啟時會被攔截。這<strong>不代表</strong>應用程式有安全疑慮——只是 macOS 的預設保護機制。
+            </div>
+
+            <!-- STEPS -->
+            <div class="guide-steps">
+
+                <!-- STEP 1 -->
+                <div class="guide-step">
+                    <div class="step-header">
+                        <div class="step-badge">1</div>
+                        <h2>你會看到這個對話框</h2>
+                    </div>
+                    <p class="step-desc">
+                        雙擊開啟 PlugnGO 後，macOS 會顯示以下警告。<strong>不要按「移到垃圾桶」</strong>，直接按 <kbd class="kbd">完成</kbd> 或關閉對話框即可。
+                    </p>
+
+                    <!-- macOS Dialog Mockup -->
+                    <div class="macos-dialog">
+                        <div class="macos-dialog-body">
+                            <div class="dialog-icon">
+                                <div class="dialog-icon-app">⚡</div>
+                                <div class="dialog-icon-warn">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="#1d1d1f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                                </div>
+                            </div>
+                            <div class="dialog-title">「PlugnGO」無法打開，因為 Apple 無法檢查其是否包含惡意軟體。</div>
+                            <div class="dialog-desc">此軟體需要更新。請聯繫開發者以取得更多資訊。</div>
+                            <div class="dialog-btns">
+                                <div class="dialog-btn dialog-btn-default">完成</div>
+                                <div class="dialog-btn dialog-btn-outline" style="font-size:0.7rem;">移到垃圾桶</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="text-align:center">
+                        <div class="annotation">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            按「完成」，不要按「移到垃圾桶」
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 方法選擇 -->
+                <div class="step-alt">選擇以下任一方式解除</div>
+
+                <!-- METHOD A HEADER -->
+                <div style="max-width:680px;margin:0 auto 8px;padding:6px 14px;background:var(--orange-light);border:1px solid var(--orange-border);border-radius:var(--radius-sm);font-size:0.8rem;font-weight:700;color:var(--orange-dark);display:inline-flex;align-items:center;gap:6px;">
+                    方法 A — 系統設定（推薦）
+                </div>
+
+                <!-- STEP 2A -->
+                <div class="guide-step">
+                    <div class="step-header">
+                        <div class="step-badge">2</div>
+                        <h2>開啟「系統設定 → 隱私權與安全性」</h2>
+                    </div>
+                    <p class="step-desc">
+                        打開 <strong>系統設定</strong>（左上角  → 系統設定），選擇左側的<strong>「隱私權與安全性」</strong>，往下捲動，你會看到 PlugnGO 被封鎖的通知。
+                    </p>
+
+                    <!-- System Settings Mockup -->
+                    <div class="macos-settings">
+                        <div class="settings-titlebar">
+                            <div class="settings-dots">
+                                <div class="settings-dot settings-dot-r"></div>
+                                <div class="settings-dot settings-dot-y"></div>
+                                <div class="settings-dot settings-dot-g"></div>
+                            </div>
+                            <div class="settings-titlebar-text">隱私權與安全性</div>
+                            <div style="width:52px"></div>
+                        </div>
+                        <div class="settings-body">
+                            <div class="settings-breadcrumb">
+                                 系統設定
+                                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                                <span>隱私權與安全性</span>
+                            </div>
+
+                            <div class="settings-section">
+                                <div style="font-size:0.7rem;color:#86868b;font-weight:600;margin-bottom:8px;text-transform:uppercase;letter-spacing:0.05em;">安全性</div>
+
+                                <div class="settings-row">
+                                    <div class="settings-row-left">
+                                        <div>
+                                            <div class="settings-row-text">允許從以下位置下載的 App</div>
+                                            <div class="settings-row-desc">App Store 和已識別的開發者</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="settings-row settings-highlight" style="padding:10px 12px;margin:4px -4px;position:relative;">
+                                    <div class="settings-row-left">
+                                        <div class="settings-row-icon" style="background:linear-gradient(135deg, #1a1a2e, #16213e);">
+                                            <span style="font-size:16px;">⚡</span>
+                                        </div>
+                                        <div>
+                                            <div class="settings-row-text">「PlugnGO」已被阻擋，因為其並非來自已識別的開發者。</div>
+                                            <div class="settings-row-desc">約 1 分鐘前</div>
+                                        </div>
+                                    </div>
+                                    <button class="settings-btn-open">強制打開</button>
+                                    <div class="highlight-arrow">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                        點這裡！
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="text-align:center">
+                        <div class="annotation">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            點選「強制打開」
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 3A -->
+                <div class="guide-step">
+                    <div class="step-header">
+                        <div class="step-badge">3</div>
+                        <h2>輸入密碼確認</h2>
+                    </div>
+                    <p class="step-desc">
+                        macOS 會要求你輸入登入密碼或使用 Touch ID 確認身份。驗證完成後，再次開啟 PlugnGO 就能正常使用了。
+                    </p>
+
+                    <div class="macos-dialog">
+                        <div class="macos-dialog-body">
+                            <div style="margin-bottom:16px;">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#007aff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                            </div>
+                            <div class="dialog-title">macOS 需要你的密碼來允許此操作。</div>
+                            <div style="margin:12px auto;max-width:260px;padding:8px 12px;background:#fff;border:1px solid #d1d5db;border-radius:6px;font-size:0.8rem;color:#86868b;text-align:left;">密碼：••••••••</div>
+                            <div class="dialog-btns" style="flex-direction:row;justify-content:flex-end;gap:8px;">
+                                <div class="dialog-btn dialog-btn-secondary" style="padding:7px 16px;">取消</div>
+                                <div class="dialog-btn dialog-btn-default" style="padding:7px 16px;">解鎖</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- METHOD B -->
+                <div class="step-alt">方法 B — 右鍵開啟（快速）</div>
+
+                <!-- STEP 2B -->
+                <div class="guide-step">
+                    <div class="step-header">
+                        <div class="step-badge">2</div>
+                        <h2>在 App 圖示上按右鍵 → 開啟</h2>
+                    </div>
+                    <p class="step-desc">
+                        在 Finder 或應用程式資料夾中找到 PlugnGO，按住 <kbd class="kbd">Control</kbd> 再點選（或雙指點按觸控板），選擇<strong>「開啟」</strong>。
+                    </p>
+
+                    <div class="macos-context">
+                        <div class="context-app-icon">
+                            <div class="context-app-square">⚡</div>
+                            <div class="context-app-name">PlugnGO</div>
+                        </div>
+                        <div>
+                            <div class="context-menu">
+                                <div class="context-item context-item-highlight" style="border-radius:6px 6px 0 0;">
+                                    <span>開啟</span>
+                                </div>
+                                <div class="context-divider"></div>
+                                <div class="context-item context-item-dim">移到垃圾桶</div>
+                                <div class="context-divider"></div>
+                                <div class="context-item context-item-dim">取得資訊</div>
+                                <div class="context-item context-item-dim">壓縮「PlugnGO」</div>
+                                <div class="context-divider"></div>
+                                <div class="context-item context-item-dim">快速查看</div>
+                            </div>
+                            <div class="annotation" style="margin-top:8px;">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                選「開啟」
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 3B -->
+                <div class="guide-step">
+                    <div class="step-header">
+                        <div class="step-badge">3</div>
+                        <h2>在確認對話框中按「開啟」</h2>
+                    </div>
+                    <p class="step-desc">
+                        這次的對話框會多一個<strong>「開啟」</strong>按鈕。點選後 PlugnGO 就會正常啟動，以後開啟都不會再被攔截。
+                    </p>
+
+                    <div class="macos-dialog">
+                        <div class="macos-dialog-body">
+                            <div class="dialog-icon">
+                                <div class="dialog-icon-app">⚡</div>
+                                <div class="dialog-icon-warn">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="#1d1d1f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                                </div>
+                            </div>
+                            <div class="dialog-title">macOS 無法驗證「PlugnGO」的開發者。確定要打開嗎？</div>
+                            <div class="dialog-desc">打開此 App 會覆寫你的安全性設定，這可能會讓你的電腦和個人資訊暴露在惡意軟體的風險中。</div>
+                            <div class="dialog-btns" style="flex-direction:row;justify-content:flex-end;gap:8px;">
+                                <div class="dialog-btn dialog-btn-secondary" style="padding:7px 16px;">取消</div>
+                                <div class="dialog-btn dialog-btn-default" style="padding:7px 16px;">開啟</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="text-align:center">
+                        <div class="annotation">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            按「開啟」即可正常使用
+                        </div>
+                    </div>
+                </div>
+
+                <!-- METHOD C — Terminal -->
+                <div class="step-alt">方法 C — 終端機指令（進階）</div>
+
+                <div class="guide-step">
+                    <div class="step-header">
+                        <div class="step-badge">!</div>
+                        <h2>用終端機移除隔離屬性</h2>
+                    </div>
+                    <p class="step-desc">
+                        如果以上方法都無效，可以用終端機手動移除 macOS 的隔離標記。開啟<strong>終端機</strong>（應用程式 → 工具程式 → 終端機），貼上以下指令：
+                    </p>
+
+                    <div class="terminal-cmd">
+                        <div class="terminal-bar">
+                            <div class="terminal-bar-dot terminal-bar-dot-r"></div>
+                            <div class="terminal-bar-dot terminal-bar-dot-y"></div>
+                            <div class="terminal-bar-dot terminal-bar-dot-g"></div>
+                        </div>
+                        <div class="terminal-body">
+                            <span class="terminal-comment"># 如果安裝在「應用程式」資料夾：</span><br>
+                            <span class="terminal-prompt">$ </span><span class="terminal-cmd-text">xattr -cr /Applications/PlugnGO.app</span><br><br>
+                            <span class="terminal-comment"># 或者 DMG 解壓後的位置：</span><br>
+                            <span class="terminal-prompt">$ </span><span class="terminal-cmd-text">xattr -cr ~/Downloads/PlugnGO.app</span>
+                        </div>
+                    </div>
+                    <p class="step-desc" style="margin-top:16px;">
+                        執行後再雙擊開啟 PlugnGO，就不會再出現 Gatekeeper 警告了。
+                    </p>
+                </div>
+
+                <!-- DONE for Section 1 -->
+                <div style="text-align:center;padding:40px 0 0;">
+                    <div style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:var(--green-light);border:1px solid #bbf7d0;border-radius:var(--radius);color:var(--green);font-weight:700;font-size:0.9rem;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        設定完成！以後開啟 PlugnGO 都不會再被攔截。
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ============================================================
+             情境二：「已損壞，無法打開」
+             ============================================================ -->
+        <div style="border-top:1px solid var(--border);margin:48px 0 0;"></div>
+        <div class="container">
+            <div class="guide-steps" style="padding-top:56px;" id="damaged">
+
+                <div class="section-tag" style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;background:#fef2f2;border:1px solid #fecaca;border-radius:var(--radius-sm);font-size:0.8rem;font-weight:700;color:#dc2626;margin-bottom:20px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                    情境二
+                </div>
+
+                <div class="guide-step">
+                    <div class="step-header">
+                        <div class="step-badge" style="background:#dc2626;">!</div>
+                        <h2>「PlugnGO 已損壞，無法打開。您應該將其移到垃圾桶。」</h2>
+                    </div>
+                    <p class="step-desc">
+                        這個錯誤看起來比較嚇人，但其實<strong>不是真的損壞</strong>。這是 macOS 的隔離機制（quarantine flag）導致的誤報，常見於從網路下載的 App。
+                    </p>
+
+                    <div class="macos-dialog">
+                        <div class="macos-dialog-body">
+                            <div class="dialog-icon">
+                                <div class="dialog-icon-app">⚡</div>
+                                <div class="dialog-icon-warn" style="background:#dc2626;border-color:#f0f0f0;">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                </div>
+                            </div>
+                            <div class="dialog-title">「PlugnGO」已損壞，無法打開。您應該將其移到「垃圾桶」。</div>
+                            <div class="dialog-desc">此檔案的下載日期不明。</div>
+                            <div class="dialog-btns" style="flex-direction:row;justify-content:flex-end;gap:8px;">
+                                <div class="dialog-btn dialog-btn-secondary" style="padding:7px 16px;">取消</div>
+                                <div class="dialog-btn dialog-btn-default" style="padding:7px 16px;background:#dc2626;">移到垃圾桶</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="text-align:center">
+                        <div class="annotation" style="background:#dc2626;">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                            不要按「移到垃圾桶」！按「取消」
+                        </div>
+                    </div>
+                </div>
+
+                <div class="guide-step">
+                    <div class="step-header">
+                        <div class="step-badge">1</div>
+                        <h2>開啟終端機，移除隔離標記</h2>
+                    </div>
+                    <p class="step-desc">
+                        開啟<strong>終端機</strong>（Spotlight 搜尋「終端機」或到應用程式 → 工具程式 → 終端機），貼上以下指令並按 Enter：
+                    </p>
+
+                    <div class="terminal-cmd">
+                        <div class="terminal-bar">
+                            <div class="terminal-bar-dot terminal-bar-dot-r"></div>
+                            <div class="terminal-bar-dot terminal-bar-dot-y"></div>
+                            <div class="terminal-bar-dot terminal-bar-dot-g"></div>
+                        </div>
+                        <div class="terminal-body">
+                            <span class="terminal-comment"># 移除隔離標記（擇一執行）</span><br>
+                            <span class="terminal-prompt">$ </span><span class="terminal-cmd-text">xattr -cr /Applications/PlugnGO.app</span><br><br>
+                            <span class="terminal-comment"># 如果你沒有拖到「應用程式」，而是在其他位置：</span><br>
+                            <span class="terminal-prompt">$ </span><span class="terminal-cmd-text">xattr -cr ~/Downloads/PlugnGO.app</span><br><br>
+                            <span class="terminal-comment"># macOS 可能要求輸入密碼，輸入後按 Enter（密碼不會顯示）</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="guide-step">
+                    <div class="step-header">
+                        <div class="step-badge">2</div>
+                        <h2>重新開啟 PlugnGO</h2>
+                    </div>
+                    <p class="step-desc">
+                        執行完指令後，再次雙擊 PlugnGO 就能正常開啟。如果仍然出現「無法打開」的警告（不是「已損壞」），請依照<a href="#" style="color:var(--blue);font-weight:600;">上方情境一</a>的步驟操作。
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ============================================================
+             情境三：安裝方式錯誤（從 DMG 直接執行）
+             ============================================================ -->
+        <div style="border-top:1px solid var(--border);margin:0;"></div>
+        <div class="container">
+            <div class="guide-steps" style="padding-top:56px;" id="install">
+
+                <div class="section-tag" style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;background:var(--orange-light);border:1px solid var(--orange-border);border-radius:var(--radius-sm);font-size:0.8rem;font-weight:700;color:var(--orange-dark);margin-bottom:20px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+                    情境三
+                </div>
+
+                <div class="guide-step">
+                    <div class="step-header">
+                        <div class="step-badge" style="background:var(--orange);">!</div>
+                        <h2>請先將 PlugnGO 拖到「應用程式」資料夾</h2>
+                    </div>
+                    <p class="step-desc">
+                        如果你直接在 DMG 磁碟映像檔裡雙擊開啟 PlugnGO，macOS 會啟動<strong>「App Translocation」</strong>保護機制——將 App 搬到一個隨機的唯讀暫存位置執行，導致功能異常（例如無法儲存設定、無法偵測記憶卡）。
+                    </p>
+                </div>
+
+                <div class="guide-step">
+                    <div class="step-header">
+                        <div class="step-badge">1</div>
+                        <h2>正確安裝方式</h2>
+                    </div>
+                    <p class="step-desc">
+                        打開下載的 <code>.dmg</code> 檔案後，將 PlugnGO 圖示<strong>拖曳</strong>到旁邊的「Applications」資料夾捷徑。
+                    </p>
+
+                    <!-- DMG Install Mockup -->
+                    <div style="max-width:480px;margin:0 auto;">
+                        <div style="background:#2a2d30;border-radius:12px;padding:32px 24px;box-shadow:0 24px 80px rgba(0,0,0,0.18);font-family:-apple-system,BlinkMacSystemFont,sans-serif;">
+                            <div style="text-align:center;font-size:0.7rem;color:#999;margin-bottom:24px;letter-spacing:0.05em;">PlugnGO Installer</div>
+                            <div style="display:flex;align-items:center;justify-content:center;gap:24px;">
+                                <div style="text-align:center;">
+                                    <div style="width:72px;height:72px;background:linear-gradient(135deg,#1a1a2e,#16213e);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto 8px;box-shadow:0 4px 12px rgba(0,0,0,0.3);">⚡</div>
+                                    <div style="font-size:0.7rem;color:#ccc;">PlugnGO.app</div>
+                                </div>
+                                <div style="display:flex;flex-direction:column;align-items:center;gap:2px;">
+                                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                    <span style="font-size:0.65rem;color:var(--orange);font-weight:700;">拖過去</span>
+                                </div>
+                                <div style="text-align:center;">
+                                    <div style="width:72px;height:72px;background:linear-gradient(135deg,#1c7ff2,#5a9cf5);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 8px;box-shadow:0 4px 12px rgba(0,0,0,0.3);">
+                                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+                                    </div>
+                                    <div style="font-size:0.7rem;color:#ccc;">Applications</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="text-align:center">
+                        <div class="annotation">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            拖到 Applications 後再開啟
+                        </div>
+                    </div>
+                </div>
+
+                <div class="guide-step">
+                    <div class="step-header">
+                        <div class="step-badge">2</div>
+                        <h2>退出 DMG → 從應用程式開啟</h2>
+                    </div>
+                    <p class="step-desc">
+                        安裝完成後，在桌面或 Finder 側邊欄找到 DMG 磁碟圖示，按右鍵 →「退出」。然後到<strong>「應用程式」</strong>資料夾開啟 PlugnGO。
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ============================================================
+             情境四：可卸除式卷宗 / 檔案存取權限
+             ============================================================ -->
+        <div style="border-top:1px solid var(--border);margin:0;"></div>
+        <div class="container">
+            <div class="guide-steps" style="padding-top:56px;" id="permissions">
+
+                <div class="section-tag" style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;background:var(--blue-light);border:1px solid var(--blue-border);border-radius:var(--radius-sm);font-size:0.8rem;font-weight:700;color:var(--blue);margin-bottom:20px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    情境四
+                </div>
+
+                <div class="guide-step">
+                    <div class="step-header">
+                        <div class="step-badge" style="background:var(--blue);">!</div>
+                        <h2>權限提示：「PlugnGO 想要存取可卸除式卷宗上的檔案」</h2>
+                    </div>
+                    <p class="step-desc">
+                        從 macOS Ventura 開始，App 首次存取<strong>外接裝置（SD 卡、外接硬碟、USB 隨身碟）</strong>時，系統會跳出權限確認。這是 PlugnGO 正常運作所必須的——備份工具當然需要讀取你的記憶卡。
+                    </p>
+
+                    <div class="macos-dialog">
+                        <div class="macos-dialog-body">
+                            <div style="margin-bottom:16px;">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#007aff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/><polyline points="9 13 12 16 15 13"/><line x1="12" y1="10" x2="12" y2="16"/></svg>
+                            </div>
+                            <div class="dialog-title">「PlugnGO」想要存取可卸除式卷宗上的檔案。</div>
+                            <div class="dialog-desc">允許後，PlugnGO 將能讀取外接裝置上的照片和影片。</div>
+                            <div class="dialog-btns" style="flex-direction:row;justify-content:flex-end;gap:8px;">
+                                <div class="dialog-btn dialog-btn-secondary" style="padding:7px 16px;">不允許</div>
+                                <div class="dialog-btn dialog-btn-default" style="padding:7px 16px;">允許</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="text-align:center">
+                        <div class="annotation">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            必須點「允許」，否則無法讀取記憶卡
+                        </div>
+                    </div>
+                </div>
+
+                <div class="guide-step">
+                    <div class="step-header">
+                        <div class="step-badge" style="background:var(--blue);">!</div>
+                        <h2>權限提示：「PlugnGO 想要存取你的桌面/文件/下載項目資料夾」</h2>
+                    </div>
+                    <p class="step-desc">
+                        如果你將備份目的地設在桌面、文件或下載項目資料夾，macOS 也會要求權限。一樣點選<strong>「允許」</strong>即可。
+                    </p>
+
+                    <div class="macos-dialog">
+                        <div class="macos-dialog-body">
+                            <div style="margin-bottom:16px;">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#007aff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+                            </div>
+                            <div class="dialog-title">「PlugnGO」想要存取你的「桌面」資料夾中的檔案。</div>
+                            <div class="dialog-desc">允許後，PlugnGO 將能在此位置讀取和寫入備份檔案。</div>
+                            <div class="dialog-btns" style="flex-direction:row;justify-content:flex-end;gap:8px;">
+                                <div class="dialog-btn dialog-btn-secondary" style="padding:7px 16px;">不允許</div>
+                                <div class="dialog-btn dialog-btn-default" style="padding:7px 16px;">允許</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="guide-step">
+                    <div class="step-header">
+                        <div class="step-badge">?</div>
+                        <h2>不小心按到「不允許」了？</h2>
+                    </div>
+                    <p class="step-desc">
+                        如果你誤按了「不允許」，可以手動到系統設定中重新授權：
+                    </p>
+
+                    <div class="macos-settings">
+                        <div class="settings-titlebar">
+                            <div class="settings-dots">
+                                <div class="settings-dot settings-dot-r"></div>
+                                <div class="settings-dot settings-dot-y"></div>
+                                <div class="settings-dot settings-dot-g"></div>
+                            </div>
+                            <div class="settings-titlebar-text">隱私權與安全性</div>
+                            <div style="width:52px"></div>
+                        </div>
+                        <div class="settings-body">
+                            <div class="settings-breadcrumb">
+                                 系統設定
+                                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                                隱私權與安全性
+                                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                                <span>檔案與資料夾</span>
+                            </div>
+
+                            <div class="settings-section">
+                                <div class="settings-row">
+                                    <div class="settings-row-left">
+                                        <div class="settings-row-icon" style="background:linear-gradient(135deg, #1a1a2e, #16213e);">
+                                            <span style="font-size:16px;">⚡</span>
+                                        </div>
+                                        <div>
+                                            <div class="settings-row-text">PlugnGO</div>
+                                        </div>
+                                    </div>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#86868b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                                </div>
+                            </div>
+
+                            <div class="settings-section settings-highlight" style="position:relative;">
+                                <div style="font-size:0.7rem;color:#86868b;font-weight:600;margin-bottom:8px;">PlugnGO 的檔案存取權限</div>
+                                <div class="settings-row">
+                                    <div class="settings-row-left">
+                                        <div>
+                                            <div class="settings-row-text">桌面資料夾</div>
+                                        </div>
+                                    </div>
+                                    <!-- Toggle mockup -->
+                                    <div style="width:42px;height:24px;background:#34c759;border-radius:12px;position:relative;flex-shrink:0;">
+                                        <div style="width:20px;height:20px;background:#fff;border-radius:50%;position:absolute;top:2px;right:2px;box-shadow:0 1px 3px rgba(0,0,0,0.2);"></div>
+                                    </div>
+                                </div>
+                                <div class="settings-row">
+                                    <div class="settings-row-left">
+                                        <div>
+                                            <div class="settings-row-text">可卸除式卷宗</div>
+                                        </div>
+                                    </div>
+                                    <div style="width:42px;height:24px;background:#34c759;border-radius:12px;position:relative;flex-shrink:0;">
+                                        <div style="width:20px;height:20px;background:#fff;border-radius:50%;position:absolute;top:2px;right:2px;box-shadow:0 1px 3px rgba(0,0,0,0.2);"></div>
+                                    </div>
+                                </div>
+                                <div class="settings-row">
+                                    <div class="settings-row-left">
+                                        <div>
+                                            <div class="settings-row-text">網路卷宗</div>
+                                        </div>
+                                    </div>
+                                    <div style="width:42px;height:24px;background:#34c759;border-radius:12px;position:relative;flex-shrink:0;">
+                                        <div style="width:20px;height:20px;background:#fff;border-radius:50%;position:absolute;top:2px;right:2px;box-shadow:0 1px 3px rgba(0,0,0,0.2);"></div>
+                                    </div>
+                                </div>
+                                <div class="highlight-arrow">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                    全部打開
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="step-desc" style="margin-top:16px;">
+                        路徑：<strong> → 系統設定 → 隱私權與安全性 → 檔案與資料夾 → PlugnGO</strong><br>
+                        將「桌面資料夾」、「可卸除式卷宗」、「網路卷宗」的開關全部打開。修改後<strong>需要重新開啟 PlugnGO</strong> 才會生效。
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ============================================================
+             情境五：macOS Sequoia 特別注意
+             ============================================================ -->
+        <div style="border-top:1px solid var(--border);margin:0;"></div>
+        <div class="container">
+            <div class="guide-steps" style="padding-top:56px;" id="sequoia">
+
+                <div class="section-tag" style="display:inline-flex;align-items:center;gap:6px;padding:5px 14px;background:#faf5ff;border:1px solid #ddd6fe;border-radius:var(--radius-sm);font-size:0.8rem;font-weight:700;color:#7c3aed;margin-bottom:20px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    macOS Sequoia（15.x）注意事項
+                </div>
+
+                <div class="guide-step">
+                    <div class="step-header">
+                        <div class="step-badge" style="background:#7c3aed;">!</div>
+                        <h2>Sequoia 收緊了 Gatekeeper 規則</h2>
+                    </div>
+                    <p class="step-desc">
+                        如果你使用的是 macOS Sequoia（15.0 以上），Apple 進一步收緊了安全性限制：
+                    </p>
+                    <div style="padding-left:46px;">
+                        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:16px;">
+                            <div style="display:flex;flex-direction:column;gap:16px;">
+                                <div style="display:flex;gap:12px;align-items:flex-start;">
+                                    <div style="flex-shrink:0;width:24px;height:24px;background:#fef2f2;border:1px solid #fecaca;border-radius:6px;display:flex;align-items:center;justify-content:center;">
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                    </div>
+                                    <div>
+                                        <div style="font-size:0.85rem;font-weight:700;color:var(--text);margin-bottom:2px;">右鍵「開啟」可能無效</div>
+                                        <div style="font-size:0.8rem;color:var(--text-3);line-height:1.6;">Sequoia 對未簽署的 App 取消了右鍵開啟的捷徑。如果右鍵選單中按「開啟」後仍然被擋，請改用<strong>方法 A（系統設定 → 強制打開）</strong>。</div>
+                                    </div>
+                                </div>
+                                <div style="display:flex;gap:12px;align-items:flex-start;">
+                                    <div style="flex-shrink:0;width:24px;height:24px;background:var(--green-light);border:1px solid #bbf7d0;border-radius:6px;display:flex;align-items:center;justify-content:center;">
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                    </div>
+                                    <div>
+                                        <div style="font-size:0.85rem;font-weight:700;color:var(--text);margin-bottom:2px;">系統設定方法仍然有效</div>
+                                        <div style="font-size:0.8rem;color:var(--text-3);line-height:1.6;">到「系統設定 → 隱私權與安全性」點選「強制打開」，這在所有 macOS 版本都能使用。</div>
+                                    </div>
+                                </div>
+                                <div style="display:flex;gap:12px;align-items:flex-start;">
+                                    <div style="flex-shrink:0;width:24px;height:24px;background:var(--green-light);border:1px solid #bbf7d0;border-radius:6px;display:flex;align-items:center;justify-content:center;">
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                    </div>
+                                    <div>
+                                        <div style="font-size:0.85rem;font-weight:700;color:var(--text);margin-bottom:2px;">終端機指令仍然有效</div>
+                                        <div style="font-size:0.8rem;color:var(--text-3);line-height:1.6;"><code style="background:#f1f5f9;padding:1px 5px;border-radius:3px;font-size:0.75rem;">xattr -cr</code> 指令在 Sequoia 上仍然可以正常使用。</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="guide-note" style="margin-top:0;">
+                        <strong>如何確認你的 macOS 版本？</strong><br>
+                        點選左上角  → 「關於這台 Mac」，就能看到版本號。<br>
+                        macOS 15.x = Sequoia ／ macOS 14.x = Sonoma ／ macOS 13.x = Ventura
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ============================================================
+             快速導覽（置於底部）+ FAQ
+             ============================================================ -->
+        <div style="border-top:1px solid var(--border);margin:0;"></div>
+        <div class="container">
+            <div class="guide-steps" style="padding-top:56px;" id="troubleshoot">
+
+                <div style="text-align:center;margin-bottom:40px;">
+                    <h2 style="font-size:1.4rem;font-weight:800;letter-spacing:-0.03em;margin-bottom:8px;">還是無法開啟？</h2>
+                    <p style="color:var(--text-3);font-size:0.9rem;">以下是常見問題的快速排查。</p>
+                </div>
+
+                <!-- Troubleshooting cards -->
+                <div style="display:flex;flex-direction:column;gap:16px;margin-bottom:48px;">
+
+                    <details style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;">
+                        <summary style="padding:16px 20px;font-size:0.9rem;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:space-between;">
+                            試了所有方法，還是顯示「無法打開」
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                        </summary>
+                        <div style="padding:0 20px 16px;font-size:0.85rem;color:var(--text-2);line-height:1.7;">
+                            <ol style="padding-left:1.2em;list-style:decimal;">
+                                <li>確認已將 PlugnGO 從 DMG 拖到「應用程式」資料夾</li>
+                                <li>開啟終端機，執行 <code style="background:#f1f5f9;padding:1px 5px;border-radius:3px;font-size:0.8rem;">xattr -cr /Applications/PlugnGO.app</code></li>
+                                <li>到系統設定 → 隱私權與安全性，點選「強制打開」</li>
+                                <li>如果以上都無效，嘗試重新下載 DMG 再安裝一次</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <details style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;">
+                        <summary style="padding:16px 20px;font-size:0.9rem;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:space-between;">
+                            PlugnGO 開啟後閃退 / 畫面空白
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                        </summary>
+                        <div style="padding:0 20px 16px;font-size:0.85rem;color:var(--text-2);line-height:1.7;">
+                            <ol style="padding-left:1.2em;list-style:decimal;">
+                                <li>確認你下載的是正確的版本：M 系列 Mac 用 M系列版，Intel Mac 用 Intel 版</li>
+                                <li>確認 macOS 版本在 12 (Monterey) 以上</li>
+                                <li>嘗試刪除 PlugnGO 後重新安裝</li>
+                                <li>如果問題持續，請到 <a href="https://plugngo.skiseiju.com/beta" style="color:var(--blue);font-weight:600;">公測頁面</a> 回報問題</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <details style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;">
+                        <summary style="padding:16px 20px;font-size:0.9rem;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:space-between;">
+                            PlugnGO 偵測不到插入的記憶卡
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                        </summary>
+                        <div style="padding:0 20px 16px;font-size:0.85rem;color:var(--text-2);line-height:1.7;">
+                            <ol style="padding-left:1.2em;list-style:decimal;">
+                                <li>確認記憶卡已在 Finder 中正常掛載（桌面或側邊欄可看到）</li>
+                                <li>確認已授權「可卸除式卷宗」存取權限（系統設定 → 隱私權與安全性 → 檔案與資料夾 → PlugnGO）</li>
+                                <li>如果是從 DMG 直接執行（未拖到應用程式），請先正確安裝再試</li>
+                                <li>嘗試重新插卡，或換一個讀卡機</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                    <details style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;">
+                        <summary style="padding:16px 20px;font-size:0.9rem;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:space-between;">
+                            NAS 備份目標無法選取 / 寫入失敗
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text-3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                        </summary>
+                        <div style="padding:0 20px 16px;font-size:0.85rem;color:var(--text-2);line-height:1.7;">
+                            <ol style="padding-left:1.2em;list-style:decimal;">
+                                <li>確認 NAS 已在 Finder 中連線並掛載</li>
+                                <li>確認已授權「網路卷宗」存取權限（系統設定 → 隱私權與安全性 → 檔案與資料夾 → PlugnGO）</li>
+                                <li>確認 NAS 上的共享資料夾有寫入權限</li>
+                                <li>如果使用 SMB 連線，確認 Finder 中的掛載路徑是以 <code style="background:#f1f5f9;padding:1px 5px;border-radius:3px;font-size:0.8rem;">/Volumes/</code> 開頭</li>
+                            </ol>
+                        </div>
+                    </details>
+
+                </div>
+
+                <!-- Final -->
+                <div style="text-align:center;padding:0 0 20px;">
+                    <div style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:var(--green-light);border:1px solid #bbf7d0;border-radius:var(--radius);color:var(--green);font-weight:700;font-size:0.9rem;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        問題解決了？開始備份吧！
+                    </div>
+                    <p style="margin-top:20px;">
+                        <a href="/#download" style="color:var(--blue);font-weight:600;font-size:0.9rem;">← 返回下載頁面</a>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-logo">
+                <img src="assets/logo.png" alt="" width="22" height="22" aria-hidden="true">
+                <span>PlugnGO! v1.8.1</span>
+            </div>
+            <p class="footer-copy">&copy; 2026 skiseiju Tech Team. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
