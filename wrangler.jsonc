@@ -1,12 +1,17 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "plugngo-website",
+  "main": "src/worker.js",
   "compatibility_date": "2025-09-27",
   "observability": {
     "enabled": true
   },
   "assets": {
-    "directory": "."
+    "directory": ".",
+    "binding": "ASSETS"
+  },
+  "vars": {
+    "PLUGNGO_APPS_SCRIPT_URL": "https://script.google.com/macros/s/AKfycbzWWgK6_yl3najpDK3a0CVXaU1GbqPHFZ0BrkKlv_O6IGEMAq5N05z96flOdG028d6lCQ/exec"
   },
   "compatibility_flags": [
     "nodejs_compat"
