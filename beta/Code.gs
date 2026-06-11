@@ -12,6 +12,11 @@ const BETA_SIGNUPS_SHEET = "Beta_Signups";
 const BETA_SENDER_NAME   = "PlugnGO";
 const BETA_REPLY_TO      = "plugngo@gmail.com";
 const BETA_FACEBOOK_URL  = "https://www.facebook.com/skiseiju";
+const ADMIN_SECRET_PROPERTY = "PLUGNGO_ADMIN_SECRET";
+const LICENSE_PRIVATE_KEY_PROPERTY = "PLUGNGO_LICENSE_PRIVATE_KEY";
+const LICENSE_CERT_TTL_DAYS = 30;
+const VALID_LICENSE_TIERS = ["photo", "video", "hub"];
+const VALID_LICENSE_PLUGINS = ["video_proxy", "ai_vision_p1", "audio_ai"];
 
 const COL_LICENSE_KEY = 0;
 const COL_ORDER_EMAIL = 1;
@@ -23,6 +28,12 @@ const COL_SUB_EXPIRY  = 6;
 const COL_MAX_DEVICES = 7;
 const COL_ALIAS       = 8;
 const COL_ORDER_DATE  = 9;
+const COL_PAYMENT_PROVIDER = 10;
+const COL_PAYMENT_ID       = 11;
+const COL_PAYMENT_AMOUNT   = 12;
+const COL_PAYMENT_CURRENCY = 13;
+const COL_SOURCE           = 14;
+const COL_EMAIL_SENT_AT    = 15;
 
 // ─────────────────────────────────────────
 // onEdit
@@ -194,14 +205,29 @@ function handleBetaSignup(postData) {
 // 正式購買序號建立
 // ─────────────────────────────────────────
 function handleCreateLicense(postData) {
+  if (!verifyAdminSecret(postData)) {
+    return createJsonResponse({ "success": false, "error": "UNAUTHORIZED" }, 403);
+  }
+
   const email      = (postData.email       || "").toString().trim();
-  const tier       = (postData.tier        || "photo").toString().trim().toLowerCase();
-  const plugins    = (postData.plugins     || "").toString().trim();
-  const maxDevices = (postData.max_devices || 1).toString().trim();
+  const tier       = normalizeTier(postData.tier || "photo");
+  const plugins    = normalizePlugins(postData.plugins || "");
+  const maxDevices = normalizeMaxDevices(postData.max_devices || 1);
   const alias      = (postData.alias       || "").toString().trim();
   const subExpiry  = (postData.sub_expiry  || "never").toString().trim();
+  const paymentProvider = normalizePaymentValue(postData.payment_provider || "");
+  const paymentId       = normalizePaymentValue(postData.payment_id || "");
+  const paymentAmount   = normalizePaymentValue(postData.payment_amount || "");
+  const paymentCurrency = normalizePaymentValue(postData.payment_currency || "TWD");
+  const source          = normalizePaymentValue(postData.source || "");
+  const shouldSendEmail = String(postData.send_email || "true").toLowerCase() !== "false";
 
   if (!email) return createJsonResponse({ "success": false, "error": "MISSING_EMAIL" }, 400);
+  if (!tier) return createJsonResponse({ "success": false, "error": "INVALID_TIER" }, 400);
+  if (plugins === null) return createJsonResponse({ "success": false, "error": "INVALID_PLUGINS" }, 400);
+  if (!maxDevices) return createJsonResponse({ "success": false, "error": "INVALID_MAX_DEVICES" }, 400);
+  if (!isValidExpiry(subExpiry)) return createJsonResponse({ "success": false, "error": "INVALID_EXPIRY" }, 400);
+  if (paymentId && !paymentProvider) return createJsonResponse({ "success": false, "error": "MISSING_PAYMENT_PROVIDER" }, 400);
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(email)) return createJsonResponse({ "success": false, "error": "INVALID_EMAIL" }, 400);
@@ -209,13 +235,109 @@ function handleCreateLicense(postData) {
   const ss    = SpreadsheetApp.openById(SS_ID);
   const sheet = ss.getSheetByName(SHEET_LICENSES);
   if (!sheet) return createJsonResponse({ "success": false, "error": "SERVER_ERROR" }, 500);
+  ensureLicensePaymentHeaders(sheet);
+
+  const existing = findLicenseByPayment(sheet, paymentProvider, paymentId);
+  if (existing) {
+    let emailSent = !!existing.emailSentAt;
+    if (shouldSendEmail && !emailSent) {
+      sendPaidLicenseEmail(existing.alias || alias, existing.email, existing.licenseKey, existing.tier, existing.subExpiry);
+      sheet.getRange(existing.rowNumber, COL_EMAIL_SENT_AT + 1).setValue(new Date().toISOString());
+      emailSent = true;
+    }
+    return createJsonResponse({
+      "success": true,
+      "license_key": existing.licenseKey,
+      "email": existing.email,
+      "tier": existing.tier,
+      "order_date": existing.orderDate,
+      "payment_duplicate": true,
+      "email_sent": emailSent
+    }, 200);
+  }
 
   const newKey    = generateLicenseKey();
   const orderDate = new Date().toISOString();
+  let emailSentAt = "";
 
-  sheet.appendRow([newKey, email, "", "Valid", tier, plugins, subExpiry, maxDevices, alias, orderDate]);
+  sheet.appendRow([
+    newKey,
+    email,
+    "",
+    "Valid",
+    tier,
+    plugins,
+    subExpiry,
+    maxDevices,
+    alias,
+    orderDate,
+    paymentProvider,
+    paymentId,
+    paymentAmount,
+    paymentCurrency,
+    source,
+    ""
+  ]);
 
-  return createJsonResponse({ "success": true, "license_key": newKey, "email": email, "tier": tier, "order_date": orderDate }, 200);
+  if (shouldSendEmail) {
+    sendPaidLicenseEmail(alias, email, newKey, tier, subExpiry);
+    emailSentAt = new Date().toISOString();
+    sheet.getRange(sheet.getLastRow(), COL_EMAIL_SENT_AT + 1).setValue(emailSentAt);
+  }
+
+  return createJsonResponse({
+    "success": true,
+    "license_key": newKey,
+    "email": email,
+    "tier": tier,
+    "order_date": orderDate,
+    "email_sent": !!emailSentAt
+  }, 200);
+}
+
+function ensureLicensePaymentHeaders(sheet) {
+  const headers = sheet.getRange(1, 1, 1, Math.max(sheet.getLastColumn(), COL_EMAIL_SENT_AT + 1)).getValues()[0];
+  const expected = [
+    "PaymentProvider",
+    "PaymentId",
+    "PaymentAmount",
+    "PaymentCurrency",
+    "Source",
+    "EmailSentAt"
+  ];
+  let changed = false;
+  for (let i = 0; i < expected.length; i++) {
+    const col = COL_PAYMENT_PROVIDER + i;
+    if (!headers[col]) {
+      headers[col] = expected[i];
+      changed = true;
+    }
+  }
+  if (changed) sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
+}
+
+function findLicenseByPayment(sheet, provider, paymentId) {
+  if (!provider || !paymentId) return null;
+  const data = sheet.getDataRange().getValues();
+  const normalizedProvider = provider.toLowerCase();
+  const normalizedPaymentId = paymentId.toLowerCase();
+  for (let i = 1; i < data.length; i++) {
+    const row = data[i];
+    const rowProvider = normalizePaymentValue(row[COL_PAYMENT_PROVIDER] || "").toLowerCase();
+    const rowPaymentId = normalizePaymentValue(row[COL_PAYMENT_ID] || "").toLowerCase();
+    if (rowProvider !== normalizedProvider || rowPaymentId !== normalizedPaymentId) continue;
+    return {
+      rowNumber: i + 1,
+      licenseKey: String(row[COL_LICENSE_KEY] || "").trim(),
+      email: String(row[COL_ORDER_EMAIL] || "").trim(),
+      tier: String(row[COL_TIER] || "photo").trim(),
+      subExpiry: String(row[COL_SUB_EXPIRY] || "never").trim(),
+      alias: String(row[COL_ALIAS] || "").trim(),
+      orderDate: String(row[COL_ORDER_DATE] || "").trim(),
+      emailSentAt: String(row[COL_EMAIL_SENT_AT] || "").trim()
+    };
+  }
+  return null;
 }
 
 // ─────────────────────────────────────────
@@ -255,14 +377,20 @@ function verifyLicense(inputKey, inputHwid) {
     }
 
     // 3. HWID 綁定 / 驗證
-    const tier    = String(row[4] || "photo").trim().toLowerCase();
-    const plugins = String(row[5] || "").trim().toLowerCase();
+    const tier    = normalizeTier(row[4] || "photo");
+    const plugins = normalizePlugins(row[5] || "");
+    if (!tier) {
+      return createJsonResponse({ "success": false, "error_code": "INVALID_TIER", "message": "Invalid license tier in server row." }, 500);
+    }
+    if (plugins === null) {
+      return createJsonResponse({ "success": false, "error_code": "INVALID_PLUGINS", "message": "Invalid license plugins in server row." }, 500);
+    }
 
     if (boundHwid === "") {
       sheet.getRange(i + 1, COL_BOUND_HWID + 1).setValue(inputHwid);
-      return createJsonResponse({ "success": true, "message": "License Activated & Bound successfully.", "email": emailInDb, "tier": tier, "plugins": plugins }, 200);
+      return createLicensedResponse("License Activated & Bound successfully.", normalizedInputKey, inputHwid, emailInDb, tier, plugins, subExpiry);
     } else if (boundHwid === inputHwid) {
-      return createJsonResponse({ "success": true, "message": "License Validated.", "email": emailInDb, "tier": tier, "plugins": plugins }, 200);
+      return createLicensedResponse("License Validated.", normalizedInputKey, inputHwid, emailInDb, tier, plugins, subExpiry);
     } else {
       return createJsonResponse({ "success": false, "error_code": "HWID_MISMATCH", "message": "此序號已在其他裝置上綁定。若需轉移授權，請聯絡客服解綁。" }, 403);
     }
@@ -293,8 +421,8 @@ function generateLicenseKey() {
 function sendBetaEmail(name, email, code) {
   const subject = "你的 PlugnGO Beta 序號來了";
 
-  const DL_M     = "https://github.com/skiseiju/plugngo-website/releases/download/v1.8.1/PlugnGO-v1.8.1-Mac.dmg";
-  const DL_INTEL = "https://github.com/skiseiju/plugngo-website/releases/download/v1.8.1/PlugnGO-v1.8.1-Intel.dmg";
+  const DL_M     = "https://github.com/skiseiju/plugngo-website/releases/download/v1.8.2/PlugnGO-v1.8.2-Mac.dmg";
+  const DL_INTEL = "https://github.com/skiseiju/plugngo-website/releases/download/v1.8.2/PlugnGO-v1.8.2-Intel.dmg";
   const GK_URL   = "https://plugngo.skiseiju.com/gatekeeper";
 
   const plainBody = `嗨 ${name}，
@@ -386,7 +514,7 @@ PlugnGO`;
         &nbsp;&nbsp;
         <a href="${DL_INTEL}" class="btn-ghost">⬇ Intel 版下載</a>
       </div>
-      <div class="dl-meta">v1.8.1 · macOS 12 Monterey 以上</div>
+      <div class="dl-meta">v1.8.2 · macOS 12 Monterey 以上</div>
 
       <div class="gk-box">
         <div class="gk-title">macOS 首次開啟教學</div>
@@ -441,6 +569,102 @@ PlugnGO`;
 }
 
 // ─────────────────────────────────────────
+// 正式購買 Email 寄送
+// ─────────────────────────────────────────
+function sendPaidLicenseEmail(name, email, code, tier, expiry) {
+  const displayName = String(name || "").trim() || "你好";
+  const planName = tier === "photo" ? "PlugnGO Photo 攝影版" : "PlugnGO";
+  const expiryLabel = formatExpiryLabel(expiry);
+  const subject = "你的 PlugnGO Photo 一年授權序號";
+  const downloadUrl = "https://plugngo.skiseiju.com/#download";
+  const gatekeeperUrl = "https://plugngo.skiseiju.com/gatekeeper";
+
+  const plainBody = `${displayName}，
+
+感謝你購買 ${planName}。
+
+你的序號：${code}
+授權期限：${expiryLabel}
+
+下載 PlugnGO：
+${downloadUrl}
+
+啟用方式：
+1. 安裝並開啟 PlugnGO
+2. 到授權/設定畫面輸入上方序號
+3. 完成啟用後即可使用 Photo 版功能
+
+macOS 首次開啟若被系統攔截，可參考：
+${gatekeeperUrl}
+
+如果付款完成後序號無法啟用，直接回覆這封信即可。
+
+海哥
+PlugnGO`;
+
+  const htmlBody = `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f5; margin: 0; padding: 40px 20px; color: #222; }
+    .container { max-width: 560px; margin: 0 auto; background: #fff; border-radius: 12px; overflow: hidden; }
+    .header { background: #111; padding: 30px 32px; }
+    .header h1 { color: #fff; margin: 0; font-size: 22px; }
+    .header p { color: #aaa; margin: 8px 0 0; font-size: 13px; }
+    .bd { padding: 34px 32px; }
+    .msg { font-size: 15px; line-height: 1.75; color: #444; margin: 0 0 22px; }
+    .code-box { background: #f8f8f8; border: 2px dashed #d4d4d4; border-radius: 8px; padding: 22px; text-align: center; margin: 26px 0; }
+    .code-label { font-size: 11px; color: #888; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px; }
+    .code { font-size: 26px; font-weight: 800; color: #111; letter-spacing: 0.08em; font-family: 'SF Mono', Menlo, monospace; }
+    .validity { font-size: 13px; color: #777; margin-top: 10px; }
+    .btn { display: inline-block; background: #f97316; color: #fff !important; text-decoration: none; border-radius: 6px; padding: 12px 20px; font-weight: 700; font-size: 14px; }
+    .steps { background: #fffbf5; border: 1px solid #fed7aa; border-radius: 8px; padding: 18px 20px; margin: 26px 0; }
+    .steps h2 { font-size: 14px; margin: 0 0 12px; }
+    .steps ol { padding-left: 1.3em; margin: 0; color: #555; font-size: 14px; line-height: 1.7; }
+    .small { font-size: 13px; color: #777; line-height: 1.7; }
+    .ft { border-top: 1px solid #eee; padding: 18px 32px; font-size: 12px; color: #999; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>PlugnGO Photo</h1>
+      <p>一年授權序號</p>
+    </div>
+    <div class="bd">
+      <p class="msg">${displayName}，感謝你購買 ${planName}。付款已完成，你的序號如下：</p>
+      <div class="code-box">
+        <div class="code-label">序號</div>
+        <div class="code">${code}</div>
+        <div class="validity">授權期限：${expiryLabel}</div>
+      </div>
+      <p><a class="btn" href="${downloadUrl}">下載 PlugnGO</a></p>
+      <div class="steps">
+        <h2>啟用方式</h2>
+        <ol>
+          <li>安裝並開啟 PlugnGO</li>
+          <li>到授權/設定畫面輸入上方序號</li>
+          <li>完成啟用後即可使用 Photo 版功能</li>
+        </ol>
+      </div>
+      <p class="small">macOS 首次開啟若被系統攔截，可參考 <a href="${gatekeeperUrl}">首次開啟教學</a>。</p>
+      <p class="small">如果付款完成後序號無法啟用，直接回覆這封信即可。</p>
+      <p class="msg">海哥<br>PlugnGO</p>
+    </div>
+    <div class="ft">這是自動寄出的授權信，有問題請直接回覆。</div>
+  </div>
+</body>
+</html>`;
+
+  GmailApp.sendEmail(email, subject, plainBody, {
+    htmlBody: htmlBody,
+    name: BETA_SENDER_NAME,
+    replyTo: BETA_REPLY_TO
+  });
+}
+
+// ─────────────────────────────────────────
 // Trial 處理
 // ─────────────────────────────────────────
 function handleTrial(inputHwid) {
@@ -478,6 +702,52 @@ function createJsonResponse(data, statusCode) {
   return ContentService.createTextOutput(JSON.stringify(data)).setMimeType(ContentService.MimeType.JSON);
 }
 
+function verifyAdminSecret(postData) {
+  const expected = PropertiesService.getScriptProperties().getProperty(ADMIN_SECRET_PROPERTY);
+  if (!expected) return false;
+  const provided = (postData.admin_secret || postData.admin_token || "").toString();
+  return provided && provided === expected;
+}
+
+function normalizeTier(value) {
+  const tier = String(value || "").trim().toLowerCase();
+  return VALID_LICENSE_TIERS.indexOf(tier) >= 0 ? tier : "";
+}
+
+function normalizePlugins(value) {
+  const raw = String(value || "").trim().toLowerCase();
+  if (!raw) return "";
+  const plugins = raw
+    .split(",")
+    .map(p => p.trim())
+    .filter(p => p);
+  for (let i = 0; i < plugins.length; i++) {
+    if (VALID_LICENSE_PLUGINS.indexOf(plugins[i]) < 0) return null;
+  }
+  return plugins.join(",");
+}
+
+function normalizeMaxDevices(value) {
+  const parsed = parseInt(value, 10);
+  if (!Number.isFinite(parsed) || parsed < 1 || parsed > 10) return "";
+  return String(parsed);
+}
+
+function normalizePaymentValue(value) {
+  return String(value || "").trim().replace(/[\r\n\t]+/g, " ");
+}
+
+function formatExpiryLabel(value) {
+  const expiry = String(value || "").trim();
+  if (!expiry || expiry === "never") return "永久";
+  return expiry;
+}
+
+function isValidExpiry(value) {
+  const expiry = String(value || "").trim();
+  return expiry === "never" || /^\d{4}-\d{2}-\d{2}$/.test(expiry);
+}
+
 function verifyZeroTrustSig(ts, hwid, licenseKey, clientSig) {
   const serverNow = new Date().getTime() / 1000;
   if (!ts || Math.abs(serverNow - ts) > 600) return false;
@@ -490,6 +760,93 @@ function verifyZeroTrustSig(ts, hwid, licenseKey, clientSig) {
 
 function normalizeLicenseKey(value) {
   return String(value || "").trim().replace(/\s+/g, "").toUpperCase();
+}
+
+function createLicensedResponse(message, licenseKey, hwid, email, tier, plugins, expiry) {
+  const cert = createLicenseCertificate(licenseKey, hwid, email, tier, plugins, expiry);
+  return createJsonResponse({
+    "success": true,
+    "message": message,
+    "email": email,
+    "tier": tier,
+    "plugins": plugins,
+    "expiry": expiry || "never",
+    "license_certificate": cert
+  }, 200);
+}
+
+function createLicenseCertificate(licenseKey, hwid, email, tier, plugins, expiry) {
+  const now = new Date();
+  const notAfter = certificateNotAfter(now, expiry);
+  const payload = {
+    "cert_version": 1,
+    "license_key": normalizeLicenseKey(licenseKey),
+    "hwid": String(hwid || "").trim(),
+    "email": String(email || "").trim(),
+    "tier": normalizeTier(tier),
+    "plugins": String(plugins || "").trim().toLowerCase().split(",").map(p => p.trim()).filter(p => p),
+    "expiry": String(expiry || "never").trim() || "never",
+    "issued_at": now.toISOString(),
+    "not_after": notAfter.toISOString()
+  };
+  const canonical = canonicalJson(payload);
+  const privateKey = getLicensePrivateKey();
+  if (!privateKey) throw new Error("Missing " + LICENSE_PRIVATE_KEY_PROPERTY);
+  const signatureBytes = Utilities.computeRsaSha256Signature(canonical, privateKey);
+  return {
+    "payload": payload,
+    "signature": Utilities.base64Encode(signatureBytes)
+  };
+}
+
+function getLicensePrivateKey() {
+  const raw = PropertiesService.getScriptProperties().getProperty(LICENSE_PRIVATE_KEY_PROPERTY);
+  if (!raw) return "";
+  return normalizePrivateKeyPem(raw);
+}
+
+function normalizePrivateKeyPem(value) {
+  let key = String(value || "").trim();
+
+  // The Apps Script settings UI stores property values in a single-line input.
+  // Accept escaped newlines, one-line PEM, and the hex-encoded PEM format used
+  // by the local Keychain backup.
+  if (/^[0-9a-fA-F]+$/.test(key) && key.length % 2 === 0) {
+    let decoded = "";
+    for (let i = 0; i < key.length; i += 2) {
+      decoded += String.fromCharCode(parseInt(key.substr(i, 2), 16));
+    }
+    key = decoded.trim();
+  }
+
+  key = key.replace(/\\n/g, "\n").trim();
+  const begin = "-----BEGIN PRIVATE KEY-----";
+  const end = "-----END PRIVATE KEY-----";
+  if (key.indexOf(begin) >= 0 && key.indexOf(end) >= 0 && key.indexOf("\n") < 0) {
+    const body = key
+      .replace(begin, "")
+      .replace(end, "")
+      .replace(/\s+/g, "");
+    const lines = body.match(/.{1,64}/g) || [];
+    key = begin + "\n" + lines.join("\n") + "\n" + end + "\n";
+  }
+  return key;
+}
+
+function certificateNotAfter(now, expiry) {
+  const ttl = new Date(now.getTime() + LICENSE_CERT_TTL_DAYS * 24 * 60 * 60 * 1000);
+  const expiryValue = String(expiry || "").trim();
+  if (!expiryValue || expiryValue === "never") return ttl;
+  const subscriptionEnd = new Date(expiryValue + "T23:59:59Z");
+  if (isNaN(subscriptionEnd.getTime())) return ttl;
+  return subscriptionEnd.getTime() < ttl.getTime() ? subscriptionEnd : ttl;
+}
+
+function canonicalJson(value) {
+  if (value === null || typeof value !== "object") return JSON.stringify(value);
+  if (Array.isArray(value)) return "[" + value.map(canonicalJson).join(",") + "]";
+  const keys = Object.keys(value).sort();
+  return "{" + keys.map(k => JSON.stringify(k) + ":" + canonicalJson(value[k])).join(",") + "}";
 }
 
 // ─────────────────────────────────────────
